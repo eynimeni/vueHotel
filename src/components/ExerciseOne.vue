@@ -9,7 +9,7 @@
   </div>
   <div>
     <select>
-      <option v-for="i in colors" :value="i.index">{{ i.color }}</option>
+      <option v-for="i in colors" :value="i.index" :key="i.color">{{ i.color }}</option>
     </select>
   </div>
 
