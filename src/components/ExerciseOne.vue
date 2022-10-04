@@ -10,6 +10,9 @@
   <div>
     <select v-model="selected">
       <option v-for="i in colors" v-bind:key="i" :value="i.id">{{ i.name }}</option>
+
+    <select>
+      <option v-for="i in colors" :value="i.index" :key="i.color">{{ i.color }}</option>
     </select>
   </div>
 
