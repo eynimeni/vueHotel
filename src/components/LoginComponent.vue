@@ -1,10 +1,13 @@
 <template>
-  <div><p>text</p></div>
+  <header-component></header-component>
+  <div>login</div>
 </template>
 
 <script>
+import HeaderComponent from "@/components/subComponents/HeaderComponent";
 export default {
-  name: "LoginComponent"
+  name: "LoginComponent",
+  components: {HeaderComponent}
 }
 </script>
 

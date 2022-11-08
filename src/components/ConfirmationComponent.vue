@@ -1,11 +1,13 @@
 <template>
-  <div>text</div>
-
+    <header-component></header-component>
+  <div>confirmation</div>
 </template>
 
 <script>
+import HeaderComponent from "@/components/subComponents/HeaderComponent";
 export default {
-  name: "ConfirmationComponent"
+  name: "ConfirmationComponent",
+  components: {HeaderComponent}
 }
 </script>
 
