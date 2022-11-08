@@ -6,7 +6,6 @@ import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 
-
-createApp(App).use(router, BootstrapVue3).mount('#app')
+createApp(App).use(router).use(BootstrapVue3).mount('#app')
 
 

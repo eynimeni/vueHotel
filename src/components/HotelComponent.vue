@@ -1,6 +1,7 @@
 <template>
   <header-component></header-component>
   <div><p>hotel</p></div>
+  <b-button>Button</b-button>
 </template>
 
 <script>
