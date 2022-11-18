@@ -1,22 +1,45 @@
 <template>
   <header-component></header-component>
-  <p>login</p>
+  <h2>Login</h2>
   <div>
-    <b-form-group
-        id="input-group-1"
-        label="Email address:"
-        label-for="input-1"
-        description="We'll never share your email with anyone else.">
+    <b-container fluid>
+      <b-form-group
+          id="input-group-1"
+          label="Email address:"
+          label-for="input-1"
+          description="Wir geben Ihre Daten niemals an Dritte weiter.">
 
-      <b-form-input
-          id="input-1"
-          v-model="form.email"
-          type="email"
-          placeholder="Enter email"
-          required
-      ></b-form-input>
-    </b-form-group>
+        <b-form-input
+            id="input-1"
+            v-model="form.email"
+            type="email"
+            placeholder="Email eingeben"
+            required
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group
+          id="input-group-2"
+          label="Passwort:"
+          label-for="input-2"
+          description="Bitte wählen Sie ein sicheres Passwort.">
+        <b-form-input
+            id="input-2"
+            type="password"
+            placeholder="Passwort eingeben"
+            required
+        ></b-form-input>
+      </b-form-group>
 
+      <b-row>
+        <b-col lg="4" class="pb-2">
+          <b-button disabled href="/">Abbrechen</b-button>
+        </b-col>
+        <b-col lg="4" class="pb-2">
+          <b-button variant="success">Einloggen</b-button>
+        </b-col>
+      </b-row>
+
+    </b-container>
   </div>
 </template>
 
