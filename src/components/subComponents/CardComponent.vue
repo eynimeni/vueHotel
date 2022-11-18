@@ -47,13 +47,8 @@ export default {
         {
           id: 1, roomNumber: 11, roomName: 'Junior Suite', beds: 3, pricePerNight: 120,
         extras: {
-            bathRoom: true, minibar: false, television: true, aircondition: true
+            bathRoom: true, minibar: true, television: true, aircondition: true
         }},
-        {
-          id: 1, roomNumber: 11, roomName: 'Junior Suite', beds: 3, pricePerNight: 120,
-          extras: {
-            bathRoom: false, minibar: true, television: true, aircondition: false
-          }},
 
       ]
     }
