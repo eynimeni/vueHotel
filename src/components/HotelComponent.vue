@@ -8,10 +8,7 @@
       </b-col>
     </b-row>
     <b-row>
-      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+      <p>Unser Hotel ist sehr toll. Es hat wunderschöne Zimmer und eine super Lage. Menschen empfehlen den Aufenthalt hier.</p>
     </b-row>
   </b-container>
   <footer-component></footer-component>
