@@ -1,13 +1,21 @@
 <template>
   <header-component></header-component>
-  <div>room</div>
+  <card-component></card-component>
+  <footer-component></footer-component>
 </template>
 
 <script>
 import HeaderComponent from "@/components/subComponents/HeaderComponent";
+import FooterComponent from "@/components/subComponents/FooterComponent";
+import CardComponent from "@/components/subComponents/CardComponent";
 export default {
   name: "RoomComponent",
-  components: {HeaderComponent}
+  components: {
+    CardComponent,
+    FooterComponent,
+    HeaderComponent,
+  },
+
 }
 </script>
 
