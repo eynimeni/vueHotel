@@ -11,7 +11,7 @@
 
         <b-form-input
             id="input-1"
-            v-model="form.email"
+            v-model="form.clientId"
             type="email"
             placeholder="Email eingeben"
             required
@@ -19,6 +19,7 @@
       </b-form-group>
       <b-form-group
           id="input-group-2"
+          v-model="form.secret"
           label="Passwort:"
           label-for="input-2"
           description="Bitte wählen Sie ein sicheres Passwort.">
@@ -51,7 +52,8 @@ export default {
   data() {
     return {
       form: {
-        email: '',
+        clientId: '',
+        secret: '',
       }
     }},}
 </script>

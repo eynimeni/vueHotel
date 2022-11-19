@@ -1,37 +1,42 @@
 <template>
-  <div class="room" v-for="room in rooms" v-bind:key="room">
+  <div>
     <b-card
-        img-src="/assets/images/rooms/1.jpeg"
+        :img-src=image
         img-alt="Image"
         img-top
-        class="m-4"
+        class="m-2"
+        img-height="200"
     >
-      <b-card-text>
-        <p>Zimmer: {{room.roomName}}</p>
-        <p>{{room.pricePerNight}}€</p>
-        <b-container>
-          <b-row>
-            <b-col v-if="room.extras.aircondition">
-              <b-icon-wind ></b-icon-wind>
-              <p>Klimaanlage</p>
-            </b-col>
-            <b-col v-if="room.extras.television">
-              <b-icon-tv ></b-icon-tv>
-              <p>TV</p>
-            </b-col>
-            <b-col v-if="room.extras.bathRoom">
-              <b-icon-door-closed ></b-icon-door-closed>
-              <p>Badezimmer</p>
-            </b-col>
-            <b-col v-if="room.extras.minibar">
-              <b-icon-cup-straw ></b-icon-cup-straw>
-              <p>Minibar</p>
-            </b-col>
-          </b-row>
-        </b-container>
-      </b-card-text>
-
-      <b-button href="#" variant="primary">Verfügbarkeit prüfen</b-button>
+        <b-card-text>
+          <h3>{{roomName}}</h3>
+          <p>{{beds}} - Bett Zimmer</p>
+          <p>{{pricePerNight}}€/Nacht</p>
+        </b-card-text>
+      <b-list-group class="mb-3">
+        <b-list-group-item>
+          <b-container>
+            <b-row>
+              <b-col v-if="aircondition">
+                <b-icon-wind ></b-icon-wind>
+                <p>AC</p>
+              </b-col>
+              <b-col v-if="television">
+                <b-icon-tv ></b-icon-tv>
+                <p>TV</p>
+              </b-col>
+              <b-col v-if="bathroom">
+                <b-icon-door-closed ></b-icon-door-closed>
+                <p>Bad</p>
+              </b-col>
+              <b-col v-if="minibar">
+                <b-icon-cup-straw ></b-icon-cup-straw>
+                <p>Minibar</p>
+              </b-col>
+            </b-row>
+          </b-container>
+        </b-list-group-item>
+      </b-list-group>
+      <b-button href="/booking" variant="primary">Verfügbarkeit prüfen</b-button>
     </b-card>
 
   </div>
@@ -41,18 +46,7 @@
 <script>
 export default {
   name: "CardComponent",
-  data() {
-    return {
-      rooms: [
-        {
-          id: 1, roomNumber: 11, roomName: 'Junior Suite', beds: 3, pricePerNight: 120,
-        extras: {
-            bathRoom: true, minibar: true, television: true, aircondition: true
-        }},
-
-      ]
-    }
-  }
+  props: ['id', 'roomNumber', 'roomName', 'beds', 'pricePerNight', 'bathroom', 'minibar', 'television', 'aircondition', 'image'],
 }
 
 </script>

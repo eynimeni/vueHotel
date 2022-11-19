@@ -1,16 +1,6 @@
 <template>
   <header-component></header-component>
-  <div><p>Willkommen!</p></div>
-  <b-container fluid class="p-4 bg-light">
-    <b-row>
-      <b-col>
-        <b-img thumbnail fluid src="/assets/images/hotel-belvedere-bozen.jpg" alt="Image Hotel"></b-img>
-      </b-col>
-    </b-row>
-    <b-row>
-      <p>Unser Hotel ist sehr toll. Es hat wunderschöne Zimmer und eine super Lage. Menschen empfehlen den Aufenthalt hier.</p>
-    </b-row>
-  </b-container>
+ <heading-component v-bind:title="title" v-bind:text="text" v-bind:image="image" v-bind:image-alt="imageAlt"></heading-component>
   <footer-component></footer-component>
 </template>
 
@@ -18,12 +8,22 @@
 
 import HeaderComponent from "@/components/subComponents/HeaderComponent";
 import FooterComponent from "@/components/subComponents/FooterComponent";
+import HeadingComponent from "@/components/subComponents/HeadingComponent";
 
 export default {
   name: "HotelComponent",
   components: {
+    HeadingComponent,
      HeaderComponent,
     FooterComponent
+  },
+  data() {
+    return {
+      title: 'Das Hotel',
+      image: '/assets/images/hotel-belvedere-bozen.jpg',
+      imageAlt: 'hotelimage',
+      text: 'Unser Hotel ist sehr toll. Es hat wunderschöne Zimmer und eine super Lage. Menschen empfehlen den Aufenthalt hier.'
+    }
   }
 }
 </script>
