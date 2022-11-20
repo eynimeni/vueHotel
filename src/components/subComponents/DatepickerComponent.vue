@@ -1,6 +1,6 @@
 <template>
-  <Datepicker v-model="date" :enableTimePicker="false" placeholder="Zeitraum wählen"
-              autoApply :closeOnAutoApply="false" range dayPicker ></Datepicker>
+  <Datepicker v-model="date" :enableTimePicker="false" placeholder="Zeitraum wählen" format="dd.MM.yyyy"
+              autoApply :closeOnAutoApply="false" range></Datepicker>
 </template>
 
 <script>

@@ -36,7 +36,7 @@
           </b-container>
         </b-list-group-item>
       </b-list-group>
-      <router-link :to="{path: '/booking/', query: {room: id}}">
+      <router-link :to="{path: '/booking/', query: {id}}">
         <b-button variant="primary">Verfügbarkeit prüfen</b-button>
       </router-link>
 
