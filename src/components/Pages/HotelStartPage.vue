@@ -4,7 +4,7 @@
 
 <script>
 
-import HeadingComponent from "@/components/subComponents/HeadingComponent";
+import HeadingComponent from "@/components/subComponents/HeadingOrganism";
 
 export default {
   name: "HotelComponent",

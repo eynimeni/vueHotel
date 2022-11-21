@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HotelComponent from "@/components/HotelComponent";
-import RoomComponent from "@/components/RoomComponent";
-import LoginComponent from "@/components/LoginComponent";
-import BookingComponent from "@/components/BookingComponent";
-import ProfileComponent from "@/components/ProfileComponent";
-import ConfirmationComponent from "@/components/ConfirmationComponent";
-import AboutComponent from "@/components/AboutPage";
-import ImpressumComponent from "@/components/ImpressumComponent";
+import HotelComponent from "@/components/Pages/HotelStartPage";
+import RoomComponent from "@/components/Pages/RoomsPage";
+import LoginComponent from "@/components/Pages/LoginPage";
+import BookingComponent from "@/components/Pages/BookingPage";
+import ProfileComponent from "@/components/Pages/ProfilePage";
+import ConfirmationComponent from "@/components/Pages/ConfirmationPage";
+import AboutComponent from "@/components/Pages/AboutPage";
+import ImpressumComponent from "@/components/Pages/ImpressumPage";
 
 const routes = [
   {path: '/', name: 'home', component: HotelComponent},

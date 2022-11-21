@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 
 import NavbarOrganism from "@/components/subComponents/Navbar-Organism";
-import FooterComponent from "@/components/subComponents/FooterComponent";
+import FooterComponent from "@/components/subComponents/FooterOrganism";
 
 const app = createApp(App);
 app.use(router);

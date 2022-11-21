@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ContactComponent from "@/components/subComponents/ContactComponent";
+import ContactComponent from "@/components/subComponents/ContactDataOrganism";
 
 export default {
   name: "ImpressumComponent",

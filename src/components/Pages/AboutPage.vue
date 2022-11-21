@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import HeadingComponent from "@/components/subComponents/HeadingComponent";
-import ContactComponent from "@/components/subComponents/ContactComponent";
+import HeadingComponent from "@/components/subComponents/HeadingOrganism";
+import ContactComponent from "@/components/subComponents/ContactDataOrganism";
 
 export default {
   name: "AboutComponent",

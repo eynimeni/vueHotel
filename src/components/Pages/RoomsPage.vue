@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import CardComponent from "@/components/subComponents/CardComponent";
+import CardComponent from "@/components/subComponents/RoomDisplayOrganism";
 
 export default {
   name: "RoomComponent",

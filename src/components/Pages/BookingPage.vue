@@ -28,7 +28,7 @@
 
 <script>
 import {useRoute} from "vue-router/dist/vue-router";
-import DatepickerComponent from "@/components/subComponents/DatepickerComponent";
+import DatepickerComponent from "@/components/subComponents/DatepickerAtom";
 
 export default {
   name: "BookingComponent",
