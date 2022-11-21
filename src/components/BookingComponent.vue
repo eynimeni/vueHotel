@@ -32,7 +32,7 @@ import DatepickerComponent from "@/components/subComponents/DatepickerComponent"
 
 export default {
   name: "BookingComponent",
-  components: {DatepickerComponent, HeadingComponent, HeaderComponent},
+  components: {DatepickerComponent},
   data() {
     return {
       title: 'Buchungen',
