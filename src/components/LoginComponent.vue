@@ -1,6 +1,6 @@
 <template>
   <header-component></header-component>
-  <heading-component title="Login"></heading-component>
+  <heading-component v-bind:title="title"></heading-component>
   <div>
 
     <b-container fluid>
@@ -52,6 +52,7 @@ export default {
   components: {HeaderComponent, HeadingComponent},
   data() {
     return {
+      title:"Login",
       form: {
         clientId: '',
         secret: '',

@@ -1,6 +1,6 @@
 <template>
   <header-component></header-component>
-  <heading-component title="Buchung"></heading-component>
+  <heading-component  v-bind:title="title"></heading-component>
   <b-container>
     <b-form-group class="m-2">
       <b-col class="mb-3">
@@ -39,6 +39,7 @@ export default {
   components: {DatepickerComponent, HeadingComponent, HeaderComponent},
   data() {
     return {
+      title: 'Buchungen',
       options: [
         {value: null, text: 'Zimmertyp wählen'},
         {value: '1', text: 'junior suite'},

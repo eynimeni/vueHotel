@@ -1,5 +1,6 @@
 <template>
   <header-component></header-component>
+  <heading-component v-bind:title="title"></heading-component>
   <b-container>
     <div>
       <div v-for="room in rooms" :key="room.id">
@@ -33,6 +34,7 @@
 import HeaderComponent from "@/components/subComponents/HeaderComponent";
 import FooterComponent from "@/components/subComponents/FooterComponent";
 import CardComponent from "@/components/subComponents/CardComponent";
+import HeadingComponent from "@/components/subComponents/HeadingComponent";
 
 export default {
   name: "RoomComponent",
@@ -40,9 +42,11 @@ export default {
     CardComponent,
     FooterComponent,
     HeaderComponent,
+    HeadingComponent,
   },
   data() {
     return {
+      title: "Zimmer",
       perPage: 1,
       currentPage: 1,
       room: [
