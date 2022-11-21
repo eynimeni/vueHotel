@@ -1,4 +1,5 @@
 <template>
+  <heading-organism v-bind:title="title"></heading-organism>
   <b-container>
     <div>
       <div v-for="room in rooms" :key="room.id">
@@ -29,14 +30,17 @@
 
 <script>
 import CardComponent from "@/components/subComponents/RoomDisplayOrganism";
+import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 
 export default {
   name: "RoomComponent",
   components: {
+    HeadingOrganism,
     CardComponent,
   },
   data() {
     return {
+      title: 'Zimmer',
       perPage: 1,
       currentPage: 1,
       room: [

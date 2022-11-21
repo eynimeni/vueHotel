@@ -1,15 +1,15 @@
 <template>
- <heading-component v-bind:title="title" v-bind:text="text" v-bind:image="image" v-bind:image-alt="imageAlt"></heading-component>
+ <heading-organism v-bind:title="title" v-bind:text="text" v-bind:image="image" v-bind:image-alt="imageAlt"></heading-organism>
 </template>
 
 <script>
 
-import HeadingComponent from "@/components/subComponents/HeadingOrganism";
+import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 
 export default {
   name: "HotelComponent",
   components: {
-    HeadingComponent
+    HeadingOrganism
 
   },
   data() {

@@ -1,17 +1,17 @@
 <template>
 
-  <heading-component v-bind:title="title" v-bind:text="text" v-bind:image="image" v-bind:image-alt="imageAlt"></heading-component>
+  <heading-organism v-bind:title="title" v-bind:text="text" v-bind:image="image" v-bind:image-alt="imageAlt"></heading-organism>
   <contact-component></contact-component>
 
 </template>
 
 <script>
-import HeadingComponent from "@/components/subComponents/HeadingOrganism";
+import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import ContactComponent from "@/components/subComponents/ContactDataOrganism";
 
 export default {
   name: "AboutComponent",
-  components: {ContactComponent, HeadingComponent },
+  components: {ContactComponent, HeadingOrganism },
   data() {
     return {
       title: 'Über Uns',

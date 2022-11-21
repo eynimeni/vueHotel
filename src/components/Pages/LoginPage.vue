@@ -1,4 +1,6 @@
 <template>
+  <heading-organism v-bind:title="title"></heading-organism>
+
   <div>
     <b-container fluid>
       <b-form-group class="m-2"
@@ -42,11 +44,14 @@
 </template>
 
 <script>
+import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 export default {
   name: "LoginComponent",
-  components: {},
+  components: {HeadingOrganism},
+
   data() {
     return {
+      title: 'Login',
       form: {
         clientId: '',
         secret: '',

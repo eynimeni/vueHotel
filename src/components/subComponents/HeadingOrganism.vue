@@ -12,8 +12,13 @@
 
 <script>
 export default {
-  name: "HeadingComponent",
+  name: "HeadingOrganism",
   props: ['title', 'text', 'image', 'imageAlt'],
+  data() {
+    return {
+
+    }
+  }
 }
 </script>
 

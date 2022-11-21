@@ -1,4 +1,6 @@
 <template>
+  <heading-organism v-bind:title="title"></heading-organism>
+
   <b-container>
     <b-form-group class="m-2">
       <b-col class="mb-3">
@@ -29,10 +31,11 @@
 <script>
 import {useRoute} from "vue-router/dist/vue-router";
 import DatepickerComponent from "@/components/subComponents/DatepickerAtom";
+import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 
 export default {
   name: "BookingComponent",
-  components: {DatepickerComponent},
+  components: {DatepickerComponent, HeadingOrganism},
   data() {
     return {
       title: 'Buchungen',
