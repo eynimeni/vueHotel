@@ -1,21 +1,16 @@
 <template>
-  <header-component></header-component>
  <heading-component v-bind:title="title" v-bind:text="text" v-bind:image="image" v-bind:image-alt="imageAlt"></heading-component>
-  <footer-component></footer-component>
 </template>
 
 <script>
 
-import HeaderComponent from "@/components/subComponents/HeaderComponent";
-import FooterComponent from "@/components/subComponents/FooterComponent";
 import HeadingComponent from "@/components/subComponents/HeadingComponent";
 
 export default {
   name: "HotelComponent",
   components: {
-    HeadingComponent,
-     HeaderComponent,
-    FooterComponent
+    HeadingComponent
+
   },
   data() {
     return {

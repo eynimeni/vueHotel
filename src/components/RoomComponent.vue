@@ -1,5 +1,4 @@
 <template>
-  <header-component></header-component>
   <b-container>
     <div>
       <div v-for="room in rooms" :key="room.id">
@@ -25,20 +24,15 @@
     ></b-pagination>
   </b-container>
 
-  <footer-component></footer-component>
 </template>
 
 <script>
-import HeaderComponent from "@/components/subComponents/HeaderComponent";
-import FooterComponent from "@/components/subComponents/FooterComponent";
 import CardComponent from "@/components/subComponents/CardComponent";
 
 export default {
   name: "RoomComponent",
   components: {
     CardComponent,
-    FooterComponent,
-    HeaderComponent,
   },
   data() {
     return {
