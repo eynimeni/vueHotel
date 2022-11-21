@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import BootstrapVue3 from 'bootstrap-vue-3'
 import App from './App.vue'
 import {BootstrapIconsPlugin} from "bootstrap-icons-vue";
+import Datepicker from '@vuepic/vue-datepicker';
 
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'

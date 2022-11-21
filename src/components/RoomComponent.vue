@@ -11,6 +11,7 @@
             v-bind:aircondition=room.extras.aircondition
             v-bind:bathroom=room.extras.bathroom
             v-bind:image=room.image
+            v-bind:id = room.id
         ></CardComponent>
       </div>
     </div>
@@ -46,7 +47,7 @@ export default {
           }
         },
         {
-          id: 1, roomNumber: 12, roomName: 'King Suite', beds: 1, pricePerNight: 150, image: "/assets/images/rooms/2.jpg",
+          id: 2, roomNumber: 12, roomName: 'King Suite', beds: 1, pricePerNight: 150, image: "/assets/images/rooms/2.jpg",
           extras: {
             bathroom: true, minibar: true, television: true, aircondition: true
           }
