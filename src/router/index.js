@@ -5,7 +5,7 @@ import LoginComponent from "@/components/LoginComponent";
 import BookingComponent from "@/components/BookingComponent";
 import ProfileComponent from "@/components/ProfileComponent";
 import ConfirmationComponent from "@/components/ConfirmationComponent";
-import AboutComponent from "@/components/AboutComponent";
+import AboutComponent from "@/components/AboutPage";
 import ImpressumComponent from "@/components/ImpressumComponent";
 
 const routes = [

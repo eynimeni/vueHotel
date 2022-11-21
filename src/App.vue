@@ -1,7 +1,12 @@
 <template>
+  <navbar-organism></navbar-organism>
 
   <router-view></router-view>
+
+  <footer-component></footer-component>
 </template>
+
+
 
 <style>
 #app {

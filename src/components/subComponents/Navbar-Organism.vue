@@ -16,12 +16,11 @@
     </b-navbar>
 
   </div>
-  <router-view></router-view>
 </template>
 
 <script>
 export default {
-  name: "HeaderComponent"
+  name: "NavbarOrganism"
 }
 </script>
 

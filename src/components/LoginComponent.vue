@@ -1,5 +1,4 @@
 <template>
-  <header-component></header-component>
   <h2>Login</h2>
   <div>
     <b-container fluid>
@@ -45,10 +44,9 @@
 </template>
 
 <script>
-import HeaderComponent from "@/components/subComponents/HeaderComponent";
 export default {
   name: "LoginComponent",
-  components: {HeaderComponent},
+  components: {},
   data() {
     return {
       form: {
