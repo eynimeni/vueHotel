@@ -1,5 +1,5 @@
 <template>
-  <b-container class="footer">
+  <b-container id="footer" fluid class="bg-light">
     <b-navbar-nav>
       <b-nav-item href="/impressum">Impressum</b-nav-item>
     </b-navbar-nav>
@@ -13,10 +13,8 @@ export default {
 </script>
 
 <style scoped>
-.footer {
+#footer {
   position: fixed;
   bottom: 0;
-  height: 40px;
-  background: lightgray;
 }
 </style>
