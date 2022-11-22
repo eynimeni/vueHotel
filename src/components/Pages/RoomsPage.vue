@@ -16,6 +16,7 @@
         ></RoomDisplayOrganism>
       </div>
     </div>
+    <div>{{roomData}}</div>
     <b-pagination
         pills
         align="center"
@@ -31,6 +32,7 @@
 <script>
 import RoomDisplayOrganism from "@/components/subComponents/RoomDisplayOrganism";
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
+import {useRoomStore} from "@/stores/RoomStore";
 
 export default {
   name: "RoomComponent",
@@ -40,6 +42,7 @@ export default {
   },
   data() {
     return {
+      roomData: useRoomStore().readState(),
       title: 'Zimmer',
       perPage: 1,
       currentPage: 1,
