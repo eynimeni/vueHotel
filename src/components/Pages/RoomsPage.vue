@@ -4,7 +4,7 @@
     <div>
       <div v-for="room in rooms" :key="room.id">
         <RoomDisplayOrganism
-            v-bind:room-name=room.roomName
+            v-bind:room-name=room.roomsName
             v-bind:price-per-night=room.pricePerNight
             v-bind:beds=room.beds
             v-bind:minibar=room.extras.minibar
@@ -16,7 +16,6 @@
         ></RoomDisplayOrganism>
       </div>
     </div>
-    <div>{{roomData}}</div>
     <b-pagination
         pills
         align="center"
@@ -26,7 +25,7 @@
         class="mt-5"
     ></b-pagination>
   </b-container>
-
+<div>{{}}</div>
 </template>
 
 <script>
@@ -42,11 +41,13 @@ export default {
   },
   data() {
     return {
-      roomData: useRoomStore().readState(),
+      roomStoreObject: useRoomStore().readState(),
       title: 'Zimmer',
       perPage: 1,
       currentPage: 1,
-      room: [
+      room: useRoomStore().rooms
+          /*
+          [
         {
           id: 1, roomNumber: 11, roomName: 'Junior Suite', beds: 3, pricePerNight: 120, image: "/assets/images/rooms/1.jpg",
           extras: {
@@ -60,6 +61,8 @@ export default {
           }
         },
       ],
+
+           */
     }
   },
   computed: {
@@ -67,8 +70,12 @@ export default {
       return this.room.length
     },
     rooms() {
+      console.log(useRoomStore().rooms)
+      console.log(this.room)
       return this.room.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage)
     },
+
+
   },
 }
 </script>

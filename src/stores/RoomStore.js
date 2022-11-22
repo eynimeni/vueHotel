@@ -14,7 +14,6 @@ export const useRoomStore = defineStore('room', {
             .then(
                 response => {
                 this.rooms = response.data
-                console.log(response.data)
                 })
     }
 }
