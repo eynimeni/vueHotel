@@ -1,7 +1,12 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="light" variant="light">
-      <b-navbar-brand href="/">NALA</b-navbar-brand>
+      <b-navbar-brand href="/">
+        <b-list-group-item class="d-flex justify-content-between align-items-center">
+          <b-img src="/assets/icons/Favicons/favicon-48x48.png" fluid alt="Responsive image"></b-img>
+        </b-list-group-item>
+
+        </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
