@@ -1,11 +1,13 @@
 <template>
   <div>
+
     <b-card
         :img-src=image
         img-alt="Image"
         img-top
-        class="m-2"
+        class="mx-auto"
         img-height="200"
+        style="max-width: 20rem"
     >
         <b-card-text>
           <h3>{{roomName}}</h3>
@@ -48,7 +50,7 @@
 
 <script>
 export default {
-  name: "CardComponent",
+  name: "RoomDisplayOrganism",
   props: ['id', 'roomNumber', 'roomName', 'beds', 'pricePerNight', 'bathroom', 'minibar', 'television', 'aircondition', 'image'],
 }
 

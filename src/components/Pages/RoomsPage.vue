@@ -3,7 +3,7 @@
   <b-container>
     <div>
       <div v-for="room in rooms" :key="room.id">
-        <CardComponent
+        <RoomDisplayOrganism
             v-bind:room-name=room.roomName
             v-bind:price-per-night=room.pricePerNight
             v-bind:beds=room.beds
@@ -13,7 +13,7 @@
             v-bind:bathroom=room.extras.bathroom
             v-bind:image=room.image
             v-bind:id = room.id
-        ></CardComponent>
+        ></RoomDisplayOrganism>
       </div>
     </div>
     <b-pagination
@@ -29,14 +29,14 @@
 </template>
 
 <script>
-import CardComponent from "@/components/subComponents/RoomDisplayOrganism";
+import RoomDisplayOrganism from "@/components/subComponents/RoomDisplayOrganism";
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 
 export default {
   name: "RoomComponent",
   components: {
     HeadingOrganism,
-    CardComponent,
+    RoomDisplayOrganism,
   },
   data() {
     return {
