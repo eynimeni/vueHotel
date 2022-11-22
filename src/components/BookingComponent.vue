@@ -9,6 +9,9 @@
       <b-col class="mb-3">
         <datepicker-component v-model="this.date"></datepicker-component>
       </b-col>
+      <b-col>
+        <form-component v-model="this.create"></form-component>
+      </b-col>
     </b-form-group>
     <div>
       <h6>Ergebnisse</h6>
@@ -26,10 +29,11 @@ import HeaderComponent from "@/components/subComponents/HeaderComponent";
 import {useRoute} from "vue-router/dist/vue-router";
 import HeadingComponent from "@/components/subComponents/HeadingComponent";
 import DatepickerComponent from "@/components/subComponents/DatepickerComponent";
+import FormComponent from "@/components/subComponents/FormComponent";
 
 export default {
   name: "BookingComponent",
-  components: {DatepickerComponent, HeadingComponent, HeaderComponent},
+  components: {DatepickerComponent, HeadingComponent, HeaderComponent, FormComponent},
   data() {
     return {
       options: [
