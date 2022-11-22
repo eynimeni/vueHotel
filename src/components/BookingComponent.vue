@@ -2,23 +2,27 @@
   <header-component></header-component>
   <heading-component title="Buchung"></heading-component>
   <b-container>
+    <ProgressBarComponent></ProgressBarComponent>
+    <hr>
     <b-form-group class="m-2">
       <b-col class="mb-3">
-        <b-form-select v-model="this.create" :options="this.options"></b-form-select> <!--options css style missing in chrome-->
+        <b-form-select v-model="this.create" :options="this.options"></b-form-select>
+        <!--options css style missing in chrome-->
       </b-col>
       <b-col class="mb-3">
         <datepicker-component v-model="this.date"></datepicker-component>
       </b-col>
-      <b-col>
-        <form-component v-model="this.create"></form-component>
-      </b-col>
+      <hr>
     </b-form-group>
     <div>
       <h6>Ergebnisse</h6>
-      <p>von {{this.date[0]}} bis {{this.date[1]}} </p>
+      <p>von {{ this.date[0] }} bis {{ this.date[1] }} </p>
       <p>wir konnten im gewählten Zeitraum keine buchbaren Zimmer finden </p>
     </div>
-
+    <hr>
+    <b-col>
+      <form-component v-model="this.create"></form-component>
+    </b-col>
 
     <b-button href="/confirmation">Weiter</b-button>
   </b-container>
@@ -30,10 +34,11 @@ import {useRoute} from "vue-router/dist/vue-router";
 import HeadingComponent from "@/components/subComponents/HeadingComponent";
 import DatepickerComponent from "@/components/subComponents/DatepickerComponent";
 import FormComponent from "@/components/subComponents/FormComponent";
+import ProgressBarComponent from "@/components/subComponents/ProgressBarComponent";
 
 export default {
   name: "BookingComponent",
-  components: {DatepickerComponent, HeadingComponent, HeaderComponent, FormComponent},
+  components: {DatepickerComponent, HeadingComponent, HeaderComponent, FormComponent, ProgressBarComponent},
   data() {
     return {
       options: [

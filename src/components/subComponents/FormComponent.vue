@@ -39,7 +39,6 @@
         >
           <b-form-input id="name" :type="text" v-model="personalData.surname"></b-form-input>
         </b-form-group>
-
         <b-form-group
             label="Email:"
             label-for="email"
@@ -48,7 +47,6 @@
         >
           <b-form-input id="email" :type="email" v-model="personalData.email"></b-form-input>
         </b-form-group>
-
         <b-form-group
             label="Email wiederholen:"
             label-for="email-repeat"
@@ -57,29 +55,51 @@
         >
           <b-form-input id="email repeat" :type="email" v-model="personalData.emailrepeat"></b-form-input>
         </b-form-group>
+        <b-form-group>
+          <div>Frühstück: {{ status }}</div>
+          <b-form-checkbox
+              id="checkbox-1"
+              v-model="status"
+              name="checkbox-1"
+              value="Ja"
+              unchecked-value="Nicht gebucht"
+          >
+            Ich möchte Frühstück dazubuchen.
+          </b-form-checkbox>
+        </b-form-group>
       </b-form-group>
     </b-card>
   </div>
 
-  <b-button v-on:click="submitPersonalData">Button</b-button>
+  <b-button v-on:click="submitPersonalData">Persönliche Daten console.log</b-button>
 </template>
 
 <script>
+import {BFormGroup} from "bootstrap-vue-3";
+
 export default {
   name: "FormComponent",
+  components: {BFormGroup},
   data() {
     return {
-      personalData:{
+      status: "nicht gebucht",
+      personalData: {
         gender: null,
         firstname: null,
         surname: null,
         email: null,
-        emailrepeat: null
+        emailrepeat: null,
+        status: null,
       }
     };
   },
   methods: {
     submitPersonalData() {
+      if (this.status === "Ja") {
+        this.personalData.status = 1;
+      } else {
+        this.personalData.status = 0;
+      }
       console.log(this.personalData)
     }
   }
