@@ -11,7 +11,6 @@ export default {
   name: "RoomComponent",
   components: {
     RoomListOrganism,
-
     HeadingOrganism,
   },
   data() {
