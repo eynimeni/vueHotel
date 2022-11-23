@@ -4,6 +4,7 @@
       <div v-for="room in rooms" :key="room.id">
         <RoomDisplayMolecule
             v-bind:room = room
+            v-bind:image = getImage(room.id)
         ></RoomDisplayMolecule>
       </div>
     </div>
@@ -30,6 +31,9 @@ export default {
       roomStore: useRoomStore(),
       perPage: 1,
       currentPage: 1,
+      images: [
+        "/assets/images/rooms/1.jpg", "/assets/images/rooms/2.jpg"
+      ]
 
       /*
       [
@@ -52,6 +56,11 @@ export default {
   }, created() {
     this.roomStore.readState()
   },
+  methods: {
+    getImage(id) {
+      return "/assets/images/rooms/"+id+".jpg"
+    }
+  },
   computed: {
     rows() {
       return this.room.length
@@ -61,7 +70,7 @@ export default {
     },
     room() {
       return this.roomStore.getRooms
-    }
+    },
   },
 }
 </script>

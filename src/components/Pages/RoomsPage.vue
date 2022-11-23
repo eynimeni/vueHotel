@@ -13,6 +13,11 @@ export default {
     RoomListOrganism,
     HeadingOrganism,
   },
+  data() {
+    return {
+      title: 'Zimmer',
+    }
+  }
 }
 </script>
 <style scoped>

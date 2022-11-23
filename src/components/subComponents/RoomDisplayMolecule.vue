@@ -48,8 +48,12 @@
 <script>
 export default {
   name: "RoomDisplayMolecule",
-  props: [ 'room' ],
-  extras: null,
+  props: [ 'room', 'image' ],
+  data() {
+    return {
+      id: this.room.id,
+    }
+  },
 }
 </script>
 
