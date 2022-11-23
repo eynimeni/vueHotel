@@ -10,7 +10,7 @@ import ImpressumComponent from "@/components/Pages/ImpressumPage";
 
 const routes = [
   {path: '/', name: 'home', component: HotelComponent},
-  {path: '/rooms', name:'room', component: RoomComponent},
+  {path: '/rooms', name:'rooms', component: RoomComponent},
   {path: '/login', name: 'login', component: LoginComponent},
   {path: '/booking', name:'booking', component: BookingComponent},
   {path: '/profile', name:'profile', component: ProfileComponent},

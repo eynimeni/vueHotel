@@ -10,27 +10,27 @@
         style="max-width: 20rem"
     >
         <b-card-text>
-          <h3>{{roomName}}</h3>
-          <p>{{beds}} - Bett Zimmer</p>
-          <p>{{pricePerNight}}€/Nacht</p>
+          <h3>{{room.roomsName}}</h3>
+          <p>{{room.beds}} - Bett Zimmer</p>
+          <p>{{room.pricePerNight}}€ / Nacht</p>
         </b-card-text>
       <b-list-group class="mb-3">
         <b-list-group-item>
           <b-container>
             <b-row>
-              <b-col v-if="aircondition">
+              <b-col v-if="room.extras[4].aircondition === 1">
                 <b-icon-wind ></b-icon-wind>
                 <p>AC</p>
               </b-col>
-              <b-col v-if="television">
+              <b-col v-if="room.extras[2].television === 1">
                 <b-icon-tv ></b-icon-tv>
                 <p>TV</p>
               </b-col>
-              <b-col v-if="bathroom">
+              <b-col v-if="room.extras[0].bathroom === 1">
                 <b-icon-door-closed ></b-icon-door-closed>
                 <p>Bad</p>
               </b-col>
-              <b-col v-if="minibar">
+              <b-col v-if="room.extras[1].minibar === 1">
                 <b-icon-cup-straw ></b-icon-cup-straw>
                 <p>Minibar</p>
               </b-col>
@@ -41,19 +41,20 @@
       <router-link :to="{path: '/booking/', query: {id}}">
         <b-button variant="primary">Verfügbarkeit prüfen</b-button>
       </router-link>
-
     </b-card>
-
   </div>
 </template>
 
-
 <script>
 export default {
-  name: "RoomDisplayOrganism",
-  props: ['id', 'roomNumber', 'roomName', 'beds', 'pricePerNight', 'bathroom', 'minibar', 'television', 'aircondition', 'image'],
+  name: "RoomDisplayMolecule",
+  props: [ 'room', 'image' ],
+  data() {
+    return {
+      id: this.room.id,
+    }
+  },
 }
-
 </script>
 
 <style scoped>
