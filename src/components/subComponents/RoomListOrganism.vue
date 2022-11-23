@@ -3,8 +3,8 @@
     <div>
       <div v-for="room in rooms" :key="room.id">
         <RoomDisplayMolecule
-            v-bind:room = room
-            v-bind:image = getImage(room.id)
+            v-bind:room=room
+            v-bind:image=getImage(room.id)
         ></RoomDisplayMolecule>
       </div>
     </div>
@@ -18,7 +18,6 @@
     ></b-pagination>
   </b-container>
 </template>
-
 <script>
 import RoomDisplayMolecule from "@/components/subComponents/RoomDisplayMolecule";
 import {useRoomStore} from "@/stores/RoomStore";
@@ -34,31 +33,13 @@ export default {
       images: [
         "/assets/images/rooms/1.jpg", "/assets/images/rooms/2.jpg"
       ]
-
-      /*
-      [
-    {
-      id: 1, roomNumber: 11, roomName: 'Junior Suite', beds: 3, pricePerNight: 120, image: "/assets/images/rooms/1.jpg",
-      extras: {
-        bathroom: true, minibar: true, television: true, aircondition: false,
-      }
-    },
-    {
-      id: 2, roomNumber: 12, roomName: 'King Suite', beds: 1, pricePerNight: 150, image: "/assets/images/rooms/2.jpg",
-      extras: {
-        bathroom: true, minibar: true, television: true, aircondition: true
-      }
-    },
-  ],
-
-       */
     }
   }, created() {
     this.roomStore.readState()
   },
   methods: {
     getImage(id) {
-      return "/assets/images/rooms/"+id+".jpg"
+      return "/assets/images/rooms/" + id + ".jpg"
     }
   },
   computed: {
