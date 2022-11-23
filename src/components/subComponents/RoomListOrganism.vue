@@ -28,7 +28,6 @@ export default {
   data() {
     return {
       roomStore: useRoomStore(),
-      title: 'Zimmer',
       perPage: 1,
       currentPage: 1,
 

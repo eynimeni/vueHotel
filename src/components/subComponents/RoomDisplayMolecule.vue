@@ -18,19 +18,19 @@
         <b-list-group-item>
           <b-container>
             <b-row>
-              <b-col v-if="room.extras.aircondition === 1">
+              <b-col v-if="room.extras[4].aircondition === 1">
                 <b-icon-wind ></b-icon-wind>
                 <p>AC</p>
               </b-col>
-              <b-col v-if="television">
+              <b-col v-if="room.extras[2].television === 1">
                 <b-icon-tv ></b-icon-tv>
                 <p>TV</p>
               </b-col>
-              <b-col v-if="bathroom">
+              <b-col v-if="room.extras[0].bathroom === 1">
                 <b-icon-door-closed ></b-icon-door-closed>
                 <p>Bad</p>
               </b-col>
-              <b-col v-if="minibar">
+              <b-col v-if="room.extras[1].minibar === 1">
                 <b-icon-cup-straw ></b-icon-cup-straw>
                 <p>Minibar</p>
               </b-col>
@@ -49,6 +49,7 @@
 export default {
   name: "RoomDisplayMolecule",
   props: [ 'room' ],
+  extras: null,
 }
 </script>
 
