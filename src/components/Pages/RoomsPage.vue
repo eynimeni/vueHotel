@@ -1,6 +1,6 @@
 <template>
   <heading-organism v-bind:title="title"></heading-organism>
-  <RoomListOrganism></RoomListOrganism>
+  <room-list-organism></room-list-organism>
 </template>
 
 <script>
@@ -11,6 +11,7 @@ export default {
   name: "RoomComponent",
   components: {
     RoomListOrganism,
+
     HeadingOrganism,
   },
   data() {
