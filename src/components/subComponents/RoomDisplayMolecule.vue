@@ -10,15 +10,15 @@
         style="max-width: 20rem"
     >
         <b-card-text>
-          <h3>{{roomName}}</h3>
-          <p>{{beds}} - Bett Zimmer</p>
-          <p>{{pricePerNight}}€/Nacht</p>
+          <h3>{{room.roomsName}}</h3>
+          <p>{{room.beds}} - Bett Zimmer</p>
+          <p>{{room.pricePerNight}}€ / Nacht</p>
         </b-card-text>
       <b-list-group class="mb-3">
         <b-list-group-item>
           <b-container>
             <b-row>
-              <b-col v-if="aircondition">
+              <b-col v-if="room.extras.aircondition === 1">
                 <b-icon-wind ></b-icon-wind>
                 <p>AC</p>
               </b-col>
@@ -41,19 +41,15 @@
       <router-link :to="{path: '/booking/', query: {id}}">
         <b-button variant="primary">Verfügbarkeit prüfen</b-button>
       </router-link>
-
     </b-card>
-
   </div>
 </template>
 
-
 <script>
 export default {
-  name: "RoomDisplayOrganism",
-  props: ['id', 'roomNumber', 'roomName', 'beds', 'pricePerNight', 'bathroom', 'minibar', 'television', 'aircondition', 'image'],
+  name: "RoomDisplayMolecule",
+  props: [ 'room' ],
 }
-
 </script>
 
 <style scoped>
