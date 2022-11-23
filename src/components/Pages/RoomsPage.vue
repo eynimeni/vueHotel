@@ -25,7 +25,6 @@
         class="mt-5"
     ></b-pagination>
   </b-container>
-<div>{{}}</div>
 </template>
 
 <script>
@@ -39,13 +38,14 @@ export default {
     HeadingOrganism,
     RoomDisplayOrganism,
   },
+
   data() {
     return {
-      roomStoreObject: useRoomStore().readState(),
+      roomStore: useRoomStore(),
       title: 'Zimmer',
       perPage: 1,
       currentPage: 1,
-      room: useRoomStore().rooms
+
           /*
           [
         {
@@ -64,18 +64,19 @@ export default {
 
            */
     }
+  }, created() {
+    this.roomStore.readState()
   },
   computed: {
     rows() {
       return this.room.length
     },
     rooms() {
-      console.log(useRoomStore().rooms)
-      console.log(this.room)
       return this.room.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage)
     },
-
-
+    room() {
+      return this.roomStore.getRooms
+    }
   },
 }
 </script>
