@@ -25,11 +25,10 @@
         class="mt-5"
     ></b-pagination>
   </b-container>
-<div>{{}}</div>
 </template>
 
 <script>
-import RoomDisplayOrganism from "@/components/subComponents/RoomDisplayOrganism";
+import RoomDisplayOrganism from "@/components/subComponents/RoomDisplayCard";
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import {useRoomStore} from "@/stores/RoomStore";
 
@@ -70,11 +69,8 @@ export default {
       return this.room.length
     },
     rooms() {
-      console.log(useRoomStore().rooms)
-      console.log(this.room)
       return this.room.slice((this.currentPage - 1) * this.perPage, this.currentPage * this.perPage)
     },
-
 
   },
 }
