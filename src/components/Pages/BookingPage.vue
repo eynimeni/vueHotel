@@ -45,8 +45,9 @@ import {useRoute} from "vue-router/dist/vue-router";
 import DatepickerComponent from "@/components/subComponents/DatepickerAtom";
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import FormComponent from "@/components/subComponents/FormComponent";
-import ProgressBarComponent from "@/components/subComponents/ProgressBarComponent";
 import {useRoomStore} from "@/stores/RoomStore";
+import ProgressBarComponent from "@/components/subComponents/ProgressBarAtom";
+
 
 export default {
   name: "BookingComponent",
