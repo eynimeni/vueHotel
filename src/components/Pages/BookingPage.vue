@@ -1,26 +1,3 @@
-/*
-Stand der Dinge:
-Ich habe hier (BookingPage) alles auskommentiert, das Fehler wirft und gerade nicht notwendig ist.
-
-die roomid und das datum werden übergeben
-der call funktioniert
-
-todo:
-Daten von RoomStorage importieren
-Weiter geben von ID Room an BookingDateDisplay gewährleisten
-Wie geht die Variable in die URL?
-Auslesen von Datum aus Datepicker
-1) Darstellen
-2) in URL übergeben
-Fallunterscheidung: Raum ist frei oder nicht: Evt. in html elementen auslagern mit klassen und styling.
-So ähnlich wie im RoomDisplayCard:
-<b-col v-if="aircondition">
-<b-icon-wind ></b-icon-wind>
-<p>AC</p>
-</b-col>
-
-*/
-
 <template>
   <heading-organism v-bind:title="title"></heading-organism>
 
@@ -29,12 +6,14 @@ So ähnlich wie im RoomDisplayCard:
     <hr>
     <b-form-group class="m-2">
       <b-col class="mb-3">
-        <b-form-select v-model="selected" :options="this.options"></b-form-select>
-        <!--options css style missing in chrome-->
+        <b-form-select v-model="selected" :options="this.options">
+          <b-form-select-option v-for="room in rooms" :key="room.id" :value="room.id">{{ room.roomsName }}</b-form-select-option>
+        </b-form-select>
       </b-col>
       <b-col class="mb-3">
         <datepicker-component v-model="this.date"></datepicker-component>
       </b-col>
+      <div>{{ selected }} gewählt</div>
       <hr>
     </b-form-group>
     <BookingDateDisplay
@@ -66,6 +45,8 @@ import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 //import FormComponent from "@/components/subComponents/FormComponent";
 //import ProgressBarComponent from "@/components/subComponents/ProgressBarComponent";
 import BookingDateDisplay from "@/components/subComponents/BookingDateDisplay";
+import {useRoomStore} from "@/stores/RoomStore";
+import {useRoute} from "vue-router";
 
 export default {
   name: "BookingComponent",
@@ -79,44 +60,41 @@ export default {
   },
   data() {
     return {
+      roomStore: useRoomStore(),
       title: "Buchungen",
-      selected : null,
       options: [
-        {value: null, text: 'Zimmertyp wählen'},
-        {value: '1', text: 'junior suite'},
-        {value: '2', text: 'king suite'},
+        {value: '', text: 'Zimmertyp wählen'},
       ],
       date: '',
-
+      selected: ''
+    }
+  }, created() {
+    console.log("created")
+    this.roomStore.readState()
+  },
+  methods: {
+    getRoomId() {
+      const route = useRoute();
+      for (let option in this.rooms) {
+        if (route.query.id === option) {
+          this.selected = route.query.id
+        }
+      }
     }
   },
   computed: {
-    /*
-    diese Create Funktion wurde statt selected aufgerufen:
-    <b-form-select v-model="this.create" :options="this.options"></b-form-select>
-    wenn das so ist, krieg ich das value nicht raus.
-    todo schauen wir uns das noch mit den echten daten an!
-
     create() {
-      let selection = null
-      const route = useRoute();
-      for (let option in this.options) {
-        if (route.query.id === option) {
-          selection = route.query.id
-        }
-      }
-      console.log(selection)
-      return selection
+      return this.getRoomId();
     },
-
-     */
-    getRoomId() {
-      return this.selected
-    }
-
+    rooms() {
+      console.log(this.roomStore.getRooms)
+      return this.roomStore.getRooms
+    },
   }
 }
+
 </script>
 
 <style scoped>
 </style>
+

@@ -7,7 +7,9 @@ export const useRoomStore = defineStore('room', {
     state: () => ({
         rooms: []
     }),
-    getters: {},
+    getters: {
+        getRooms: (state) => state.rooms,
+       },
     actions: {
     readState() {
         axios.get(apiUrl)
@@ -15,6 +17,9 @@ export const useRoomStore = defineStore('room', {
                 response => {
                 this.rooms = response.data
                 })
+            .catch(error => {
+                console.log(error)
+            })
     }
 }
 })
