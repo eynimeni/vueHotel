@@ -2,9 +2,6 @@
   <div>
     <h6>Ergebnisse</h6>
 
-    <!--p>{{date[0]}}</p>
-    <p>{{day}}</p-->
-    <!-- diese message kommt immer zu spät, wird zu spät geladen -->
     <div>{{ request }}</div>
     <div>{{ availabiltyMessage }}</div>
 
@@ -23,21 +20,12 @@ export default {
       roomStoreObject: checkRoomsAvailability(),
     }
   },
-  created() {
-  console.log("created")
-  },
   computed: {
-    day() {
-      console.log(this.date);
-      console.log(this.date[0]);
-      return this.date
-    },
 
     request() {
-          this.roomStoreObject.setId(this.roomId),
-          this.roomStoreObject.setStartDate("2022-12-03"),
-          this.roomStoreObject.setEndDate("2022-12-08"),
-          this.roomStoreObject.setUrl(),
+          this.roomStoreObject.setId(this.roomId)
+          this.roomStoreObject.setDateObject(this.date)
+          this.roomStoreObject.setUrl()
           this.roomStoreObject.readState()
       return null
     },
@@ -56,6 +44,8 @@ export default {
       }
       //todo evt noch ein fancy css rot / grün oder so, dafür evt ins html mit v-if
     },
+
+
 
   }
 }

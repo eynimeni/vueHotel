@@ -7,18 +7,21 @@ import axios from 'axios';
 
 export const checkRoomsAvailability = defineStore('roomAvailability', {
     state: () => ({
-        internetadresse: "",
+        url: "",
         available: [],
         id : null,
+        startDateRaw: null,
         startDate: "",
-        endDate: ""
+        endDateRaw: null,
+        endDate: "",
+        dateProxy: null
     }),
         getters: {
             getAvailability: (state) => state.available
     },
         actions: {
             readState() {
-                axios.get(this.internetadresse)
+                axios.get(this.url)
                     .then(
                         response => {
                             this.available = response.data
@@ -28,21 +31,25 @@ export const checkRoomsAvailability = defineStore('roomAvailability', {
                     })
             },
             setUrl() {
-                //todo hier dann noch die dates auch übergeben
                 console.log("id: "+this.id)
-                this.internetadresse = "https://boutique-hotel.helmuth-lammer.at/api/v1/room/"+this.id+"/from/"+this.startDate+"/to/"+this.endDate
+                this.url = "https://boutique-hotel.helmuth-lammer.at/api/v1/room/"+this.id+"/from/"+this.startDate+"/to/"+this.endDate
             },
             setId(id) {
-                //todo hier dann noch die dates auch übergeben
                 this.id = id
             },
-            setStartDate(fromDate) {
-                this.startDate = fromDate;
-            },
-            setEndDate(toDate) {
-                this.endDate = toDate;
-            },
 
+            setDateObject(date) {
+
+                this.startDateRaw = new Date(date[0]);
+                this.startDate = this.startDateRaw.getFullYear()+"-"+this.startDateRaw.getUTCMonth()+"-"+ this.startDateRaw.getUTCDate()
+                console.log("start date: "+ this.startDate)
+
+                this.endDateRaw = new Date(date[1]);
+                this.endDate = this.endDateRaw.getFullYear()+"-"+this.endDateRaw.getUTCMonth()+"-"+ this.endDateRaw.getUTCDate()
+                console.log("end date: "+ this.endDate)
+
+                //das jahr gibt es eins zu niedrig aus und es ist halt gepfuscht
+
+            }
         }
-
 })
