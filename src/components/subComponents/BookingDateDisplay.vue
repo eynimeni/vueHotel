@@ -1,9 +1,10 @@
 <template>
   <div>
-    <h6>Ergebnisse</h6>
-
     <div>{{ request }}</div>
-    <div>{{ availabiltyMessage }}</div>
+    <!--fändet ihr es gut, hier nochmals das Zimmer und den Zeitraum zu nennen? oder dann nächste seite?-->
+    <div v-if="isAvailable" class="b-toast-success">Das gewählte Zimmer ist für diesen Zeitraum verfügbar.</div>
+    <div v-else-if="isAvailable === false" class="b-toast-danger">Das gewählte Zimmer ist für diesen Zeitraum leider nicht verfügbar.</div>
+    <div v-else>Bitte wählen Sie Zimmertyp und Buchungszeitraum.</div>
 
   </div>
 </template>
@@ -30,22 +31,12 @@ export default {
       return null
     },
 
-    availabiltyMessage() {
+    isAvailable() {
       let availability = this.roomStoreObject.getAvailability;
       let state = availability["available"];
       console.log("available = " + state)
-
-      if(state) {
-        return "Das gewählte Zimmer ist für diesen Zeitraum verfügbar."
-      } else if (state === false) {
-        return "Das gewählte Zimmer ist für diesen Zeitraum leider nicht verfügbar."
-      } else {
-        return "Wir sind auf Ihre Auswahl gespannt."
-      }
-      //todo evt noch ein fancy css rot / grün oder so, dafür evt ins html mit v-if
-    },
-
-
+      return state
+    }
 
   }
 }

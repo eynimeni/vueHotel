@@ -2,7 +2,7 @@
   <heading-organism v-bind:title="title"></heading-organism>
 
   <b-container>
-    <!--ProgressBarComponent></ProgressBarComponent-->
+    <ProgressBarComponent></ProgressBarComponent>
     <hr>
     <b-form-group class="m-2">
       <b-col class="mb-3">
@@ -13,7 +13,6 @@
       <b-col class="mb-3">
         <datepicker-component v-model="this.date"></datepicker-component>
       </b-col>
-      <div>{{ selected }} gewählt</div>
       <hr>
     </b-form-group>
     <BookingDateDisplay
@@ -21,7 +20,7 @@
         v-bind:roomId="selected">
     </BookingDateDisplay>
     <hr>
-    <!--b-col>
+    <b-col>
       <form-component v-model="this.create"></form-component>
     </b-col>
 
@@ -32,21 +31,21 @@
       <b-col lg="4" class="pb-2">
         <b-button href="/">Abbrechen</b-button>
       </b-col>
-    </b-row-->
+    </b-row>
 
     <b-button href="/confirmation">Weiter</b-button>
   </b-container>
 </template>
 
 <script>
-//import {useRoute} from "vue-router/dist/vue-router";
+import {useRoute} from "vue-router/dist/vue-router";
 import DatepickerComponent from "@/components/subComponents/DatepickerAtom";
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
-//import FormComponent from "@/components/subComponents/FormComponent";
-//import ProgressBarComponent from "@/components/subComponents/ProgressBarComponent";
+import FormComponent from "@/components/subComponents/FormComponent";
+import ProgressBarComponent from "@/components/subComponents/ProgressBarAtom";
 import BookingDateDisplay from "@/components/subComponents/BookingDateDisplay";
 import {useRoomStore} from "@/stores/RoomStore";
-import {useRoute} from "vue-router";
+//import {useRoute} from "vue-router";
 
 export default {
   name: "BookingComponent",
@@ -55,8 +54,8 @@ export default {
     BookingDateDisplay,
     DatepickerComponent,
     HeadingOrganism,
-    //FormComponent,
-    //ProgressBarComponent
+    FormComponent,
+    ProgressBarComponent,
   },
   data() {
     return {

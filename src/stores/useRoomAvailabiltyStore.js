@@ -1,10 +1,6 @@
 import {defineStore} from "pinia";
 import axios from 'axios';
 
-//false 'https://boutique-hotel.helmuth-lammer.at/api/v1/room/1/from/2022-12-03/to/2022-12-08';
-
-// this is true: https://boutique-hotel.helmuth-lammer.at/api/v1/room/1/from/2023-11-03/to/2023-11-05
-
 export const checkRoomsAvailability = defineStore('roomAvailability', {
     state: () => ({
         url: "",
@@ -31,7 +27,7 @@ export const checkRoomsAvailability = defineStore('roomAvailability', {
                     })
             },
             setUrl() {
-                console.log("id: "+this.id)
+                console.log("room id: "+this.id)
                 this.url = "https://boutique-hotel.helmuth-lammer.at/api/v1/room/"+this.id+"/from/"+this.startDate+"/to/"+this.endDate
             },
             setId(id) {
@@ -41,15 +37,16 @@ export const checkRoomsAvailability = defineStore('roomAvailability', {
             setDateObject(date) {
 
                 this.startDateRaw = new Date(date[0]);
-                this.startDate = this.startDateRaw.getFullYear()+"-"+this.startDateRaw.getUTCMonth()+"-"+ this.startDateRaw.getUTCDate()
+                let startMonth = this.startDateRaw.getUTCMonth() + 1;
+                this.startDate = this.startDateRaw.getFullYear()+"-"+startMonth+"-"+ this.startDateRaw.getUTCDate()
                 console.log("start date: "+ this.startDate)
 
                 this.endDateRaw = new Date(date[1]);
-                this.endDate = this.endDateRaw.getFullYear()+"-"+this.endDateRaw.getUTCMonth()+"-"+ this.endDateRaw.getUTCDate()
+                let endMonth = this.endDateRaw.getUTCMonth() + 1;
+                this.endDate = this.endDateRaw.getFullYear()+"-"+endMonth+"-"+ this.endDateRaw.getUTCDate()
                 console.log("end date: "+ this.endDate)
 
-                //das jahr gibt es eins zu niedrig aus und es ist halt gepfuscht
-
+                //ich weiß nicht, ob man das datum auch einfacher aufbereiten könnt
             }
         }
 })
