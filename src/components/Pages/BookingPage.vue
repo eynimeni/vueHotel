@@ -41,7 +41,7 @@
 import {useRoute} from "vue-router/dist/vue-router";
 import DatepickerComponent from "@/components/subComponents/DatepickerAtom";
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
-import FormComponent from "@/components/subComponents/FormComponent";
+import FormComponent from "@/components/subComponents/PersonalDataFormOrganism";
 import ProgressBarComponent from "@/components/subComponents/ProgressBarAtom";
 
 export default {

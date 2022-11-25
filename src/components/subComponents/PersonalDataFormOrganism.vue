@@ -33,11 +33,11 @@
 
         <b-form-group
             label="Nachname:"
-            label-for="surname"
+            label-for="lastname"
             label-cols-sm="3"
             label-align-sm="right"
         >
-          <b-form-input id="name" :type="text" v-model="personalData.surname"></b-form-input>
+          <b-form-input id="name" :type="text" v-model="personalData.lastname"></b-form-input>
         </b-form-group>
         <b-form-group
             label="Email:"
@@ -56,10 +56,10 @@
           <b-form-input id="email repeat" :type="email" v-model="personalData.emailrepeat"></b-form-input>
         </b-form-group>
         <b-form-group>
-          <div>Frühstück: {{ status }}</div>
+          <div>Frühstück: {{ breakfast }}</div>
           <b-form-checkbox
               id="checkbox-1"
-              v-model="status"
+              v-model="breakfast"
               name="checkbox-1"
               value="Ja"
               unchecked-value="Nicht gebucht"
@@ -67,11 +67,12 @@
             Ich möchte Frühstück dazubuchen.
           </b-form-checkbox>
         </b-form-group>
+        <div><strong>{{errorMessage}}</strong></div>
       </b-form-group>
     </b-card>
   </div>
 
-  <b-button v-on:click="submitPersonalData">Persönliche Daten console.log</b-button>
+  <b-button v-on:click="checkPersonalData">Persönliche Daten console.log</b-button>
 </template>
 
 <script>
@@ -82,24 +83,36 @@ export default {
   components: {BFormGroup},
   data() {
     return {
-      status: "nicht gebucht",
+      breakfast: "nicht gebucht",
+      errorMessage: "",
       personalData: {
         gender: null,
         firstname: null,
-        surname: null,
+        lastname: null,
         email: null,
         emailrepeat: null,
-        status: null,
+        breakfast: null,
       }
     };
   },
   methods: {
-    submitPersonalData() {
-      if (this.status === "Ja") {
-        this.personalData.status = 1;
+    checkPersonalData(){
+      this.setBreakfastStatus();
+      if (this.personalData.email === this.personalData.emailrepeat){
+        this.submitPersonalData();
       } else {
-        this.personalData.status = 0;
+        this.errorMessage = "Die eingegebenen Email Adressen stimmen nicht überein."
+        console.log("error");
       }
+    },
+    setBreakfastStatus(){
+      if (this.personalData.breakfast === "Ja"){
+        this.personalData.breakfast = 1;
+      } else {
+        this.personalData.breakfast = 0;
+      }
+    },
+    submitPersonalData() {
       console.log(this.personalData)
     }
   }
