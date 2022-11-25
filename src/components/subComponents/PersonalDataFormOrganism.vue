@@ -53,7 +53,7 @@
             label-cols-sm="3"
             label-align-sm="right"
         >
-          <b-form-input id="email" :type="email" v-model="personalData.email"></b-form-input>
+          <b-form-input id="email" :type="email" v-model.trim="personalData.email"></b-form-input>
         </b-form-group>
         <b-form-group
             label="Email wiederholen:"
@@ -61,19 +61,29 @@
             label-cols-sm="3"
             label-align-sm="right"
         >
-          <b-form-input id="email repeat" :type="email" v-model="personalData.emailrepeat"></b-form-input>
+          <b-form-input id="email repeat" :type="email" v-model.trim="personalData.emailrepeat"></b-form-input>
         </b-form-group>
-        <b-form-group>
-          <div>Frühstück: {{ breakfast }}</div>
-          <b-form-checkbox
-              id="checkbox-1"
-              v-model="breakfast"
-              name="checkbox-1"
-              value="Ja"
-              unchecked-value="Nicht gebucht"
+        <b-form-group
+            label="Frühstücksoption"
+            label-for="breakfast"
+            label-cols-sm="3"
+            label-align-sm="right">
+          <b-form-radio
+              id="breakfast"
+              v-model="personalData.breakfast"
+              name="breakfast"
+              value="1"
           >
-            Ich möchte Frühstück dazubuchen.
-          </b-form-checkbox>
+            Mit Frühstück buchen
+          </b-form-radio>
+          <b-form-radio
+              id="breakfast"
+              v-model="personalData.breakfast"
+              name="breakfast"
+              value="0"
+          >
+            Kein Frühstück buchen
+          </b-form-radio>
         </b-form-group>
         <div><strong>{{errorMessage}}</strong></div>
       </b-form-group>
@@ -93,7 +103,6 @@ export default {
   components: {BFormGroup, BirthdayDatepickerAtom},
   data() {
     return {
-      breakfast: "nicht gebucht",
       errorMessage: "",
       personalData: {
         gender: null,
@@ -108,19 +117,11 @@ export default {
   },
   methods: {
     checkPersonalData(){
-      this.setBreakfastStatus();
       if (this.personalData.email === this.personalData.emailrepeat){
         this.submitPersonalData();
       } else {
         this.errorMessage = "Die eingegebenen Email Adressen stimmen nicht überein."
         console.log("error");
-      }
-    },
-    setBreakfastStatus(){
-      if (this.personalData.breakfast === "Ja"){
-        this.personalData.breakfast = 1;
-      } else {
-        this.personalData.breakfast = 0;
       }
     },
     submitPersonalData() {
