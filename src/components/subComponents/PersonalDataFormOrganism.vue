@@ -37,7 +37,15 @@
             label-cols-sm="3"
             label-align-sm="right"
         >
-          <b-form-input id="name" :type="text" v-model="personalData.lastname"></b-form-input>
+          <b-form-input id="lastname" :type="text" v-model="personalData.lastname"></b-form-input>
+        </b-form-group>
+        <b-form-group
+            label="Geburtstag:"
+            label-for="birthdate"
+            label-cols-sm="3"
+            label-align-sm="right"
+        >
+        <BirthdayDatepickerAtom v-model="this.personalData.birthdate"></BirthdayDatepickerAtom>
         </b-form-group>
         <b-form-group
             label="Email:"
@@ -77,10 +85,12 @@
 
 <script>
 import {BFormGroup} from "bootstrap-vue-3";
+import BirthdayDatepickerAtom from "@/components/subComponents/BirthdayDatepickerAtom";
+
 
 export default {
   name: "FormComponent",
-  components: {BFormGroup},
+  components: {BFormGroup, BirthdayDatepickerAtom},
   data() {
     return {
       breakfast: "nicht gebucht",
@@ -89,6 +99,7 @@ export default {
         gender: null,
         firstname: null,
         lastname: null,
+        birthdate: null,
         email: null,
         emailrepeat: null,
         breakfast: null,
