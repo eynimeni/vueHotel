@@ -9,19 +9,16 @@
         <b-form-select v-model="selected" :options="this.options">
           <b-form-select-option v-for="room in rooms" :key="room.id" :value="room.id">{{ room.roomsName }}</b-form-select-option>
         </b-form-select>
-        <!--options css style missing in chrome-->
       </b-col>
       <b-col class="mb-3">
         <datepicker-component v-model="this.date"></datepicker-component>
       </b-col>
-      <div>{{ selected }} gewählt</div>
       <hr>
     </b-form-group>
-    <div>
-      <h6>Ergebnisse</h6>
-      <p>von {{ this.date[0] }} bis {{ this.date[1] }} </p>
-      <p>wir konnten im gewählten Zeitraum keine buchbaren Zimmer finden </p>
-    </div>
+    <BookingDateDisplay
+        v-bind:date="this.date"
+        v-bind:roomId="selected">
+    </BookingDateDisplay>
     <hr>
     <b-col>
       <form-component v-model="this.create"></form-component>
@@ -45,16 +42,25 @@ import {useRoute} from "vue-router/dist/vue-router";
 import DatepickerComponent from "@/components/subComponents/DatepickerAtom";
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import FormComponent from "@/components/subComponents/FormComponent";
-import {useRoomStore} from "@/stores/RoomStore";
 import ProgressBarComponent from "@/components/subComponents/ProgressBarAtom";
-
+import BookingDateDisplay from "@/components/subComponents/BookingDateDisplay";
+import {useRoomStore} from "@/stores/RoomStore";
+//import {useRoute} from "vue-router";
 
 export default {
   name: "BookingComponent",
-  components: {DatepickerComponent, HeadingOrganism, FormComponent, ProgressBarComponent},
+
+  components: {
+    BookingDateDisplay,
+    DatepickerComponent,
+    HeadingOrganism,
+    FormComponent,
+    ProgressBarComponent,
+  },
   data() {
     return {
       roomStore: useRoomStore(),
+      title: "Buchungen",
       options: [
         {value: '', text: 'Zimmertyp wählen'},
       ],
@@ -71,7 +77,6 @@ export default {
       for (let option in this.rooms) {
         if (route.query.id === option) {
           this.selected = route.query.id
-          /*funktioniert nur mit der Zahl 10 nocht nicht*/
         }
       }
     }
@@ -79,13 +84,16 @@ export default {
   computed: {
     create() {
       return this.getRoomId();
-    }, rooms() {
+    },
+    rooms() {
       console.log(this.roomStore.getRooms)
       return this.roomStore.getRooms
     },
   }
 }
+
 </script>
 
 <style scoped>
 </style>
+
