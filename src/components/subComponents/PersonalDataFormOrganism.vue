@@ -7,6 +7,7 @@
           label-size="lg"
           label-class="font-weight-bold pt-0"
           class="mb-0"
+          @submit.prevent="checkPersonalData"
       >
         <b-form-group
             label="Anrede:"
@@ -20,6 +21,7 @@
               :options="['Herr', 'Frau', 'Divers']"
               :aria-describedby="ariaDescribedby"
               v-model="personalData.gender"
+              required
           ></b-form-radio-group>
         </b-form-group>
         <b-form-group
@@ -28,7 +30,7 @@
             label-cols-sm="3"
             label-align-sm="right"
         >
-          <b-form-input id="firstname" :type="text" v-model="personalData.firstname"></b-form-input>
+          <b-form-input id="firstname" type="text" v-model="personalData.firstname" required></b-form-input>
         </b-form-group>
 
         <b-form-group
@@ -37,7 +39,7 @@
             label-cols-sm="3"
             label-align-sm="right"
         >
-          <b-form-input id="lastname" :type="text" v-model="personalData.lastname"></b-form-input>
+          <b-form-input id="lastname" type="text" v-model="personalData.lastname" required></b-form-input>
         </b-form-group>
         <b-form-group
             label="Geburtstag:"
@@ -45,7 +47,7 @@
             label-cols-sm="3"
             label-align-sm="right"
         >
-        <BirthdayDatepickerAtom v-model="this.personalData.birthdate"></BirthdayDatepickerAtom>
+          <BirthdayDatepickerAtom v-model="this.personalData.birthdate" required></BirthdayDatepickerAtom>
         </b-form-group>
         <b-form-group
             label="Email:"
@@ -53,7 +55,7 @@
             label-cols-sm="3"
             label-align-sm="right"
         >
-          <b-form-input id="email" :type="email" v-model.trim="personalData.email"></b-form-input>
+          <b-form-input id="email" type="email" v-model.trim="personalData.email" required></b-form-input>
         </b-form-group>
         <b-form-group
             label="Email wiederholen:"
@@ -61,20 +63,22 @@
             label-cols-sm="3"
             label-align-sm="right"
         >
-          <b-form-input id="email repeat" :type="email" v-model.trim="personalData.emailrepeat"></b-form-input>
+          <b-form-input id="email repeat" type="email" v-model.trim="personalData.emailrepeat" required></b-form-input>
         </b-form-group>
         <b-form-group
             label="Frühstücksoption"
             label-for="breakfast"
             label-cols-sm="3"
-            label-align-sm="right">
+            label-align-sm="right"
+            required
+        >
           <b-form-radio
               id="breakfast"
               v-model="personalData.breakfast"
               name="breakfast"
               value="1"
           >
-            Mit Frühstück buchen
+            Frühstück inklusive
           </b-form-radio>
           <b-form-radio
               id="breakfast"
@@ -82,25 +86,28 @@
               name="breakfast"
               value="0"
           >
-            Kein Frühstück buchen
+            Kein Frühstück
           </b-form-radio>
         </b-form-group>
-        <div><strong>{{errorMessage}}</strong></div>
+        <div><strong>{{ errorMessage }}</strong></div>
       </b-form-group>
     </b-card>
   </div>
 
   <b-button v-on:click="checkPersonalData">Persönliche Daten console.log</b-button>
+
+  <RegistrationFormOrganism></RegistrationFormOrganism>
 </template>
 
 <script>
 import {BFormGroup} from "bootstrap-vue-3";
 import BirthdayDatepickerAtom from "@/components/subComponents/BirthdayDatepickerAtom";
+import RegistrationFormOrganism from "@/components/subComponents/not used yet/RegistrationFormOrganism";
 
 
 export default {
   name: "FormComponent",
-  components: {BFormGroup, BirthdayDatepickerAtom},
+  components: {BFormGroup, BirthdayDatepickerAtom, RegistrationFormOrganism},
   data() {
     return {
       errorMessage: "",
@@ -116,8 +123,8 @@ export default {
     };
   },
   methods: {
-    checkPersonalData(){
-      if (this.personalData.email === this.personalData.emailrepeat){
+    checkPersonalData() {
+      if (this.personalData.email === this.personalData.emailrepeat) {
         this.submitPersonalData();
       } else {
         this.errorMessage = "Die eingegebenen Email Adressen stimmen nicht überein."
