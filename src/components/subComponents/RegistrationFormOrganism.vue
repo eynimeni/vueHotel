@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h6>
-      Erstellen Sie sich ein Profil, um Ihre Buchungen besser verwalten zu können.
-    </h6>
-    <p>Ihre Daten werden in Ihrem Profil gespeichert, um zukünftig schneller Buchungen abwickeln zu können.</p>
-    <p>In Ihrem Profil können Sie vergange Buchungen einsehen.</p>
-  </div>
-  <div>
     <b-card bg-variant="light">
+      <div>
+        <h6>
+          Erstellen Sie sich ein Profil, um Ihre Buchungen besser verwalten zu können.
+        </h6>
+        <p>Ihre Daten werden in Ihrem Profil gespeichert, um zukünftig schneller Buchungen abwickeln zu können.</p>
+        <p>In Ihrem Profil können Sie vergange Buchungen einsehen.</p>
+      </div>
       <b-form-group
           label-cols-lg="3"
           label="Registrieren"
@@ -41,17 +41,22 @@
           <b-form-input id="passwordrepeat" type="password" v-model="registrationData.passwordrepeat"></b-form-input>
         </b-form-group>
       </b-form-group>
+      <b-button @click="register">Registrieren</b-button>
     </b-card>
   </div>
-
-  <b-button v-on:click="register">Registrierung Daten console.log</b-button>
 </template>
 
 <script>
+import {BButton, BCard, BFormGroup, BFormInput} from "bootstrap-vue-3";
+import {useUserStore} from "@/stores/UserStore";
+
 export default {
   name: "RegistrationFormOrganism",
+  components: {BButton, BCard, BFormInput, BFormGroup},
+  props: ["personaldata"],
   data() {
     return {
+      userStore: useUserStore(),
       registrationData: {
         username: null,
         password: null,
@@ -59,9 +64,16 @@ export default {
       }
     }
   },
-  methods: {
-    register(){
-      console.log(this.registrationData.username, this.registrationData.password)
+  methods: { //Error Handling: Passwörter stimmen nicht überein
+    register() {
+      let newUser = {
+        firstname: this.personaldata.firstname,
+        lastname: this.personaldata.lastname,
+        email: this.personaldata.email,
+        username: this.registrationData.username,
+        password: this.registrationData.password
+      }
+      this.userStore.postUsers(newUser)
     }
   }
 }

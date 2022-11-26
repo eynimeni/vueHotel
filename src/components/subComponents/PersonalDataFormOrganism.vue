@@ -7,7 +7,6 @@
           label-size="lg"
           label-class="font-weight-bold pt-0"
           class="mb-0"
-          @submit.prevent="checkPersonalData"
       >
         <b-form-group
             label="Anrede:"
@@ -91,38 +90,41 @@
         </b-form-group>
         <div><strong>{{ errorMessage }}</strong></div>
       </b-form-group>
+      <!--b-button @click="checkPersonalData" type="submit" class="btn btn-primary">Persönliche Daten console.log</b-button-->
+      <RegistrationFormOrganism :personaldata="personalData"></RegistrationFormOrganism>
+      <BookingOperator :personaldata="personalData"></BookingOperator>
     </b-card>
   </div>
-
-  <b-button v-on:click="checkPersonalData">Persönliche Daten console.log</b-button>
-
-  <RegistrationFormOrganism></RegistrationFormOrganism>
 </template>
 
 <script>
-import {BFormGroup} from "bootstrap-vue-3";
+import {BCard, BFormGroup, BFormInput, BFormRadio, BFormRadioGroup} from "bootstrap-vue-3";
 import BirthdayDatepickerAtom from "@/components/subComponents/BirthdayDatepickerAtom";
-import RegistrationFormOrganism from "@/components/subComponents/not used yet/RegistrationFormOrganism";
-
+import RegistrationFormOrganism from "@/components/subComponents/RegistrationFormOrganism";
+import BookingOperator from "@/components/subComponents/BookingOperator";
 
 export default {
   name: "FormComponent",
-  components: {BFormGroup, BirthdayDatepickerAtom, RegistrationFormOrganism},
+  components: {
+    BFormRadio,
+    BFormInput,
+    BFormRadioGroup, BCard, BookingOperator, BFormGroup, BirthdayDatepickerAtom, RegistrationFormOrganism},
   data() {
     return {
       errorMessage: "",
       personalData: {
-        gender: null,
-        firstname: null,
-        lastname: null,
-        birthdate: null,
-        email: null,
-        emailrepeat: null,
-        breakfast: null,
+        gender: '',
+        firstname: '',
+        lastname: '',
+        birthdate: '',
+        email: '',
+        emailrepeat: '',
+        breakfast: '',
       }
     };
   },
-  methods: {
+  // Methoden überarbeiten. Error Handling sollte direkt bei Eingabe passieren
+  /*methods: {
     checkPersonalData() {
       if (this.personalData.email === this.personalData.emailrepeat) {
         this.submitPersonalData();
@@ -134,7 +136,7 @@ export default {
     submitPersonalData() {
       console.log(this.personalData)
     }
-  }
+  }*/
 }
 </script>
 

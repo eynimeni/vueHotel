@@ -21,7 +21,7 @@
     </div>
     <hr>
     <b-col>
-      <form-component v-model="this.create"></form-component>
+      <form-component></form-component>
     </b-col>
 
     <b-row>
