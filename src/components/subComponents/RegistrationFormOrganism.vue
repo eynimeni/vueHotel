@@ -1,13 +1,6 @@
 <template>
   <div>
     <b-card bg-variant="light">
-      <div>
-        <h6>
-          Erstellen Sie sich ein Profil, um Ihre Buchungen besser verwalten zu können.
-        </h6>
-        <p>Ihre Daten werden in Ihrem Profil gespeichert, um zukünftig schneller Buchungen abwickeln zu können.</p>
-        <p>In Ihrem Profil können Sie vergange Buchungen einsehen.</p>
-      </div>
       <b-form-group
           label-cols-lg="3"
           label="Registrieren"
@@ -15,6 +8,11 @@
           label-class="font-weight-bold pt-0"
           class="mb-0"
       >
+        <h6>
+          Erstellen Sie sich ein Profil, um Ihre Buchungen besser verwalten zu können.
+        </h6>
+        <p>Ihre Daten werden in Ihrem Profil gespeichert, um zukünftig schneller Buchungen abwickeln zu können.
+          <br>In Ihrem Profil können Sie vergange Buchungen einsehen.</p>
         <b-form-group
             label="Benutzername"
             label-for="username"
@@ -39,9 +37,12 @@
             label-align-sm="right"
         >
           <b-form-input id="passwordrepeat" type="password" v-model="registrationData.passwordrepeat"></b-form-input>
+          <p v-if="registrationData.password !== registrationData.passwordrepeat" class="text-danger">Passworteingaben
+            stimmen nicht überein</p>
         </b-form-group>
       </b-form-group>
-      <b-button @click="register">Registrieren</b-button>
+      <b-button :disabled="!isDisabled" @click="register">Registrieren</b-button>
+      <p class="text-success">{{ successMessage }}</p>
     </b-card>
   </div>
 </template>
@@ -57,11 +58,22 @@ export default {
   data() {
     return {
       userStore: useUserStore(),
+      successMessage: '',
       registrationData: {
-        username: null,
-        password: null,
-        passwordrepeat: null
+        username: '',
+        password: '',
+        passwordrepeat: ''
       }
+    }
+  },
+  computed: {
+    isDisabled() {
+      return !!(this.registrationData.username,
+          this.registrationData.password,
+      this.personaldata,
+      this.registrationData.passwordrepeat &&
+      this.registrationData.password ===
+      this.registrationData.passwordrepeat);
     }
   },
   methods: { //Error Handling: Passwörter stimmen nicht überein
@@ -74,6 +86,7 @@ export default {
         password: this.registrationData.password
       }
       this.userStore.postUsers(newUser)
+      this.successMessage = "Vielen Dank für Ihre Registrierung! Bitte überprüfen Sie Ihren Posteingang."
     }
   }
 }

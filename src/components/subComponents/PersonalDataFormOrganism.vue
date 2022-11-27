@@ -63,6 +63,8 @@
             label-align-sm="right"
         >
           <b-form-input id="email repeat" type="email" v-model.trim="personalData.emailrepeat" required></b-form-input>
+          <p v-if="personalData.email !== personalData.emailrepeat" class="text-danger">Email Adressen stimmen nicht
+            überein</p>
         </b-form-group>
         <b-form-group
             label="Frühstücksoption"
@@ -71,34 +73,26 @@
             label-align-sm="right"
             required
         >
-          <b-form-radio
+          <b-form-checkbox
               id="breakfast"
               v-model="personalData.breakfast"
               name="breakfast"
-              value="1"
           >
-            Frühstück inklusive
-          </b-form-radio>
-          <b-form-radio
-              id="breakfast"
-              v-model="personalData.breakfast"
-              name="breakfast"
-              value="0"
-          >
-            Kein Frühstück
-          </b-form-radio>
+            Hervorragendes Frühstück: 15€ / Person
+          </b-form-checkbox>
+          <p v-if=personalData.breakfast class="text-success">Frühstück wird in Ihrer Buchungsanfrage inkludiert</p>
+          <p v-else>Ihre Buchungsanfrage enthält kein Frühstück</p>
         </b-form-group>
-        <div><strong>{{ errorMessage }}</strong></div>
       </b-form-group>
-      <!--b-button @click="checkPersonalData" type="submit" class="btn btn-primary">Persönliche Daten console.log</b-button-->
       <RegistrationFormOrganism :personaldata="personalData"></RegistrationFormOrganism>
-      <BookingOperator :personaldata="personalData"></BookingOperator>
+      <BookingOperator v-if="filledOutForm" :personaldata="personalData"></BookingOperator>
+      <p v-else>Bitte füllen Sie alle Felder vollständig aus, um fortzufahren</p>
     </b-card>
   </div>
 </template>
 
 <script>
-import {BCard, BFormGroup, BFormInput, BFormRadio, BFormRadioGroup} from "bootstrap-vue-3";
+import {BCard, BFormCheckbox, BFormGroup, BFormInput, BFormRadioGroup} from "bootstrap-vue-3";
 import BirthdayDatepickerAtom from "@/components/subComponents/BirthdayDatepickerAtom";
 import RegistrationFormOrganism from "@/components/subComponents/RegistrationFormOrganism";
 import BookingOperator from "@/components/subComponents/BookingOperator";
@@ -106,37 +100,34 @@ import BookingOperator from "@/components/subComponents/BookingOperator";
 export default {
   name: "FormComponent",
   components: {
-    BFormRadio,
+    BFormCheckbox,
     BFormInput,
-    BFormRadioGroup, BCard, BookingOperator, BFormGroup, BirthdayDatepickerAtom, RegistrationFormOrganism},
+    BFormRadioGroup, BCard, BookingOperator, BFormGroup, BirthdayDatepickerAtom, RegistrationFormOrganism
+  },
   data() {
     return {
-      errorMessage: "",
       personalData: {
-        gender: '',
-        firstname: '',
-        lastname: '',
-        birthdate: '',
-        email: '',
-        emailrepeat: '',
-        breakfast: '',
+        gender: null,
+        firstname: null,
+        lastname: null,
+        birthdate: null,
+        email: null,
+        emailrepeat: null,
+        breakfast: false,
       }
-    };
-  },
-  // Methoden überarbeiten. Error Handling sollte direkt bei Eingabe passieren
-  /*methods: {
-    checkPersonalData() {
-      if (this.personalData.email === this.personalData.emailrepeat) {
-        this.submitPersonalData();
-      } else {
-        this.errorMessage = "Die eingegebenen Email Adressen stimmen nicht überein."
-        console.log("error");
-      }
-    },
-    submitPersonalData() {
-      console.log(this.personalData)
     }
-  }*/
+  },
+  computed: {
+    filledOutForm() { //ACHTUNG: Löscht der User wieder eine Engabe wird der Button nicht ausgeblendet - optimieren!
+      return !!(this.personalData.gender,
+          this.personalData.firstname,
+          this.personalData.lastname,
+          this.personalData.birthdate,
+          this.personalData.email,
+      this.personalData.emailrepeat &&
+      this.personalData.email === this.personalData.emailrepeat);
+    }
+  }
 }
 </script>
 
