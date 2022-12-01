@@ -16,6 +16,7 @@
           <b-nav-item href="/rooms">Zimmer</b-nav-item>
           <b-nav-item href="/booking">Buchung vornehmen</b-nav-item>
           <b-nav-item href="/login">Einloggen</b-nav-item>
+          <b-nav-item href="/bookinghistory" v-show="authentication">Meine Buchungen</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -25,7 +26,12 @@
 
 <script>
 export default {
-  name: "NavbarOrganism"
+  name: "NavbarOrganism",
+  data() {
+    return {
+      authentication: true
+    }
+  }
 }
 </script>
 
