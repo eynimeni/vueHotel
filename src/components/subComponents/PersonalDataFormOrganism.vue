@@ -110,7 +110,7 @@ export default {
         gender: null,
         firstname: null,
         lastname: null,
-        birthdate: null,
+        birthdate: null, //muss evtl nochmal formatiert werden. Spezfikation: String YYYY-MM-DD
         email: null,
         emailrepeat: null,
         breakfast: false,

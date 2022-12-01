@@ -7,7 +7,7 @@
 import {BButton} from "bootstrap-vue-3";
 import {useBookingStore} from "@/stores/BookingStore";
 
-export default {
+export default { //Booking operator sammelt alles von der booking page. controller, gibt an jew. stores weiter.
   name: "BookingOperator",
   components: {BButton},
   props: ["personaldata"], //hier noch props von Booking (Zimmer id)

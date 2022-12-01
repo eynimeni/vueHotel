@@ -67,7 +67,7 @@ export default {
     }
   },
   computed: {
-    isDisabled() {
+    isDisabled() { //firstname, lastname, email darf nicht leer sein
       return !!(this.registrationData.username,
           this.registrationData.password,
       this.personaldata,
