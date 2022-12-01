@@ -21,7 +21,7 @@
     </BookingDateDisplay>
     <hr>
     <b-col>
-      <form-component v-model="this.create"></form-component>
+      <form-component></form-component>
     </b-col>
 
     <b-row>
@@ -41,7 +41,7 @@
 import {useRoute} from "vue-router/dist/vue-router";
 import DatepickerComponent from "@/components/subComponents/DatepickerAtom";
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
-import FormComponent from "@/components/subComponents/FormComponent";
+import FormComponent from "@/components/subComponents/PersonalDataFormOrganism";
 import ProgressBarComponent from "@/components/subComponents/ProgressBarAtom";
 import BookingDateDisplay from "@/components/subComponents/BookingDateDisplay";
 import {useRoomStore} from "@/stores/RoomStore";
