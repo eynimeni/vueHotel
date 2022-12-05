@@ -1,8 +1,7 @@
 <template>
   <div>
-      <b-progress :value="this.progress" :max="max" show-progress animated></b-progress>
+      <b-progress :value="this.progress" :max="max" show-progress animated variant="success"></b-progress>
   </div>
-
 </template>
 
 <script>
@@ -13,7 +12,7 @@ export default {
     return {
       max: 100
     }
-  }
+  },
 }
 </script>
 
