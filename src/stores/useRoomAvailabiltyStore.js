@@ -1,7 +1,7 @@
 import {defineStore} from "pinia";
 import axios from 'axios';
 
-export const checkRoomsAvailability = defineStore('roomAvailability', {
+export const useRoomsAvailability = defineStore('roomAvailability', {
     state: () => ({
         url: "",
         available: [],

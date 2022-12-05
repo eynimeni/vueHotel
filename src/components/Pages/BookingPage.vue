@@ -51,7 +51,7 @@ import FormComponent from "@/components/subComponents/PersonalDataFormOrganism";
 import ProgressBarComponent from "@/components/subComponents/ProgressBarAtom";
 import BookingDateDisplay from "@/components/subComponents/BookingDateDisplay";
 import {useRoomStore} from "@/stores/RoomStore";
-import {checkRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
+import {useRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
 
 export default {
   name: "BookingComponent",
@@ -75,7 +75,7 @@ export default {
       progress: 20,
       roomBookingDisplay: true,
       userDataDisplay: false,
-      roomAvailabilityStore: checkRoomsAvailability(),
+      roomAvailabilityStore: useRoomsAvailability(),
 
     }
   }, created() {

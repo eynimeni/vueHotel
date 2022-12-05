@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import {checkRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
+import {useRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
 
 export default {
   name: "BookingDateDisplay",
@@ -17,7 +17,7 @@ export default {
 
   data () {
     return {
-      roomStoreObject: checkRoomsAvailability(),
+      roomStoreObject: useRoomsAvailability(),
     }
   },
   computed: {
