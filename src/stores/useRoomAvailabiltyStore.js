@@ -45,8 +45,6 @@ export const checkRoomsAvailability = defineStore('roomAvailability', {
                 let endMonth = this.endDateRaw.getUTCMonth() + 1;
                 this.endDate = this.endDateRaw.getFullYear()+"-"+endMonth+"-"+ this.endDateRaw.getUTCDate()
                 console.log("end date: "+ this.endDate)
-
-                //ich weiß nicht, ob man das datum auch einfacher aufbereiten könnt
             }
         }
 })

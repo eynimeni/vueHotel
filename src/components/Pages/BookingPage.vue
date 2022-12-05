@@ -4,36 +4,45 @@
   <b-container>
     <ProgressBarComponent v-bind:progress="progress"></ProgressBarComponent>
     <hr>
-    <b-form-group class="m-2">
-      <b-col class="mb-3">
-        <b-form-select v-model="selected" :options="this.options">
-          <b-form-select-option v-for="room in rooms" :key="room.id" :value="room.id">{{ room.roomsName }}</b-form-select-option>
-        </b-form-select>
-      </b-col>
-      <b-col class="mb-3">
-        <datepicker-component v-model="this.date"></datepicker-component>
-      </b-col>
+    <div v-if="roomBookingDisplay">
+      <b-form-group class="m-2">
+        <b-col class="mb-3">
+          <b-form-select v-model="selected" :options="this.options">
+            <b-form-select-option v-for="room in rooms" :key="room.id" :value="room.id">{{ room.roomsName }}</b-form-select-option>
+          </b-form-select>
+        </b-col>
+        <b-col class="mb-3">
+          <datepicker-component v-model="this.date"></datepicker-component>
+        </b-col>
+        <hr>
+      </b-form-group>
+      <BookingDateDisplay
+          v-bind:date="this.date"
+          v-bind:roomId="selected">
+      <!--hier würde ich gern aus der componente hinaus die boolean roomAvailable auslesen-
+      natürlich könnt ich sie auch direkt ausm store holen
+      aber die frage generell, ob man aus subcomponenten in die parent (zB pages) geben kann-->
+      </BookingDateDisplay>
+      <b-button v-if="getRoomAvailability" class="btn-success">Auswählen</b-button>
+    </div>
+
+    <div v-if="userDataDisplay">
       <hr>
-    </b-form-group>
-    <BookingDateDisplay
-        v-bind:date="this.date"
-        v-bind:roomId="selected">
-    </BookingDateDisplay>
-    <hr>
-    <b-col>
-      <form-component></form-component>
-    </b-col>
-
-    <b-row>
-      <b-col lg="4" class="pb-2">
-        <b-button variant="success" size="lg" href="/confirmation">Weiter</b-button>
+      <b-col>
+        <form-component></form-component>
       </b-col>
-      <b-col lg="4" class="pb-2">
-        <b-button href="/">Abbrechen</b-button>
-      </b-col>
-    </b-row>
 
-    <b-button href="/confirmation">Weiter</b-button>
+      <b-row>
+        <b-col lg="4" class="pb-2">
+          <b-button variant="success" size="lg" href="/confirmation">Weiter</b-button>
+        </b-col>
+        <b-col lg="4" class="pb-2">
+          <b-button href="/">Abbrechen</b-button>
+        </b-col>
+      </b-row>
+
+      <b-button href="/confirmation">Weiter</b-button>
+    </div>
   </b-container>
 </template>
 
@@ -45,6 +54,7 @@ import FormComponent from "@/components/subComponents/PersonalDataFormOrganism";
 import ProgressBarComponent from "@/components/subComponents/ProgressBarAtom";
 import BookingDateDisplay from "@/components/subComponents/BookingDateDisplay";
 import {useRoomStore} from "@/stores/RoomStore";
+import {checkRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
 //import {useRoute} from "vue-router";
 
 export default {
@@ -67,6 +77,10 @@ export default {
       date: '',
       selected: '',
       progress: 0,
+      roomBookingDisplay: true,
+      userDataDisplay: false,
+      roomAvailabilityStore: checkRoomsAvailability(),
+
     }
   }, created() {
     console.log("created")
@@ -90,6 +104,9 @@ export default {
       console.log(this.roomStore.getRooms)
       return this.roomStore.getRooms
     },
+    getRoomAvailability() {
+      return this.roomAvailabilityStore.available["available"]
+    }
   }
 }
 

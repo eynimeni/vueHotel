@@ -5,7 +5,6 @@
     <div v-if="isAvailable" class="b-toast-success">Das gewählte Zimmer ist für diesen Zeitraum verfügbar.</div>
     <div v-else-if="isAvailable === false" class="b-toast-danger">Das gewählte Zimmer ist für diesen Zeitraum leider nicht verfügbar.</div>
     <div v-else>Bitte wählen Sie Zimmertyp und Buchungszeitraum.</div>
-
   </div>
 </template>
 
@@ -33,7 +32,7 @@ export default {
 
     isAvailable() {
       let availability = this.roomStoreObject.getAvailability;
-      let state = availability["available"];
+      const state = availability["available"];
       console.log("available = " + state)
       return state
     }

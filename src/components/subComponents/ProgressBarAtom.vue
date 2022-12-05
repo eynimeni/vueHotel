@@ -11,8 +11,6 @@ export default {
   props: ['progress'],
   data() {
     return {
-       //value: 45, den value der subcomponent immer auf X setzen bei Button Click? in der Buchungscomponent?
-      //kann man auf den Value einer eingebundenen Subcomponent zugreifen?
       max: 100
     }
   }
