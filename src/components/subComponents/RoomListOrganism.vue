@@ -9,6 +9,7 @@
       </div>
     </div>
     <b-pagination
+        id="pagination"
         pills
         align="center"
         v-model="currentPage"
@@ -57,5 +58,8 @@ export default {
 </script>
 
 <style scoped>
-
+#pagination {
+  position: sticky;
+  bottom: 50px;
+}
 </style>

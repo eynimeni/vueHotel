@@ -17,7 +17,7 @@ export const useUserStore = defineStore('user'
                     });
             },
             postUsers(userJson) { //das sollte der API einen User als Objekt übergeben und in das UserArray am Server schreiben
-                /*axios.post(userApiUrl, userJson, {
+                /*axios.post(userApiUrl, userJson, {                //hier müsste man auf v1/register zugreifen
                     headers: {
                         'Content-Type': 'application/json'
                     }
