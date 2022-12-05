@@ -11,7 +11,7 @@ export default {
   props: [ 'bookings' ],
   data() {
     return {
-      fields: [
+      fields: [     //müssen noch angepasst werden - schauen was von datenbank zurückkommt
           { key: 'roomId', label:'Zimmer' },
           { key: 'startDate', label:'Von' },
           { key: 'endDate', label:'Bis' }
