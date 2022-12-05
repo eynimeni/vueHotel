@@ -2,7 +2,7 @@
   <heading-organism v-bind:title="title"></heading-organism>
 
   <b-container>
-    <ProgressBarComponent></ProgressBarComponent>
+    <ProgressBarComponent v-bind:progress="progress"></ProgressBarComponent>
     <hr>
     <b-form-group class="m-2">
       <b-col class="mb-3">
@@ -65,7 +65,8 @@ export default {
         {value: '', text: 'Zimmertyp wählen'},
       ],
       date: '',
-      selected: ''
+      selected: '',
+      progress: 0,
     }
   }, created() {
     console.log("created")
