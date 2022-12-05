@@ -4,7 +4,7 @@
   <div>
       <b-container fluid>
         <b-form>
-          <b-form-group class="m-2"
+          <b-form-group class="m-2 mt-5"
                         id="input-group-1"
                         label="Email-Adresse "
                         label-for="input-1"
@@ -35,9 +35,9 @@
           <div v-if="noAccount" class="b-toast-danger">Für diese Zugangsdaten konnte leider kein Account gefunden werden.</div>
 
 
-      <b-col lg="4" class="m-2">
-        <b-button class="m-2" size="md" variant="secondary" href="/">Abbrechen</b-button>
-        <b-button class="m-2" type="submit" size="lg" variant="primary" :disabled="v$.$invalid"
+      <b-col lg="4" class="m-4">
+        <b-button class="m-3" size="md" variant="secondary" href="/">Abbrechen</b-button>
+        <b-button class="m-3" type="submit" size="lg" variant="primary" :disabled="v$.$invalid"
                   @click="login">
           Einloggen
         </b-button>
