@@ -5,19 +5,21 @@
   <booking-table-molecule v-bind:bookings=futureBookings></booking-table-molecule>
   <h5 class="mt-5">Vergangene Reisen</h5>
   <booking-table-molecule v-bind:bookings=pastBookings></booking-table-molecule>
-
+  <div>{{this.bookingsApi}}</div>
 </template>
 
 <script>
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import BookingTableMolecule from "@/components/subComponents/BookingTableMolecule";
+import {useBookingStore} from "@/stores/BookingStore";
 
 export default {
   name: "BookingHistoryPage",
   components: {BookingTableMolecule, HeadingOrganism},
   data() {
     return {
-      bookings: [
+      bookingStore: useBookingStore(),
+      bookings: [ //testdaten
         { roomId: "Double Room", startDate: "2023-09-09", endDate: "2023-09-10" },
         { roomId: "Junior Suite", startDate: "2022-08-05", endDate: "2022-08-08" },
       ],
@@ -25,6 +27,9 @@ export default {
     }
   },
   methods: {
+    created() {
+      this.bookingStore.readBookings()
+    },
     currentDate() {
       let today = new Date();
       let d = today.getDate();
@@ -56,6 +61,9 @@ export default {
         }
       }
       return pastBookingsList;
+    },
+    bookingsApi() {   //daten von api -> authentication fehlt noch im store
+      return this.bookingStore.bookings
     }
   }
 }
