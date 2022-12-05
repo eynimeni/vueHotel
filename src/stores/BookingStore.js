@@ -13,8 +13,8 @@ export const useBookingStore = defineStore('bookingrequest'
         }),
         getters: {},
         actions: {
-            readBookings() { //alle bookings von einem User werden ausgelesen
-                axios.get(bookingsApiUrl) //hier muss die user_id mit
+            readBookings() {//alle bookings von einem User werden ausgelesen
+                axios.get(bookingsApiUrl, ) //hier muss die user_id mit -> Authorization Token im Header übertragen: { headers: {Authorization: "Bearer" + Token}  }
                     .then(response => {
                         this.bookings = response.data
                     });
