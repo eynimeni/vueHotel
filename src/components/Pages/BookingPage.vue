@@ -19,11 +19,8 @@
       <BookingDateDisplay
           v-bind:date="this.date"
           v-bind:roomId="selected">
-      <!--hier würde ich gern aus der componente hinaus die boolean roomAvailable auslesen-
-      natürlich könnt ich sie auch direkt ausm store holen
-      aber die frage generell, ob man aus subcomponenten in die parent (zB pages) geben kann-->
       </BookingDateDisplay>
-      <b-button v-if="getRoomAvailability" class="btn-success">Auswählen</b-button>
+      <b-button @click="roomsSelectionConfirmaton" v-if="getRoomAvailability" class="btn-success" >Auswählen</b-button>
     </div>
 
     <div v-if="userDataDisplay">
@@ -55,7 +52,6 @@ import ProgressBarComponent from "@/components/subComponents/ProgressBarAtom";
 import BookingDateDisplay from "@/components/subComponents/BookingDateDisplay";
 import {useRoomStore} from "@/stores/RoomStore";
 import {checkRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
-//import {useRoute} from "vue-router";
 
 export default {
   name: "BookingComponent",
@@ -76,7 +72,7 @@ export default {
       ],
       date: '',
       selected: '',
-      progress: 0,
+      progress: 20,
       roomBookingDisplay: true,
       userDataDisplay: false,
       roomAvailabilityStore: checkRoomsAvailability(),
@@ -94,8 +90,15 @@ export default {
           this.selected = route.query.id
         }
       }
+    },
+    roomsSelectionConfirmaton() {
+      console.log("rooms selected")
+      this.progress = 40
+      this.roomBookingDisplay = false
+      this.userDataDisplay = true
     }
-  },
+  }
+  ,
   computed: {
     create() {
       return this.getRoomId();
@@ -106,7 +109,7 @@ export default {
     },
     getRoomAvailability() {
       return this.roomAvailabilityStore.available["available"]
-    }
+    },
   }
 }
 
