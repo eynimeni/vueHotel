@@ -6,9 +6,9 @@
         <b-form>
           <b-form-group class="m-2"
                         id="input-group-1"
-                        label="Email address:"
+                        label="Email-Adresse "
                         label-for="input-1"
-                        description="Wir geben Ihre Daten niemals an Dritte weiter.">
+                        description="Login mit E-Mail-Adresse.">
             <b-form-input class="m-2"
                           id="input-1"
                           v-model.trim="form.clientId"
@@ -22,7 +22,7 @@
                         id="input-group-2"
                         label="Passwort:"
                         label-for="input-2"
-                        description="Passwort vergessen?.">
+                        description="Passwort für Ihren Account eingeben.">
             <b-form-input class="m-2"
                           id="input-2"
                           v-model.trim="form.secret"
@@ -31,17 +31,17 @@
                           required
             ></b-form-input>
           </b-form-group>
-    <b-row>
-      <b-col lg="4" class="pb-2">
-        <b-button type="submit" size="lg" variant="primary" :disabled="v$.$invalid"
-                  @click="loginStore.login(this.form.clientId, this.form.secret)">
+
+          <div v-if="noAccount" class="b-toast-danger">Für diese Zugangsdaten konnte leider kein Account gefunden werden.</div>
+
+
+      <b-col lg="4" class="m-2">
+        <b-button class="m-2" size="md" variant="secondary" href="/">Abbrechen</b-button>
+        <b-button class="m-2" type="submit" size="lg" variant="primary" :disabled="v$.$invalid"
+                  @click="login">
           Einloggen
         </b-button>
       </b-col>
-      <b-col lg="4" class="pb-2">
-        <b-button href="/">Abbrechen</b-button>
-      </b-col>
-    </b-row>
         </b-form>
       </b-container>
   </div>
@@ -66,6 +66,7 @@ export default {
         secret: '',
       },
       preventSubmit: true,
+      noAccount: false,
     }
   },
   validations() {
@@ -84,6 +85,10 @@ export default {
     return { v$: useVuelidate() }
   },
   methods: {
+    login() {
+      this.loginStore.login(this.form.clientId, this.form.secret)
+      this.noAccount = true;
+    }
   }
 }
 </script>
