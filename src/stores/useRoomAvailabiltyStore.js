@@ -13,7 +13,8 @@ export const useRoomsAvailability = defineStore('roomAvailability', {
         dateProxy: null
     }),
         getters: {
-            getAvailability: (state) => state.available
+            getAvailability: (state) => state.available,
+            getId() {return this.id}
     },
         actions: {
             readState() {

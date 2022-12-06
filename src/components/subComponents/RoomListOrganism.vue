@@ -34,7 +34,8 @@ export default {
         "/assets/images/rooms/1.jpg", "/assets/images/rooms/2.jpg"
       ]
     }
-  }, created() {
+  },
+  created() {
     this.roomStore.readState()
   },
   methods: {

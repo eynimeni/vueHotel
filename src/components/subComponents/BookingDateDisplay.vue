@@ -2,17 +2,21 @@
   <div>
     <div>{{ request }}</div>
     <!--fändet ihr es gut, hier nochmals das Zimmer und den Zeitraum zu nennen? oder dann nächste seite?-->
-    <div v-if="isAvailable" class="b-toast-success">Das gewählte Zimmer ist für diesen Zeitraum verfügbar.</div>
+    <div v-if="isAvailable" class="b-toast-success">Das gewählte Zimmer ist für diesen Zeitraum verfügbar.
+    </div>
     <div v-else-if="isAvailable === false" class="b-toast-danger">Das gewählte Zimmer ist für diesen Zeitraum leider nicht verfügbar.</div>
-    <div v-else>Bitte wählen Sie Zimmertyp und Buchungszeitraum.</div>
+    <div v-else>Bitte wählen Sie Zimmertyp und Buchungszeitraum.
+    </div>
   </div>
 </template>
 
 <script>
 import {useRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
+//import BookingOverview from "@/components/subComponents/BookingOverview";
 
 export default {
   name: "BookingDateDisplay",
+  //components: {BookingOverview},
   props: ['date', 'roomId'],
 
   data () {
