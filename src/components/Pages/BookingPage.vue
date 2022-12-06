@@ -46,7 +46,15 @@
 
       <b-button href="/confirmation">Weiter</b-button>
     </div>
-    <booking-overview v-if="bookingOverviewDisplay"></booking-overview>
+    <div v-if="bookingOverviewDisplay">
+    <booking-overview></booking-overview>
+    <b-button @click="showRoomAndDatePicker" class="btn-warning" >Zimmer oder Datum ändern</b-button>
+    </div>
+
+    <router-link :to="{path: '/confirmation'}">
+      <b-button variant="success">Buchung abschicken</b-button>
+    </router-link>
+
   </b-container>
 </template>
 
@@ -115,6 +123,9 @@ export default {
       console.log("room selected")
       this.roomId = value
       this.roomIsSelected = true
+    },
+    showRoomAndDatePicker() {
+      this.roomBookingDisplay = true
     }
 
   }
