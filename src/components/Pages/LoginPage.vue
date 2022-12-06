@@ -37,8 +37,9 @@
 
       <b-col lg="4" class="m-4">
         <b-button class="m-3" size="md" variant="secondary" href="/">Abbrechen</b-button>
-        <b-button class="m-3" type="submit" size="lg" variant="primary" :disabled="v$.$invalid"
+        <b-button class="m-3" type="submit" size="lg" variant="primary"
                   @click="login">
+<!--          :disabled="v$.$invalid-->
           Einloggen
         </b-button>
       </b-col>

@@ -5,14 +5,19 @@ const loginApiUrl = "https://boutique-hotel.helmuth-lammer.at/api/v1/login";
 
 export const useLoginStore = defineStore('login', {
     state: () => ({
+        token: ""
     }),
+    getters: {
+        getToken: (state) => state.token,
+    },
     actions: {
-        login( clientId, secret) {   //das sollte der API eine clientId und ein secret übergeben
+        login( clientId, secret) {
                 axios.post(loginApiUrl, {
                     clientId: clientId,
                     secret: secret})
 
                     .then(function (response) {
+                        this.token = response;
                         console.log(response);
                     })
                     .catch(function (error) {
