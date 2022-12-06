@@ -1,8 +1,9 @@
 <template>
-  <h4>Buchungsübersicht</h4>
+  <h3>Buchungsübersicht</h3>
   <room-id-display></room-id-display>
-  <div>{{dateString}}</div>
-  <div><p>Sie wollen so viele Nächte bleiben:</p>{{durationOfStay}}</div>
+  <h5>{{dateString}}</h5>
+  <h5>Anzahl der Nächte: {{durationOfStay}}</h5>
+
 
   <!-- todo aus dem roomstore noch den preis pro nacht auslesen und mit durationOfStay multiplizieren
         darstellung formatierung gui
@@ -15,7 +16,6 @@ import RoomIdDisplay from "@/components/subComponents/RoomIdDisplay";
 import {useRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
 export default {
   name: "BookingOverview",
-  props: ['date'],
   components: {RoomIdDisplay},
   data() {
     return {
