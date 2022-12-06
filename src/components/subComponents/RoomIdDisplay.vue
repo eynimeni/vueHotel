@@ -3,6 +3,7 @@
   <room-display-molecule
       v-bind:room=room
       v-bind:image=getImage()
+      :button-type=this.someValue
   >
   </room-display-molecule>
 
@@ -19,7 +20,8 @@ export default {
     return {
       roomStore: useRoomStore(),
       useRoomsAvailabilityStore: useRoomsAvailability(),
-      roomIdFromStore: null
+      roomIdFromStore: null,
+      someValue: "String"
     }
   },
   created() {

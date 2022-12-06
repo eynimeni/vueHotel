@@ -107,9 +107,9 @@ export default {
     roomsSelectionConfirmaton() {
       console.log("rooms selected")
       this.progress = 40
-      //this.roomBookingDisplay = false
-      //this.userDataDisplay = true
-      this.bookingOverviewDisplay = true
+      this.roomBookingDisplay = false
+      this.userDataDisplay = true
+      //this.bookingOverviewDisplay = true
     },
     roomSelection(value) {
       console.log("room selected")
