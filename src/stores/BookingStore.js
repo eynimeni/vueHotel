@@ -2,9 +2,13 @@ import {defineStore} from "pinia";
 import axios from 'axios';
 
 const bookingsApiUrl = "https://boutique-hotel.helmuth-lammer.at/api/v1/user/bookings"
-//die User id muss mit
+//die User id muss mit, um Buchungen auszulesen
+
+
 //const bookingRequestApiUrl = "https://boutique-hotel.helmuth-lammer.at/api/v1/room/{roomId}/from/{from-date}/to/{to-date}";
-//das Datum muss hier mit!
+//roomId und date kommen aus roomAvailabilityStore
+
+//evtl hier Daten zwischenspeichern, wenn wir bei Zurück gehen Felder wiederbefüllen wollen
 
 export const useBookingStore = defineStore('bookingrequest'
     , {
