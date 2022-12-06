@@ -38,9 +38,13 @@
           </b-container>
         </b-list-group-item>
       </b-list-group>
+      <div v-if="routingButton">
       <router-link :to="{path: '/booking/', query: {id}}">
         <b-button variant="primary">Verfügbarkeit prüfen</b-button>
+        <!--todo hier wäre fesch, die ID gleich zu übergeben, damit sie im select dann voreingestellt ist
+        -->
       </router-link>
+      </div>
     </b-card>
   </div>
 </template>
@@ -48,7 +52,7 @@
 <script>
 export default {
   name: "RoomDisplayMolecule",
-  props: [ 'room', 'image' ],
+  props: [ 'room', 'image', 'routingButton' ],
   data() {
     return {
       id: this.room.id,

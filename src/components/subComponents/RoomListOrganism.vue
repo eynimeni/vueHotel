@@ -5,6 +5,7 @@
         <RoomDisplayMolecule
             v-bind:room=room
             v-bind:image=getImage(room.id)
+            :routing-button=true
         ></RoomDisplayMolecule>
       </div>
     </div>
@@ -31,11 +32,13 @@ export default {
       roomStore: useRoomStore(),
       perPage: 1,
       currentPage: 1,
+      buttonType: "navigationButton",
       images: [
         "/assets/images/rooms/1.jpg", "/assets/images/rooms/2.jpg"
       ]
     }
-  }, created() {
+  },
+  created() {
     this.roomStore.readState()
   },
   methods: {

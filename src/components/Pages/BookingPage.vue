@@ -7,12 +7,18 @@
     <div v-if="roomBookingDisplay">
       <b-form-group class="m-2">
         <b-col class="mb-3">
-          <b-form-select v-model="selected" :options="this.options">
-            <b-form-select-option v-for="room in rooms" :key="room.id" :value="room.id">{{ room.roomsName }}</b-form-select-option>
+          <b-form-select v-model="selected" :options="this.options" @input="roomSelection">
+            <b-form-select-option v-for="room in rooms" :key="room.id" :value="room.id - 1" >{{ room.roomsName }}</b-form-select-option>
           </b-form-select>
         </b-col>
         <b-col class="mb-3">
           <datepicker-component v-model="this.date"></datepicker-component>
+<!--todo validation date not in past-->
+
+          <div v-if="this.roomId != null && this.roomId >= 0">
+            <room-id-display :room-id="this.roomId"></room-id-display>
+          </div>
+
         </b-col>
         <hr>
       </b-form-group>
@@ -40,6 +46,7 @@
 
       <b-button href="/confirmation">Weiter</b-button>
     </div>
+    <booking-overview v-if="bookingOverviewDisplay"></booking-overview>
   </b-container>
 </template>
 
@@ -51,17 +58,21 @@ import FormComponent from "@/components/subComponents/PersonalDataFormOrganism";
 import ProgressBarComponent from "@/components/subComponents/ProgressBarAtom";
 import BookingDateDisplay from "@/components/subComponents/BookingDateDisplay";
 import {useRoomStore} from "@/stores/RoomStore";
-import {checkRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
+import {useRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
+import RoomIdDisplay from "@/components/subComponents/RoomIdDisplay";
+import BookingOverview from "@/components/subComponents/BookingOverview";
 
 export default {
   name: "BookingComponent",
 
   components: {
+    RoomIdDisplay,
     BookingDateDisplay,
     DatepickerComponent,
     HeadingOrganism,
     FormComponent,
     ProgressBarComponent,
+    BookingOverview
   },
   data() {
     return {
@@ -75,7 +86,10 @@ export default {
       progress: 20,
       roomBookingDisplay: true,
       userDataDisplay: false,
-      roomAvailabilityStore: checkRoomsAvailability(),
+      bookingOverviewDisplay: false,
+      roomIsSelected: false,
+      roomAvailabilityStore: useRoomsAvailability(),
+      roomId: null
 
     }
   }, created() {
@@ -83,7 +97,7 @@ export default {
     this.roomStore.readState()
   },
   methods: {
-    getRoomId() {
+    generateRoomsIdForSelect() {
       const route = useRoute();
       for (let option in this.rooms) {
         if (route.query.id === option) {
@@ -92,16 +106,22 @@ export default {
       }
     },
     roomsSelectionConfirmaton() {
-      console.log("rooms selected")
       this.progress = 40
       this.roomBookingDisplay = false
       this.userDataDisplay = true
+      this.bookingOverviewDisplay = true
+    },
+    roomSelection(value) {
+      console.log("room selected")
+      this.roomId = value
+      this.roomIsSelected = true
     }
+
   }
   ,
   computed: {
     create() {
-      return this.getRoomId();
+      return this.generateRoomsIdForSelect();
     },
     rooms() {
       console.log(this.roomStore.getRooms)

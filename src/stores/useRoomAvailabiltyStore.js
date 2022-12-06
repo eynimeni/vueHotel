@@ -1,7 +1,7 @@
 import {defineStore} from "pinia";
 import axios from 'axios';
 
-export const checkRoomsAvailability = defineStore('roomAvailability', {
+export const useRoomsAvailability = defineStore('roomAvailability', {
     state: () => ({
         url: "",
         available: [],
@@ -13,7 +13,12 @@ export const checkRoomsAvailability = defineStore('roomAvailability', {
         dateProxy: null
     }),
         getters: {
-            getAvailability: (state) => state.available
+            getAvailability: (state) => state.available,
+            getId() {return this.id},
+            getStartDateRaw() {return this.startDateRaw},
+            getEndDateRaw() {return this.endDateRaw},
+            getStartDate() {return this.startDate},
+            getEndDate() {return this.endDate}
     },
         actions: {
             readState() {
