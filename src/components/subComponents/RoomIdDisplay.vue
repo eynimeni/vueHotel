@@ -1,9 +1,7 @@
 <template>
-  <h4> {{headline}} </h4>
   <room-display-molecule
       v-bind:room=room
       v-bind:image=getImage()
-      :button-type=this.someValue
   >
   </room-display-molecule>
 
@@ -15,13 +13,12 @@ import {useRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
 import RoomDisplayMolecule from "@/components/subComponents/RoomDisplayMolecule";
 export default {
   name: "RoomIdDisplay",
-  props: ['headline', 'roomId'],
+  props: ['roomId'],
   data() {
     return {
       roomStore: useRoomStore(),
       useRoomsAvailabilityStore: useRoomsAvailability(),
       roomIdFromStore: null,
-      someValue: "String"
     }
   },
   created() {
@@ -57,7 +54,6 @@ export default {
       else {
         this.getRoomIdFromStore()
         let selectedRoom = rooms[this.roomIdFromStore]
-        console.log(this.roomIdFromStore)
         return selectedRoom
       }
 

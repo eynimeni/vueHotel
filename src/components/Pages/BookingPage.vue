@@ -16,7 +16,7 @@
 <!--todo validation date not in past-->
 
           <div v-if="this.roomId != null && this.roomId >= 0">
-            <booking-overview :room-id="this.roomId"></booking-overview>
+            <room-id-display :room-id="this.roomId"></room-id-display>
           </div>
 
         </b-col>
@@ -46,7 +46,7 @@
 
       <b-button href="/confirmation">Weiter</b-button>
     </div>
-    <booking-overview v-if="bookingOverviewDisplay" v-bind:headline="this.headlineBookingOverview"></booking-overview>
+    <booking-overview v-if="bookingOverviewDisplay"></booking-overview>
   </b-container>
 </template>
 
@@ -59,18 +59,20 @@ import ProgressBarComponent from "@/components/subComponents/ProgressBarAtom";
 import BookingDateDisplay from "@/components/subComponents/BookingDateDisplay";
 import {useRoomStore} from "@/stores/RoomStore";
 import {useRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
-import BookingOverview from "@/components/subComponents/RoomIdDisplay";
+import RoomIdDisplay from "@/components/subComponents/RoomIdDisplay";
+import BookingOverview from "@/components/subComponents/BookingOverview";
 
 export default {
   name: "BookingComponent",
 
   components: {
-    BookingOverview,
+    RoomIdDisplay,
     BookingDateDisplay,
     DatepickerComponent,
     HeadingOrganism,
     FormComponent,
     ProgressBarComponent,
+    BookingOverview
   },
   data() {
     return {
@@ -87,7 +89,6 @@ export default {
       bookingOverviewDisplay: false,
       roomIsSelected: false,
       roomAvailabilityStore: useRoomsAvailability(),
-      headlineBookingOverview: "Buchungsübersicht",
       roomId: null
 
     }
@@ -105,7 +106,6 @@ export default {
       }
     },
     roomsSelectionConfirmaton() {
-      console.log("rooms selected")
       this.progress = 40
       this.roomBookingDisplay = false
       this.userDataDisplay = true
