@@ -2,6 +2,7 @@
   <heading-organism v-bind:title="title"></heading-organism>
   <div>Zeitraum</div>
   <div>Hotelzimmer</div>
+  <booking-overview></booking-overview>
   <div>Daten</div>
   <div>Anfahrtsbeschreibung</div>
   <google-maps></google-maps>
@@ -14,10 +15,11 @@
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import ContactComponent from "@/components/subComponents/ContactDataOrganism";
 import GoogleMaps from "@/components/subComponents/GoogleMaps";
+import BookingOverview from "@/components/subComponents/BookingOverview";
 
 export default {
   name: "ConfirmationComponent",
-  components: {GoogleMaps, ContactComponent, HeadingOrganism},
+  components: {BookingOverview, GoogleMaps, ContactComponent, HeadingOrganism},
   data() {
     return {
       title: 'Buchungsbestätigung',
