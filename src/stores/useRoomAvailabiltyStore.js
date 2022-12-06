@@ -16,7 +16,9 @@ export const useRoomsAvailability = defineStore('roomAvailability', {
             getAvailability: (state) => state.available,
             getId() {return this.id},
             getStartDateRaw() {return this.startDateRaw},
-            getEndDateRaw() {return this.endDateRaw}
+            getEndDateRaw() {return this.endDateRaw},
+            getStartDate() {return this.startDate},
+            getEndDate() {return this.endDate}
     },
         actions: {
             readState() {

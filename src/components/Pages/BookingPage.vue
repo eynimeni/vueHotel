@@ -109,7 +109,7 @@ export default {
       this.progress = 40
       this.roomBookingDisplay = false
       this.userDataDisplay = true
-      //this.bookingOverviewDisplay = true
+      this.bookingOverviewDisplay = true
     },
     roomSelection(value) {
       console.log("room selected")

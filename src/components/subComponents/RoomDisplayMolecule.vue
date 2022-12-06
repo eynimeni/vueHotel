@@ -42,7 +42,7 @@
       <router-link :to="{path: '/booking/', query: {id}}">
         <b-button variant="primary">Verfügbarkeit prüfen</b-button>
         <!--todo hier wäre fesch, die ID gleich zu übergeben, damit sie im select dann voreingestellt ist
-        und todo hier den button und den router link nur unter gewissen bedingungen anzeigen, mit einem boolean der beim aufruf übergeben wird zB-->
+        -->
       </router-link>
       </div>
     </b-card>
