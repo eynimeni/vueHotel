@@ -16,7 +16,7 @@ const routes = [
   {path: '/booking', name:'booking', component: BookingComponent},
   {path: '/profile', name:'profile', component: ProfileComponent},
   {path: '/confirmation', name:'confirmation', component: ConfirmationComponent},
-  {path: '/about', name:'about', component: AboutComponent},
+  {path: '/about', name:'about', component:  AboutComponent},
   {path: '/impressum', name:'impressum', component: ImpressumComponent},
   {path: '/bookinghistory', name:'bookinghistory', component: BookingHistoryPage},
 ]

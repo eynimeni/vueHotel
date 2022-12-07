@@ -15,13 +15,22 @@ export const useBookingStore = defineStore('bookingrequest'
         state: () => ({
             bookings: []
         }),
-        getters: {},
+        getters: {
+            getBookings: (state) => state.bookings,
+        },
         actions: {
-            readBookings() {//alle bookings von einem User werden ausgelesen
-                axios.get(bookingsApiUrl, ) //hier muss die user_id mit -> Authorization Token im Header übertragen: { headers: {Authorization: "Bearer" + Token}  }
+            readBookings(token) {//alle bookings von einem User werden ausgelesen
+                axios.get(bookingsApiUrl, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                } ) //hier muss die user_id mit -> Authorization Token im Header übertragen: { headers: {Authorization: "Bearer" + Token}  }
                     .then(response => {
                         this.bookings = response.data
-                    });
+                        console.log(response.data)
+                    }).catch(error => {
+                    console.log(error)
+                });
             },
             requestBookings(bookingRequest) { //eine neue Buchung wird gespeichert am Server
                 /*axios.post(bookingRequestApiUrl, bookingRequest, {

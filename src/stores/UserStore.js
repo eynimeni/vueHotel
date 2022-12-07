@@ -1,23 +1,36 @@
 import {defineStore} from "pinia";
 import axios from 'axios';
 
-const userApiUrl = "https://boutique-hotel.helmuth-lammer.at/api/v1/guests";
+const userApiUrl = "https://boutique-hotel.helmuth-lammer.at/api/v1/user";            //guests -> für alle, user für den eingeloggten
 const registerApiUrl = "https://boutique-hotel.helmuth-lammer.at/api/v1/register";
+
+
 
 //evtl Daten zwischenspeichern: Frühstück, etc. um die zu holen, wenn wir zurückgehen im Prozess
 //Daten speichern für die Overview und Confirmation Seite
 
+
 export const useUserStore = defineStore('user'
     , {
         state: () => ({
-            users: []
+            user: []
         }),
-        getters: {},
+        getters: {
+            getUser: (state) => state.user,
+        },
         actions: {
-            readState() {
-                axios.get(userApiUrl) // NOCH NICHT GETESTET
+            readState(token) {
+                axios.get(userApiUrl, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }) // GETESTET, GEHT
                     .then(response => {
-                        this.users = response.data //sollte alle user in das users Array schreiben
+                        this.user = response.data //schreibt einen user
+                        console.log(response.data)
+                    })
+                    .catch(error => {
+                        console.log(error)
                     });
             },
             postUsers(userJson) { //GETESTET, GEHT, Testuser siehe unten

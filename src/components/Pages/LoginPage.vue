@@ -32,14 +32,15 @@
             ></b-form-input>
           </b-form-group>
 
-          <div v-if="noAccount" class="b-toast-danger">Für diese Zugangsdaten konnte leider kein Account gefunden werden.</div>
+          <div v-show="sentAuthentication">
+            <div v-if="token === ''" class="b-toast-danger">Für diese Zugangsdaten konnte leider kein Account gefunden werden.</div>
+          </div>
 
 
       <b-col lg="4" class="m-4">
         <b-button class="m-3" size="md" variant="secondary" href="/">Abbrechen</b-button>
         <b-button class="m-3" type="submit" size="lg" variant="primary"
                   @click="login">
-<!--          :disabled="v$.$invalid-->
           Einloggen
         </b-button>
       </b-col>
@@ -48,7 +49,7 @@
   </div>
 </template>
 
-<script>    //Error Handling fehlt noch!
+<script>
 
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, minLength } from '@vuelidate/validators'
@@ -67,7 +68,8 @@ export default {
         secret: '',
       },
       preventSubmit: true,
-      noAccount: false,
+      sentAuthentication: false,
+      errorMessage: false,
     }
   },
   validations() {
@@ -78,7 +80,7 @@ export default {
           email},
         secret: {
           required,
-          minLength: minLength(8)},
+          minLength: minLength(3)},     //können wir noch ändern oder weglassen
       }
     }
   },
@@ -87,8 +89,23 @@ export default {
   },
   methods: {
     login() {
-      this.loginStore.login(this.form.clientId, this.form.secret)
-      this.noAccount = true;
+      if(!this.v$.$invalid){
+        this.loginStore.login(this.form.clientId, this.form.secret)
+        setTimeout(this.setAuthentication, 2000 )
+      }
+    },
+    setAuthentication() {
+      this.sentAuthentication = true;
+      if (this.token === '') {
+        this.errorMessage = true
+      } else {
+        this.$router.push("/profile")
+      }
+    }
+  },
+  computed: {
+    token() {
+      return this.loginStore.getToken
     }
   }
 }
