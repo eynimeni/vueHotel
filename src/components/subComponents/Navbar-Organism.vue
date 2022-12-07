@@ -9,7 +9,7 @@
       </router-link>
       <b-navbar-nav>
         <b-nav-text v-show="authentication">
-          Hi, User
+          Hello, {{ user.firstname }}
         </b-nav-text>
       </b-navbar-nav>
 
@@ -32,17 +32,22 @@
 
 <script>
 import {useLoginStore} from "@/stores/LoginStore";
+import {useUserStore} from "@/stores/UserStore";
 
 export default {
   name: "NavbarOrganism",
   data() {
     return {
       loginStore: useLoginStore(),
+      userStore: useUserStore(),
     }
   },
   computed: {
     token() {
       return this.loginStore.getToken
+    },
+    user() {
+      return this.userStore.getUser
     },
     authentication() {
       if (this.token !== '') {
