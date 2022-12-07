@@ -6,12 +6,15 @@
   <h5 class="mt-5">Vergangene Reisen</h5>
   <booking-table-molecule v-bind:bookings=pastBookings></booking-table-molecule>
   <div>{{this.bookingsApi}}</div>
+  <div>{{this.userApi.bookings}}</div>
 </template>
 
 <script>
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import BookingTableMolecule from "@/components/subComponents/BookingTableMolecule";
 import {useBookingStore} from "@/stores/BookingStore";
+import {useLoginStore} from "@/stores/LoginStore";
+import {useUserStore} from "@/stores/UserStore";
 
 export default {
   name: "BookingHistoryPage",
@@ -19,6 +22,8 @@ export default {
   data() {
     return {
       bookingStore: useBookingStore(),
+      userStore: useUserStore(),
+      loginStore: useLoginStore(),
       bookings: [ //testdaten
         { roomId: "Double Room", startDate: "2023-09-09", endDate: "2023-09-10" },
         { roomId: "Junior Suite", startDate: "2022-08-05", endDate: "2022-08-08" },
@@ -26,10 +31,10 @@ export default {
       dateToday: this.currentDate()
     }
   },
+  created() {
+    this.bookingStore.readBookings(this.token)
+  },
   methods: {
-    created() {
-      this.bookingStore.readBookings()
-    },
     currentDate() {
       let today = new Date();
       let d = today.getDate();
@@ -62,9 +67,28 @@ export default {
       }
       return pastBookingsList;
     },
-    bookingsApi() {   //daten von api -> authentication fehlt noch im store
-      return this.bookingStore.bookings
-    }
+    bookingsApi() {
+      return this.bookingStore.getBookings    //hier kommt dann ein array mit allen bookings zurück, siehe unten -> iterieren!
+    },
+    userApi() { //hier kommt user mit seinen bookings zurück, wie oben in testdaten -> diese option würde schon funktionieren in UI
+      return this.userStore.getUser
+    },
+    token() {
+      return this.loginStore.getToken
+    },
+
+    /*[ {
+} }
+}, {
+... }
+]
+"booking": { "id": 1234,
+"from": "YYYY-MM-DD",
+"to": "YYYY-MM-DD" },
+"room": { "id": 1,
+"roomNumber": 11, "roomName": "Junior Suite", "beds": 3,
+"pricePerNight": 120, "extras": {
+"bathRoom": true, "minibar": true, "television": true, "aircondition": true*/
   }
 }
 
@@ -73,3 +97,4 @@ export default {
 <style scoped>
 
 </style>
+

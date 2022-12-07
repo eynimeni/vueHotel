@@ -28,6 +28,9 @@ export const useUserStore = defineStore('user'
                     .then(response => {
                         this.user = response.data //schreibt einen user
                         console.log(response.data)
+                    })
+                    .catch(error => {
+                        console.log(error)
                     });
             },
             postUsers(userJson) { //GETESTET, GEHT, Testuser siehe unten
