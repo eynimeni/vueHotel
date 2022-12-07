@@ -98,7 +98,6 @@ export default {
       roomIsSelected: false,
       roomAvailabilityStore: useRoomsAvailability(),
       roomId: null
-
     }
   }, created() {
     console.log("created")

@@ -1,22 +1,28 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="light" variant="light">
-      <b-navbar-brand href="/">
-        <b-list-group-item class="d-flex justify-content-between align-items-center">
+      <router-link :to="{path: '/'}"><b-navbar-brand>
+        <div class="d-flex justify-content-between align-items-center">
           <b-img src="/assets/icons/Favicons/favicon-48x48.png" fluid alt="Responsive image"></b-img>
-        </b-list-group-item>
-
+        </div>
         </b-navbar-brand>
+      </router-link>
+      <b-navbar-nav>
+        <b-nav-text v-show="authentication">
+          Hi, User
+        </b-nav-text>
+      </b-navbar-nav>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="/about">Über Uns</b-nav-item>
-          <b-nav-item href="/rooms">Zimmer</b-nav-item>
-          <b-nav-item href="/booking">Buchung vornehmen</b-nav-item>
-          <b-nav-item href="/login">Einloggen</b-nav-item>
-          <b-nav-item href="/bookinghistory" v-show="authentication">Meine Buchungen</b-nav-item>
+          <router-link :to="{path: '/about'}"><b-nav-item>Über Uns</b-nav-item></router-link>
+          <router-link :to="{path: '/rooms'}"><b-nav-item>Zimmer</b-nav-item></router-link>
+          <router-link :to="{path: '/booking'}"><b-nav-item>Buchung vornehmen</b-nav-item></router-link>
+          <router-link :to="{path: '/login'}" v-show="!authentication"><b-nav-item>Einloggen</b-nav-item></router-link>
+          <router-link :to="{path: '/profile'}" v-show="authentication"><b-nav-item>Mein Profil</b-nav-item></router-link>
+          <router-link :to="{path: '/bookinghistory'}" v-show="authentication"><b-nav-item>Meine Buchungen</b-nav-item></router-link>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -25,11 +31,25 @@
 </template>
 
 <script>
+import {useLoginStore} from "@/stores/LoginStore";
+
 export default {
   name: "NavbarOrganism",
   data() {
     return {
-      authentication: true
+      loginStore: useLoginStore(),
+    }
+  },
+  computed: {
+    token() {
+      return this.loginStore.getToken
+    },
+    authentication() {
+      if (this.token !== '') {
+        return true
+      } else {
+        return false
+      }
     }
   }
 }

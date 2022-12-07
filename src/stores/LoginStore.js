@@ -16,10 +16,11 @@ export const useLoginStore = defineStore('login', {
                     clientId: clientId,
                     secret: secret})
 
-                    .then(function (response) {
-                        this.token = response;
-                        console.log(response);
-                    })
+                    .then(
+                        response => {
+                            console.log(response.data)
+                            this.token = response.data
+                        })
                     .catch(function (error) {
                         console.log(error);
                     });
