@@ -13,7 +13,7 @@ const bookingsApiUrl = "https://boutique-hotel.helmuth-lammer.at/api/v1/user/boo
 export const useBookingStore = defineStore('bookingrequest'
     , {
         state: () => ({
-            bookings: []
+            booking: []
         }),
         getters: {
             getBookings: (state) => state.bookings,

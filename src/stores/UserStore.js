@@ -10,6 +10,7 @@ const registerApiUrl = "https://boutique-hotel.helmuth-lammer.at/api/v1/register
 //Daten speichern für die Overview und Confirmation Seite
 
 
+
 export const useUserStore = defineStore('user'
     , {
         state: () => ({
@@ -46,7 +47,7 @@ export const useUserStore = defineStore('user'
                         console.log(error);
                     });
                 console.log(userJson);
-            }
+            },
         }
     })
 
