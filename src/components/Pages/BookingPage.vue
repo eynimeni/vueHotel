@@ -37,24 +37,24 @@
 
       <b-row>
         <b-col lg="4" class="pb-2">
-          <b-button variant="success" size="lg" href="/confirmation">Weiter</b-button>
+          <b-button variant="success" size="lg" @click="userDataConfirmation">Weiter</b-button>
         </b-col>
         <b-col lg="4" class="pb-2">
           <b-button href="/">Abbrechen</b-button>
         </b-col>
       </b-row>
-
-      <b-button href="/confirmation">Weiter</b-button>
     </div>
+
     <div v-if="bookingOverviewDisplay">
-    <booking-overview></booking-overview>
-    <b-button @click="showRoomAndDatePicker" class="btn-warning" >Zimmer oder Datum ändern</b-button>
+      <div >
+        <booking-overview></booking-overview>
+        <b-button @click="showRoomAndDatePicker" class="btn-warning" >Zimmer oder Datum ändern</b-button>
+      </div>
+
+      <router-link v-if="bookingOverviewDisplay" :to="{path: '/confirmation'}">
+        <b-button @click="sendBooking" variant="success">Buchung abschicken</b-button>
+      </router-link>
     </div>
-
-    <router-link :to="{path: '/confirmation'}">
-      <b-button variant="success">Buchung abschicken</b-button>
-    </router-link>
-
   </b-container>
 </template>
 
@@ -69,6 +69,8 @@ import {useRoomStore} from "@/stores/RoomStore";
 import {useRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
 import RoomIdDisplay from "@/components/subComponents/RoomIdDisplay";
 import BookingOverview from "@/components/subComponents/BookingOverview";
+import {useBookingStore} from "@/stores/BookingStore";
+import {useLoginStore} from "@/stores/LoginStore";
 
 export default {
   name: "BookingComponent",
@@ -85,6 +87,8 @@ export default {
   data() {
     return {
       roomStore: useRoomStore(),
+      bookingStore: useBookingStore(),
+      loginStore: useLoginStore(),
       title: "Buchungen",
       options: [
         {value: '', text: 'Zimmertyp wählen'},
@@ -116,6 +120,10 @@ export default {
       this.progress = 40
       this.roomBookingDisplay = false
       this.userDataDisplay = true
+    },
+    userDataConfirmation() {
+      this.progress = 60
+      this.userDataDisplay = false
       this.bookingOverviewDisplay = true
     },
     roomSelection(value) {
@@ -125,6 +133,11 @@ export default {
     },
     showRoomAndDatePicker() {
       this.roomBookingDisplay = true
+    },
+    sendBooking() {
+      console.log("bookingStore request")
+      this.bookingStore.requestBookings(this.token)
+      console.log("token" + this.token)
     }
 
   }
@@ -139,6 +152,9 @@ export default {
     },
     getRoomAvailability() {
       return this.roomAvailabilityStore.available["available"]
+    },
+    token() {
+      return this.loginStore.getToken
     },
   }
 }

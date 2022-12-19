@@ -85,7 +85,8 @@
         </b-form-group>
       </b-form-group>
       <RegistrationFormOrganism :personaldata="personalData"></RegistrationFormOrganism>
-      <BookingOperator v-if="filledOutForm" :personaldata="personalData"></BookingOperator>
+<!--      <BookingOperator v-if="filledOutForm" :personaldata="personalData"></BookingOperator>-->
+      <b-button v-if="filledOutForm" @click="this.saveData()">Daten speichern</b-button>
       <p v-else>Bitte füllen Sie alle Felder vollständig aus, um fortzufahren</p>
     </b-card>
   </div>
@@ -95,18 +96,18 @@
 import {BCard, BFormCheckbox, BFormGroup, BFormInput, BFormRadioGroup} from "bootstrap-vue-3";
 import BirthdayDatepickerAtom from "@/components/subComponents/BirthdayDatepickerAtom";
 import RegistrationFormOrganism from "@/components/subComponents/RegistrationFormOrganism";
-import BookingOperator from "@/components/subComponents/BookingOperator";
+import {useBookingStore} from "@/stores/BookingStore";
 
 export default {
   name: "FormComponent",
   components: {
     BFormCheckbox,
     BFormInput,
-    BFormRadioGroup, BCard, BookingOperator, BFormGroup, BirthdayDatepickerAtom, RegistrationFormOrganism
+    BFormRadioGroup, BCard, BFormGroup, BirthdayDatepickerAtom, RegistrationFormOrganism
   },
   data() {
     return {
-      personalData: {
+      personalData: { //wird das genutzt?
         gender: null,
         firstname: null,
         lastname: null,
@@ -114,7 +115,8 @@ export default {
         email: null,
         emailrepeat: null,
         breakfast: false,
-      }
+      },
+      bookingStore: useBookingStore()
     }
   },
   computed: {
@@ -126,7 +128,17 @@ export default {
           this.personalData.email,
       this.personalData.emailrepeat &&
       this.personalData.email === this.personalData.emailrepeat);
-    }
+    },
+  },
+  methods: {
+    saveData(){
+      console.log("test")
+      this.bookingStore.bookingRequest.email = this.personalData.email  //hier wirft es einen Fehler mit @Zeichen
+      this.bookingStore.bookingRequest.firstname = this.personalData.firstname
+      this.bookingStore.bookingRequest.lastname = this.personalData.lastname
+      this.bookingStore.bookingRequest.birthdate = this.personalData.birthdate
+
+    },
   }
 }
 </script>
