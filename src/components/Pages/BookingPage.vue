@@ -137,7 +137,7 @@ export default {
     sendBooking() {
       console.log("bookingStore request")
       this.bookingStore.requestBookings(this.token)
-      console.log("token" + this.token)
+      console.log("token:" + this.token)
     }
 
   }

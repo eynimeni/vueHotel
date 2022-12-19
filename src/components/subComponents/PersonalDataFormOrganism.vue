@@ -85,7 +85,8 @@
         </b-form-group>
       </b-form-group>
       <RegistrationFormOrganism :personaldata="personalData"></RegistrationFormOrganism>
-<!--      <BookingOperator v-if="filledOutForm" :personaldata="personalData"></BookingOperator>-->
+
+<!--      muss noch umgebaut werden: daten sollen automatisch gespeichert werden nicht erst durch klick auf button-->
       <b-button v-if="filledOutForm" @click="this.saveData()">Daten speichern</b-button>
       <p v-else>Bitte füllen Sie alle Felder vollständig aus, um fortzufahren</p>
     </b-card>
@@ -132,7 +133,7 @@ export default {
   },
   methods: {
     saveData(){
-      console.log("test")
+      console.log("personal data saved to bookingStore")
       this.bookingStore.bookingRequest.email = this.personalData.email  //hier wirft es einen Fehler mit @Zeichen
       this.bookingStore.bookingRequest.firstname = this.personalData.firstname
       this.bookingStore.bookingRequest.lastname = this.personalData.lastname
