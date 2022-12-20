@@ -1,12 +1,12 @@
 <template>
   <heading-organism v-bind:title="title"></heading-organism>
-  <div>Zeitraum</div>
-  <div>Hotelzimmer</div>
-  <booking-overview></booking-overview>
-  <div>Daten</div>
-  <div>Anfahrtsbeschreibung</div>
+  <h4 class="mb-3 mt-3 text-success">Buchungs-Id: {{this.bookingId}}</h4>
+  <div class="mt-3 mb-5">
+    <booking-overview></booking-overview>
+  </div>
+
+  <h4>Unser Standort</h4>
   <google-maps></google-maps>
-  <div>Kontaktmöglichkeit</div>
   <contact-component></contact-component>
 
 </template>
@@ -16,6 +16,7 @@ import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import ContactComponent from "@/components/subComponents/ContactDataOrganism";
 import GoogleMaps from "@/components/subComponents/GoogleMaps";
 import BookingOverview from "@/components/subComponents/BookingOverview";
+import {useBookingStore} from "@/stores/BookingStore";
 
 export default {
   name: "ConfirmationComponent",
@@ -23,6 +24,12 @@ export default {
   data() {
     return {
       title: 'Buchungsbestätigung',
+      bookingStore: useBookingStore()
+    }
+  },
+  computed: {
+    bookingId() {
+      return this.bookingStore.getBookingId
     }
   }
 }

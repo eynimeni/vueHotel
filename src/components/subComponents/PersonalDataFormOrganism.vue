@@ -83,9 +83,8 @@
           <p v-else>Ihre Buchungsanfrage enthält kein Frühstück</p>
         </b-form-group>
       </b-form-group>
-      <RegistrationFormOrganism :personaldata="personalData"></RegistrationFormOrganism>
-      <BookingOperator v-if="filledOutForm" :personaldata="personalData"></BookingOperator>
-      <p v-else>Bitte füllen Sie alle Felder vollständig aus, um fortzufahren</p>
+<!--      <RegistrationFormOrganism :personaldata="personalData"></RegistrationFormOrganism>-->
+      <p v-if="!filledOutForm" class="text-danger">Bitte füllen Sie alle Felder vollständig aus, um fortzufahren</p>
     </b-card>
   </div>
 </template>
@@ -93,27 +92,27 @@
 <script>
 import {BCard, BFormCheckbox, BFormGroup, BFormInput, BFormRadioGroup} from "bootstrap-vue-3";
 import BirthdayDatepickerAtom from "@/components/subComponents/BirthdayDatepickerAtom";
-import RegistrationFormOrganism from "@/components/subComponents/RegistrationFormOrganism";
-import BookingOperator from "@/components/subComponents/BookingOperator";
+import {useBookingStore} from "@/stores/BookingStore";
 
 export default {
   name: "FormComponent",
   components: {
     BFormCheckbox,
     BFormInput,
-    BFormRadioGroup, BCard, BookingOperator, BFormGroup, BirthdayDatepickerAtom, RegistrationFormOrganism
+    BFormRadioGroup, BCard, BFormGroup, BirthdayDatepickerAtom
   },
   data() {
     return {
-      personalData: {
+      personalData: { //wird das genutzt?
         gender: null,
         firstname: null,
         lastname: null,
-        birthdate: null, //muss evtl nochmal formatiert werden. Spezfikation: String YYYY-MM-DD
+        birthdate: null, //muss evtl nochmal formatiert werden. Spezfikation: String YYYY-MM-DD + evtl alter checken?
         email: null,
         emailrepeat: null,
         breakfast: false,
-      }
+      },
+      bookingStore: useBookingStore()
     }
   },
   computed: {
@@ -125,7 +124,17 @@ export default {
           this.personalData.email,
       this.personalData.emailrepeat &&
       this.personalData.email === this.personalData.emailrepeat);
-    }
+    },
+  },
+  methods: {
+    saveData(){
+      console.log("personal data saved to bookingStore")
+      this.bookingStore.bookingRequest.email = this.personalData.email
+      this.bookingStore.bookingRequest.firstname = this.personalData.firstname
+      this.bookingStore.bookingRequest.lastname = this.personalData.lastname
+      this.bookingStore.bookingRequest.birthdate = this.personalData.birthdate
+
+    },
   }
 }
 </script>

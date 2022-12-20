@@ -8,6 +8,7 @@ import ConfirmationComponent from "@/components/Pages/ConfirmationPage";
 import AboutComponent from "@/components/Pages/AboutPage";
 import ImpressumComponent from "@/components/Pages/ImpressumPage";
 import BookingHistoryPage from "@/components/Pages/BookingHistoryPage";
+import RegisterPage from "@/components/Pages/RegisterPage";
 
 const routes = [
   {path: '/', name: 'home', component: HotelComponent},
@@ -19,6 +20,7 @@ const routes = [
   {path: '/about', name:'about', component:  AboutComponent},
   {path: '/impressum', name:'impressum', component: ImpressumComponent},
   {path: '/bookinghistory', name:'bookinghistory', component: BookingHistoryPage},
+  {path: '/register', name:'register', component: RegisterPage},
 ]
 
 const router = createRouter({
