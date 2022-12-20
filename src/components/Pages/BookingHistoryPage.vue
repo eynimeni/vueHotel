@@ -5,8 +5,7 @@
   <booking-table-molecule v-bind:bookings=futureBookings></booking-table-molecule>
   <h5 class="mt-5">Vergangene Reisen</h5>
   <booking-table-molecule v-bind:bookings=pastBookings></booking-table-molecule>
-  <div>{{this.bookingsApi}}</div>
-  <div>{{this.userApi.bookings}}</div>
+
 </template>
 
 <script>
@@ -24,10 +23,10 @@ export default {
       bookingStore: useBookingStore(),
       userStore: useUserStore(),
       loginStore: useLoginStore(),
-      bookings: [ //testdaten
-        { roomId: "Double Room", startDate: "2023-09-09", endDate: "2023-09-10" },
-        { roomId: "Junior Suite", startDate: "2022-08-05", endDate: "2022-08-08" },
-      ],
+      // bookings: [ //testdaten
+      //   { roomId: "Double Room", startDate: "2023-09-09", endDate: "2023-09-10" },
+      //   { roomId: "Junior Suite", startDate: "2022-08-05", endDate: "2022-08-08" },
+      // ],
       dateToday: this.currentDate()
     }
   },
@@ -51,18 +50,18 @@ export default {
   computed: {
     futureBookings() {
       let futureBookingsList = [];
-      for (let booking in this.bookings) {
-        if(this.bookings[booking].startDate > this.dateToday) {
-          futureBookingsList.push(this.bookings[booking])
+      for (let booking in this.bookingsApi) {
+        if(this.bookingsApi[booking].from > this.dateToday) {
+          futureBookingsList.push(this.bookingsApi[booking])
         }
       }
       return futureBookingsList;
     },
     pastBookings() {
       let pastBookingsList = [];
-      for (let booking in this.bookings) {
-        if(this.bookings[booking].startDate <= this.dateToday) {
-          pastBookingsList.push(this.bookings[booking])
+      for (let booking in this.bookingsApi) {
+        if(this.bookingsApi[booking].from <= this.dateToday) {
+          pastBookingsList.push(this.bookingsApi[booking])
         }
       }
       return pastBookingsList;
@@ -70,9 +69,9 @@ export default {
     bookingsApi() {
       return this.bookingStore.getBookings    //hier kommt dann ein array mit allen bookings zurück, siehe unten -> iterieren!
     },
-    userApi() { //hier kommt user mit seinen bookings zurück, wie oben in testdaten -> diese option würde schon funktionieren in UI
+   /* userApi() { //hier kommt user mit seinen bookings zurück, wie oben in testdaten -> diese option würde schon funktionieren in UI
       return this.userStore.getUser
-    },
+    },*/
     token() {
       return this.loginStore.getToken
     },
