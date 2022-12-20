@@ -12,7 +12,7 @@
           </b-form-select>
         </b-col>
         <b-col class="mb-3">
-          <datepicker-component v-model="this.date"></datepicker-component>
+          <datepicker-component v-model="this.date" :min="2022-12-12" ></datepicker-component>
 <!--todo validation date not in past-->
           <div class="mt-3" v-if="this.roomId != null && this.roomId >= 0">
             <room-id-display :room-id="this.roomId"></room-id-display>

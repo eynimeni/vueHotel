@@ -1,6 +1,6 @@
 <template>
   <Datepicker v-model="date" :enableTimePicker="false" placeholder="Zeitraum wählen" format="dd.MM.yyyy"
-              autoApply :closeOnAutoApply="false" range></Datepicker>
+              autoApply :closeOnAutoApply="false" range :min-date="currentDate"></Datepicker>
 </template>
 
 <script>
@@ -15,6 +15,13 @@ export default {
       return {
         date: null,
       };
+
+  },
+  computed: {
+    currentDate() {
+      const today = new Date()
+      return today.toISOString().split("T")[0]
+    }
   }
 }
 </script>

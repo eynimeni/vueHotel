@@ -4,13 +4,7 @@
     <h6>{{dateString}}</h6>
     <h6>Anzahl der Nächte: {{durationOfStay}}</h6>
   <room-id-display></room-id-display>
-
   </b-container>
-
-  <!-- todo aus dem roomstore noch den preis pro nacht auslesen und mit durationOfStay multiplizieren
-        darstellung formatierung gui
-        -->
-
 </template>
 
 <script>
