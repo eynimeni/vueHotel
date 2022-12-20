@@ -1,6 +1,8 @@
 <template>
   <div>
-      <b-progress :value="this.progress" :max="max" show-progress animated variant="success"></b-progress>
+      <b-progress :max="max" show-progress animated variant="success">
+        <b-progress-bar :value="this.progress" :label="this.progress" ></b-progress-bar>
+      </b-progress>
   </div>
 </template>
 
@@ -10,7 +12,7 @@ export default {
   props: ['progress'],
   data() {
     return {
-      max: 100
+      max: 4
     }
   },
 }

@@ -45,12 +45,12 @@
     </div>
 
     <div v-if="bookingOverviewDisplay">
-      <div class="m-3">
+      <div class="mt-3 mb-3">
         <booking-overview></booking-overview>
-        <b-row>
-          <b-col><b-button @click="showRoomAndDatePicker" class="btn-warning" >Zimmer ändern</b-button></b-col>
-          <b-col><b-button @click="showRoomAndDatePicker" class="btn-warning" >Zeitraum ändern</b-button></b-col>
-          <b-col><b-button @click="showForm" class="btn-warning" >Daten ändern</b-button></b-col>
+        <b-row class="mt-3">
+          <b-col><b-button @click="showRoomAndDatePicker" class="btn-dark" >Zimmer ändern</b-button></b-col>
+          <b-col><b-button @click="showRoomAndDatePicker" class="btn-dark" >Zeitraum ändern</b-button></b-col>
+          <b-col><b-button @click="showForm" class="btn-dark" >Daten ändern</b-button></b-col>
         </b-row>
       </div>
 
@@ -100,7 +100,7 @@ export default {
       ],
       date: '',
       selected: '',
-      progress: 20,
+      progress: 1,
       roomBookingDisplay: true,
       userDataDisplay: false,
       bookingOverviewDisplay: false,
@@ -122,12 +122,12 @@ export default {
       }
     },
     roomsSelectionConfirmaton() {
-      this.progress = 40
+      this.progress = 2
       this.roomBookingDisplay = false
       this.userDataDisplay = true
     },
     userDataConfirmation() {
-      this.progress = 60
+      this.progress = 3
       this.userDataDisplay = false
       this.bookingOverviewDisplay = true
       this.$refs.form.saveData()
