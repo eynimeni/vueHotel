@@ -33,9 +33,7 @@ export default {
       perPage: 1,
       currentPage: 1,
       buttonType: "navigationButton",
-      images: [
-        "/assets/images/rooms/1.jpg", "/assets/images/rooms/2.jpg"
-      ]
+
     }
   },
   created() {
@@ -62,7 +60,6 @@ export default {
 
 <style scoped>
 #pagination {
-  position: sticky;
   bottom: 50px;
 }
 </style>
