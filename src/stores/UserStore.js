@@ -1,5 +1,6 @@
 import {defineStore} from "pinia";
 import axios from 'axios';
+import {useLoginStore} from "@/stores/LoginStore";
 
 const userApiUrl = "https://boutique-hotel.helmuth-lammer.at/api/v1/user";            //guests -> für alle, user für den eingeloggten
 const registerApiUrl = "https://boutique-hotel.helmuth-lammer.at/api/v1/register";
@@ -34,19 +35,19 @@ export const useUserStore = defineStore('user'
                         console.log(error)
                     });
             },
-            postUsers(userJson) { //GETESTET, GEHT, Testuser siehe unten
+            postUsers(userJson) {//GETESTET, GEHT, Testuser siehe unten
+                const loginRegisteredUser = useLoginStore()
                 axios.post(registerApiUrl, userJson, {
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 })
-                    .then(function (response) {
-                        console.log(response);
+                    .then( function(response)  {
+                        loginRegisteredUser.setToken(response.data);
                     })
                     .catch(function (error) {
                         console.log(error);
                     });
-                console.log(userJson);
             },
         }
     })

@@ -24,6 +24,10 @@ export const useLoginStore = defineStore('login', {
                     .catch(function (error) {
                         console.log(error);
                     });
+        },
+        setToken(token){
+            this.token = token;
+            console.log("setToken" + this.token)
         }
     }
 })
