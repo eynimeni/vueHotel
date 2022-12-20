@@ -62,7 +62,6 @@
 </template>
 
 <script>
-import {useRoute} from "vue-router/dist/vue-router";
 import DatepickerComponent from "@/components/subComponents/DatepickerAtom";
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import FormComponent from "@/components/subComponents/PersonalDataFormOrganism";
@@ -87,7 +86,10 @@ export default {
     ProgressBarComponent,
     BookingOverview
   },
-  props: ["personaldata"],
+  props: {
+    id: Number
+//    ["personaldata"]
+  },
 
   data() {
     return {
@@ -111,16 +113,13 @@ export default {
   }, created() {
     console.log("created")
     this.roomStore.readState()
+    if( this.id ){
+      this.selected = this.id
+      this.roomSelection(this.id)
+    }
   },
-  methods: {
-    generateRoomsIdForSelect() {
-      const route = useRoute();
-      for (let option in this.rooms) {
-        if (route.query.id === option) {
-          this.selected = route.query.id
-        }
-      }
-    },
+  methods:
+      {
     roomsSelectionConfirmaton() {
       this.progress = 2
       this.roomBookingDisplay = false
@@ -138,7 +137,7 @@ export default {
       this.roomIsSelected = true
     },
     showRoomAndDatePicker() {
-      this.roomBookingDisplay = true      //Form sollte wieder befüllt werden
+      this.roomBookingDisplay = true
       this.bookingOverviewDisplay = false
     },
     showForm() {
