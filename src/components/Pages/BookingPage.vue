@@ -1,7 +1,7 @@
 <template>
   <heading-organism v-bind:title="title"></heading-organism>
 
-  <b-container>
+  <b-container fluid>
     <ProgressBarComponent v-bind:progress="progress"></ProgressBarComponent>
     <hr>
     <div v-if="roomBookingDisplay">
@@ -14,11 +14,9 @@
         <b-col class="mb-3">
           <datepicker-component v-model="this.date"></datepicker-component>
 <!--todo validation date not in past-->
-
-          <div v-if="this.roomId != null && this.roomId >= 0">
+          <div class="mt-3" v-if="this.roomId != null && this.roomId >= 0">
             <room-id-display :room-id="this.roomId"></room-id-display>
           </div>
-
         </b-col>
         <hr>
       </b-form-group>
@@ -26,29 +24,34 @@
           v-bind:date="this.date"
           v-bind:roomId="selected">
       </BookingDateDisplay>
-      <b-button @click="roomsSelectionConfirmaton" v-if="getRoomAvailability" class="btn-success" >Auswählen</b-button>
+      <b-button @click="roomsSelectionConfirmaton" v-if="getRoomAvailability" class="btn-success m-3" >Auswählen</b-button>
     </div>
 
     <div v-if="userDataDisplay">
       <hr>
       <b-col>
-        <form-component></form-component>
+        <form-component ref="form"></form-component>
       </b-col>
 
-      <b-row>
-        <b-col lg="4" class="pb-2">
-          <b-button variant="success" size="lg" @click="userDataConfirmation">Weiter</b-button>
-        </b-col>
-        <b-col lg="4" class="pb-2">
+      <b-row class="mt-3">
+        <b-col class="pb-2">
           <b-button href="/">Abbrechen</b-button>
+        </b-col>
+        <b-col class="pb-2">
+<!--          achtung! erst weiterklicken können wenn vollständig ausgefüllt-->
+          <b-button variant="success" :disabled="!checkForm" @click="userDataConfirmation">Weiter</b-button>
         </b-col>
       </b-row>
     </div>
 
     <div v-if="bookingOverviewDisplay">
-      <div >
+      <div class="m-3">
         <booking-overview></booking-overview>
-        <b-button @click="showRoomAndDatePicker" class="btn-warning" >Zimmer oder Datum ändern</b-button>
+        <b-row>
+          <b-col><b-button @click="showRoomAndDatePicker" class="btn-warning" >Zimmer ändern</b-button></b-col>
+          <b-col><b-button @click="showRoomAndDatePicker" class="btn-warning" >Zeitraum ändern</b-button></b-col>
+          <b-col><b-button @click="showForm" class="btn-warning" >Daten ändern</b-button></b-col>
+        </b-row>
       </div>
 
       <router-link v-if="bookingOverviewDisplay" :to="{path: '/confirmation'}">
@@ -84,6 +87,8 @@ export default {
     ProgressBarComponent,
     BookingOverview
   },
+  props: ["personaldata"],
+
   data() {
     return {
       roomStore: useRoomStore(),
@@ -101,7 +106,7 @@ export default {
       bookingOverviewDisplay: false,
       roomIsSelected: false,
       roomAvailabilityStore: useRoomsAvailability(),
-      roomId: null
+      roomId: null,
     }
   }, created() {
     console.log("created")
@@ -125,6 +130,7 @@ export default {
       this.progress = 60
       this.userDataDisplay = false
       this.bookingOverviewDisplay = true
+      this.$refs.form.saveData()
     },
     roomSelection(value) {
       console.log("room selected")
@@ -132,7 +138,12 @@ export default {
       this.roomIsSelected = true
     },
     showRoomAndDatePicker() {
-      this.roomBookingDisplay = true
+      this.roomBookingDisplay = true      //Form sollte wieder befüllt werden
+      this.bookingOverviewDisplay = false
+    },
+    showForm() {
+      this.userDataDisplay = true
+      this.bookingOverviewDisplay = false
     },
     sendBooking() {
       console.log("bookingStore request")
@@ -156,7 +167,10 @@ export default {
     token() {
       return this.loginStore.getToken
     },
-  }
+    checkForm() {       //hier muss noch boolscher wert aus personaldata component geholt werden
+        return true
+      }
+    }
 }
 
 </script>

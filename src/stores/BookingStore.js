@@ -39,7 +39,7 @@ export const useBookingStore = defineStore('bookingrequest'
                 axios.post("https://boutique-hotel.helmuth-lammer.at/api/v1/room/"+availabilityStore.id+"/from/"+availabilityStore.startDate+"/to/"+availabilityStore.endDate+"", this.bookingRequest, {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`      //not working..
+                        'Authorization': `Bearer ${token}`      //buchung wird noch nicht dem user zugeordnet
                     }
                 })
                     .then(response => {

@@ -35,11 +35,17 @@
           <div v-show="sentAuthentication">
             <div v-if="token === ''" class="b-toast-danger">Für diese Zugangsdaten konnte leider kein Account gefunden werden.</div>
           </div>
+          <div>
+            <label>Noch nicht registriert? Hier lang:</label>
+            <div>
+              <router-link :to="{path: '/register'}">Registrieren</router-link>
+            </div>
+          </div>
 
 
       <b-col lg="4" class="m-4">
         <b-button class="m-3" size="md" variant="secondary" href="/">Abbrechen</b-button>
-        <b-button class="m-3" type="submit" size="lg" variant="primary"
+        <b-button class="m-3" type="submit" variant="primary"
                   @click="login">
           Einloggen
         </b-button>

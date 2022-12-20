@@ -1,9 +1,11 @@
 <template>
-  <h3>Buchungsübersicht</h3>
+  <b-container>
+  <h4>Buchungsübersicht:</h4>
+    <h6>{{dateString}}</h6>
+    <h6>Anzahl der Nächte: {{durationOfStay}}</h6>
   <room-id-display></room-id-display>
-  <h5>{{dateString}}</h5>
-  <h5>Anzahl der Nächte: {{durationOfStay}}</h5>
 
+  </b-container>
 
   <!-- todo aus dem roomstore noch den preis pro nacht auslesen und mit durationOfStay multiplizieren
         darstellung formatierung gui

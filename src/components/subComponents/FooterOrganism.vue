@@ -1,9 +1,9 @@
 <template>
-  <b-container id="footer" fluid class="bg-light">
-    <b-navbar-nav>
-      <b-nav-item href="/impressum">Impressum</b-nav-item>
-    </b-navbar-nav>
-  </b-container>
+
+    <div id="footer" class="bg-light mt-3">
+      <router-link :to="{path: '/impressum'}">Impressum</router-link>
+    </div>
+
 </template>
 
 <script>
@@ -14,7 +14,8 @@ export default {
 
 <style scoped>
 #footer {
-  position: fixed;
   bottom: 0;
+  height: 35px;
+  width: 100%;
 }
 </style>
