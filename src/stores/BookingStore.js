@@ -2,7 +2,9 @@ import {defineStore} from "pinia";
 import axios from 'axios';
 import {useRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
 
-const bookingsApiUrl = "https://boutique-hotel.helmuth-lammer.at/api/v1/user/bookings"
+//const bookingsApiUrl = "https://boutique-hotel.helmuth-lammer.at/api/v1/user/bookings"
+
+const bookingsDummyData = "https://boutique-hotel.helmuth-lammer.at/api/v1/bookings" //am Ende löschen
 
 export const useBookingStore = defineStore('bookingrequest'
     , {
@@ -21,14 +23,15 @@ export const useBookingStore = defineStore('bookingrequest'
             getBookingId: (state) => state.bookingId
         },
         actions: {
-            readBookings(token) {
-                axios.get(bookingsApiUrl, {
+            readBookings(token) {           //dummyData url wieder löschen uns stattdessen apiUrl bookings
+                axios.get(bookingsDummyData, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 } )
                     .then(response => {
                         this.bookings = response.data
+                        console.log(response)
                         console.log(response.data)
                     }).catch(error => {
                     console.log(error)
@@ -39,7 +42,7 @@ export const useBookingStore = defineStore('bookingrequest'
                 axios.post("https://boutique-hotel.helmuth-lammer.at/api/v1/room/"+availabilityStore.id+"/from/"+availabilityStore.startDate+"/to/"+availabilityStore.endDate+"", this.bookingRequest, {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`      //buchung wird noch nicht dem user zugeordnet
+                        'Authorization': `Bearer ${token}`      //buchung wird noch nicht dem user zugeordnet - wird in schnittstelle noch geändert!
                     }
                 })
                     .then(response => {

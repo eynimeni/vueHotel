@@ -12,9 +12,9 @@ export default {
   data() {
     return {
       fields: [     //müssen noch angepasst werden - schauen was von datenbank zurückkommt
-          { key: 'roomId', label:'Zimmer' },
-          { key: 'startDate', label:'Von' },
-          { key: 'endDate', label:'Bis' }
+          { key: 'id', label:'Zimmer' },
+          { key: 'from', label:'Von' },
+          { key: 'to', label:'Bis' }
       ]
     }
   },
