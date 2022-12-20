@@ -10,6 +10,7 @@ import ImpressumComponent from "@/components/Pages/ImpressumPage";
 import BookingHistoryPage from "@/components/Pages/BookingHistoryPage";
 import RegisterPage from "@/components/Pages/RegisterPage";
 
+
 const routes = [
   {path: '/', name: 'home', component: HotelComponent},
   {path: '/rooms', name:'rooms', component: RoomComponent},
