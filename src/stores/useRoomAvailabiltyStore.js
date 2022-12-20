@@ -50,6 +50,9 @@ export const useRoomsAvailability = defineStore('roomAvailability', {
                 let endMonth = this.endDateRaw.getUTCMonth() + 1;
                 this.endDate = this.endDateRaw.getFullYear()+"-"+endMonth+"-"+ this.endDateRaw.getUTCDate()
                 console.log("end date: "+ this.endDate)
+            },
+            unsetAvailability() {
+                this.available = [];
             }
         }
 })

@@ -38,7 +38,11 @@ export default {
       return state
     }
 
+  },
+  unmounted() {
+    this.roomStoreObject.unsetAvailability()
   }
+
 }
 </script>
 
