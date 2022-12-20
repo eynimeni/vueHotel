@@ -14,7 +14,7 @@ export const useBookingStore = defineStore('bookingrequest'
                 email: "",
                 birthdate: ""
             },
-            bookingId: null,
+            bookingId: null,    
         }),
         getters: {
             getBookings: (state) => state.bookings,

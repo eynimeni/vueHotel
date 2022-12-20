@@ -20,7 +20,6 @@
               :options="['Herr', 'Frau', 'Divers']"
               :aria-describedby="ariaDescribedby"
               v-model="personalData.gender"
-              required
           ></b-form-radio-group>
         </b-form-group>
         <b-form-group
