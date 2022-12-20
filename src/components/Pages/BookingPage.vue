@@ -12,7 +12,7 @@
           </b-form-select>
         </b-col>
         <b-col class="mb-3">
-          <datepicker-component v-model="this.date"></datepicker-component>
+          <datepicker-component v-model="this.date" :min="2022-12-12" ></datepicker-component>
 <!--todo validation date not in past-->
           <div class="mt-3" v-if="this.roomId != null && this.roomId >= 0">
             <room-id-display :room-id="this.roomId"></room-id-display>
@@ -62,7 +62,6 @@
 </template>
 
 <script>
-import {useRoute} from "vue-router/dist/vue-router";
 import DatepickerComponent from "@/components/subComponents/DatepickerAtom";
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import FormComponent from "@/components/subComponents/PersonalDataFormOrganism";
@@ -87,7 +86,10 @@ export default {
     ProgressBarComponent,
     BookingOverview
   },
-  props: ["personaldata"],
+  props: {
+    id: Number
+//    ["personaldata"]
+  },
 
   data() {
     return {
@@ -111,16 +113,13 @@ export default {
   }, created() {
     console.log("created")
     this.roomStore.readState()
+    if( this.id ){
+      this.selected = this.id
+      this.roomSelection(this.id)
+    }
   },
-  methods: {
-    generateRoomsIdForSelect() {
-      const route = useRoute();
-      for (let option in this.rooms) {
-        if (route.query.id === option) {
-          this.selected = route.query.id
-        }
-      }
-    },
+  methods:
+      {
     roomsSelectionConfirmaton() {
       this.progress = 2
       this.roomBookingDisplay = false
@@ -138,7 +137,7 @@ export default {
       this.roomIsSelected = true
     },
     showRoomAndDatePicker() {
-      this.roomBookingDisplay = true      //Form sollte wieder befüllt werden
+      this.roomBookingDisplay = true
       this.bookingOverviewDisplay = false
     },
     showForm() {

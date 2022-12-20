@@ -39,10 +39,8 @@
         </b-list-group-item>
       </b-list-group>
       <div v-if="routingButton">
-      <router-link :to="{path: '/booking/', query: {id}}">
+      <router-link :to="{path: '/booking/'+id}">
         <b-button variant="primary">Verfügbarkeit prüfen</b-button>
-        <!--todo hier wäre fesch, die ID gleich zu übergeben, damit sie im select dann voreingestellt ist
-        -->
       </router-link>
       </div>
     </b-card>

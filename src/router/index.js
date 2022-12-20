@@ -15,7 +15,7 @@ const routes = [
   {path: '/', name: 'home', component: HotelComponent},
   {path: '/rooms', name:'rooms', component: RoomComponent},
   {path: '/login', name: 'login', component: LoginComponent},
-  {path: '/booking', name:'booking', component: BookingComponent},
+  {path: '/booking/:id?', name:'booking', component: BookingComponent, props: true},
   {path: '/profile', name:'profile', component: ProfileComponent},
   {path: '/confirmation', name:'confirmation', component: ConfirmationComponent},
   {path: '/about', name:'about', component:  AboutComponent},
