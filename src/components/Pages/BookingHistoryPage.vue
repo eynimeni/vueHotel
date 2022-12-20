@@ -36,7 +36,7 @@ export default {
   methods: {
     currentDate() {
       let today = new Date();
-      let d = today.getDate();
+      /*let d = today.getDate();
       let m = today.getMonth() + 1;
       let y = today.getFullYear();
 
@@ -44,7 +44,7 @@ export default {
         return  y + "-" + m + "-0" + d;
       } else {
         return  y + "-" + m + "-" + d;
-      }
+      }*/
     }
   },
   computed: {

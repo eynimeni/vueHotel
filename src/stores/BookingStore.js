@@ -2,7 +2,7 @@ import {defineStore} from "pinia";
 import axios from 'axios';
 import {useRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
 
-const bookingsApiUrl = "https://boutique-hotel.helmuth-lammer.at/api/v1/user/bookings"
+//const bookingsApiUrl = "https://boutique-hotel.helmuth-lammer.at/api/v1/user/bookings"
 
 const bookingsDummyData = "https://boutique-hotel.helmuth-lammer.at/api/v1/bookings" //am Ende löschen
 
