@@ -9,7 +9,7 @@
       </router-link>
       <b-navbar-nav>
         <b-nav-text v-show="authentication">
-          Hallo, {{ user.firstname }}
+          Hallo {{ user.firstname }}
         </b-nav-text>
       </b-navbar-nav>
 

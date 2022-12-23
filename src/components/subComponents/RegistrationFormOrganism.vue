@@ -78,6 +78,7 @@
           </b-form-group>
         </b-form-group>
         <b-button :disabled="!isDisabled" @click="register">Registrieren</b-button>
+        <b-button :hidden="!loginIsDisabled" @click="login">Gleich Einloggen</b-button>
         <p class="text-success">{{ successMessage }}</p>
     </b-card>
   </div>
@@ -97,6 +98,7 @@ export default {
       userStore: useUserStore(),
       loginStore: useLoginStore(),
       successMessage: '',
+      loginIsDisabled : false,
       registrationData: {
         firstname: '',
         lastname: '',
@@ -122,7 +124,7 @@ export default {
           this.registrationData.passwordrepeat &&
           this.registrationData.email ===
           this.registrationData.emailrepeat);
-    }
+    },
   },
   methods: { //Error Handling: Passwörter stimmen nicht überein
     register() {
@@ -135,13 +137,12 @@ export default {
       }
       this.userStore.postUsers(newUser)
       this.successMessage = "Vielen Dank für Ihre Registrierung! Bitte überprüfen Sie Ihren Posteingang."
-
-      // hier einen Button, der den User über den Token einloggt
-      // oder wir machen eine sync Funktion
-
-      //let token = this.loginStore.token
-      //console.log("token aus dem loginStore" + token)
-      //this.userStore.readState(token)
+      this.loginIsDisabled = true;
+    },
+    login() {
+      let token = this.loginStore.token
+      this.userStore.readState(token)
+      this.successMessage = "Sie wurden erfolgreich eingeloggt!"
     }
   }
 }
