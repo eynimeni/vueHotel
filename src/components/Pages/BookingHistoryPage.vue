@@ -23,10 +23,6 @@ export default {
       bookingStore: useBookingStore(),
       userStore: useUserStore(),
       loginStore: useLoginStore(),
-      // bookings: [ //testdaten
-      //   { roomId: "Double Room", startDate: "2023-09-09", endDate: "2023-09-10" },
-      //   { roomId: "Junior Suite", startDate: "2022-08-05", endDate: "2022-08-08" },
-      // ],
       dateToday: this.currentDate()
     }
   },
@@ -36,16 +32,7 @@ export default {
   methods: {
     currentDate() {
       let today = new Date();
-      let d = today.getDate();
-      let m = today.getMonth() + 1;
-      let y = today.getFullYear();
-
-      if (today.getDate()<10) {
-        return  y + "-" + m + "-0" + d;
-      } else {
-        return  y + "-" + m + "-" + d;
-      }
-      //ändern auf today.toISOString().split("T")[0]
+      return today.toISOString().split("T")[0]
     }
   },
   computed: {
@@ -68,27 +55,11 @@ export default {
       return pastBookingsList;
     },
     bookingsApi() {
-      return this.bookingStore.getBookings    //hier kommt dann ein array mit allen bookings zurück, siehe unten -> iterieren!
+      return this.bookingStore.getBookings
     },
-   /* userApi() { //hier kommt user mit seinen bookings zurück, wie oben in testdaten -> diese option würde schon funktionieren in UI
-      return this.userStore.getUser
-    },*/
     token() {
       return this.loginStore.getToken
     },
-
-    /*[ {
-} }
-}, {
-... }
-]
-"booking": { "id": 1234,
-"from": "YYYY-MM-DD",
-"to": "YYYY-MM-DD" },
-"room": { "id": 1,
-"roomNumber": 11, "roomName": "Junior Suite", "beds": 3,
-"pricePerNight": 120, "extras": {
-"bathRoom": true, "minibar": true, "television": true, "aircondition": true*/
   }
 }
 

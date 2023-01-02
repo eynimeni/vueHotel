@@ -41,7 +41,7 @@ export const useRoomsAvailability = defineStore('roomAvailability', {
 
             setDateObject(date) {
 
-                this.startDateRaw = new Date(date[0]);
+                this.startDateRaw = new Date(date[0]); //evtl. ändern: toISOString().split("T")[0]
                 let startMonth = this.startDateRaw.getUTCMonth() + 1;
                 this.startDate = this.startDateRaw.getFullYear()+"-"+startMonth+"-"+ this.startDateRaw.getUTCDate()
                 console.log("start date: "+ this.startDate)
