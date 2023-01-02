@@ -47,8 +47,7 @@
       <div class="mt-3 mb-3">
         <booking-overview></booking-overview>
         <b-row class="mt-3">
-          <b-col><b-button @click="showRoomAndDatePicker" class="btn-dark" >Zimmer ändern</b-button></b-col>
-          <b-col><b-button @click="showRoomAndDatePicker" class="btn-dark" >Zeitraum ändern</b-button></b-col>
+          <b-col><b-button @click="showRoomAndDatePicker" class="btn-dark" >Zeitraum oder Zimmer ändern</b-button></b-col>
           <b-col><b-button @click="showForm" class="btn-dark" >Daten ändern</b-button></b-col>
         </b-row>
       </div>
@@ -87,7 +86,6 @@ export default {
   },
   props: {
     id: Number
-//    ["personaldata"]
   },
 
   data() {
@@ -123,6 +121,7 @@ export default {
       this.progress = 2
       this.roomBookingDisplay = false
       this.userDataDisplay = true
+      setTimeout(this.fillOutForm, 100)
     },
     userDataConfirmation() {
       this.progress = 3
