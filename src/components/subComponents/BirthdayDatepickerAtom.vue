@@ -1,6 +1,6 @@
 <template>
   <Datepicker v-model="birthdate" :enableTimePicker="false" placeholder="Datum wählen" format="dd.MM.yyyy"
-              autoApply :closeOnAutoApply="false" :min-date="getDate14YearsAgo"></Datepicker>
+              autoApply :closeOnAutoApply="false" :max-date="getDate14YearsAgo"></Datepicker>
 </template>
 
 <script>
@@ -21,9 +21,6 @@ export default {
       fourteenYearsAgo.setTime(fourteenYearsAgo.valueOf()-14*365 * 24 * 60 * 60 * 1000)
       return fourteenYearsAgo.toISOString().split("T")[0]
     }
-
-
-
   }
 }
 </script>

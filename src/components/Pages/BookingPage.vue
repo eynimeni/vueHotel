@@ -12,8 +12,7 @@
           </b-form-select>
         </b-col>
         <b-col class="mb-3">
-          <datepicker-component v-model="this.date" :min="2022-12-12" ></datepicker-component>
-<!--todo validation date not in past-->
+          <datepicker-component v-model="this.date"></datepicker-component>
           <div class="mt-3" v-if="this.roomId != null && this.roomId >= 0">
             <room-id-display :room-id="this.roomId"></room-id-display>
           </div>
@@ -48,8 +47,7 @@
       <div class="mt-3 mb-3">
         <booking-overview></booking-overview>
         <b-row class="mt-3">
-          <b-col><b-button @click="showRoomAndDatePicker" class="btn-dark" >Zimmer ändern</b-button></b-col>
-          <b-col><b-button @click="showRoomAndDatePicker" class="btn-dark" >Zeitraum ändern</b-button></b-col>
+          <b-col><b-button @click="showRoomAndDatePicker" class="btn-dark" >Zeitraum oder Zimmer ändern</b-button></b-col>
           <b-col><b-button @click="showForm" class="btn-dark" >Daten ändern</b-button></b-col>
         </b-row>
       </div>
@@ -88,7 +86,6 @@ export default {
   },
   props: {
     id: Number
-//    ["personaldata"]
   },
 
   data() {
@@ -124,6 +121,7 @@ export default {
       this.progress = 2
       this.roomBookingDisplay = false
       this.userDataDisplay = true
+      setTimeout(this.fillOutForm, 100)
     },
     userDataConfirmation() {
       this.progress = 3
@@ -137,17 +135,23 @@ export default {
       this.roomIsSelected = true
     },
     showRoomAndDatePicker() {
+      this.progress = 1
       this.roomBookingDisplay = true
       this.bookingOverviewDisplay = false
     },
     showForm() {
+      this.progress = 2
       this.userDataDisplay = true
       this.bookingOverviewDisplay = false
+      setTimeout(this.fillOutForm, 100)
     },
     sendBooking() {
       console.log("bookingStore request")
       this.bookingStore.requestBookings(this.token)
       console.log("token:" + this.token)
+    },
+    fillOutForm() {
+      this.$refs.form.setData()
     }
 
   }

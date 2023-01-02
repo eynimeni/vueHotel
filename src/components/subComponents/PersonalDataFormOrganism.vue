@@ -45,7 +45,7 @@
             label-cols-sm="3"
             label-align-sm="right"
         >
-          <BirthdayDatepickerAtom v-model="this.personalData.birthdate" required></BirthdayDatepickerAtom>
+          <BirthdayDatepickerAtom v-model="personalData.birthdate" required></BirthdayDatepickerAtom>
         </b-form-group>
         <b-form-group
             label="Email:"
@@ -83,7 +83,6 @@
           <p v-else>Ihre Buchungsanfrage enthält kein Frühstück</p>
         </b-form-group>
       </b-form-group>
-<!--      <RegistrationFormOrganism :personaldata="personalData"></RegistrationFormOrganism>-->
       <p v-if="!filledOutForm" class="text-danger">Bitte füllen Sie alle Felder vollständig aus, um fortzufahren</p>
     </b-card>
   </div>
@@ -107,12 +106,12 @@ export default {
         gender: null,
         firstname: null,
         lastname: null,
-        birthdate: null, //muss evtl nochmal formatiert werden. Spezfikation: String YYYY-MM-DD + evtl alter checken?
+        birthdate: null,
         email: null,
         emailrepeat: null,
         breakfast: false,
       },
-      bookingStore: useBookingStore()
+      bookingStore: useBookingStore(),
     }
   },
   computed: {
@@ -125,6 +124,11 @@ export default {
       this.personalData.emailrepeat &&
       this.personalData.email === this.personalData.emailrepeat);
     },
+    birthdateShort() {
+      let birthdayRaw = new Date(this.personalData.birthdate);
+      let birthdayFormatted = birthdayRaw.toISOString().split("T")[0]
+      return birthdayFormatted
+    }
   },
   methods: {
     saveData(){
@@ -132,9 +136,20 @@ export default {
       this.bookingStore.bookingRequest.email = this.personalData.email
       this.bookingStore.bookingRequest.firstname = this.personalData.firstname
       this.bookingStore.bookingRequest.lastname = this.personalData.lastname
-      this.bookingStore.bookingRequest.birthdate = this.personalData.birthdate
-
+      this.bookingStore.bookingRequest.birthdate = this.birthdateShort
+      this.bookingStore.bookingRequest.gender = this.personalData.gender
+      this.bookingStore.bookingRequest.breakfast = this.personalData.breakfast
     },
+    setData(){
+      console.log("setData")
+      this.personalData.gender= this.bookingStore.bookingRequest.gender
+      this.personalData.firstname= this.bookingStore.bookingRequest.firstname
+      this.personalData.lastname = this.bookingStore.bookingRequest.lastname
+      this.personalData.birthdate = this.bookingStore.bookingRequest.birthdate
+      this.personalData.email = this.bookingStore.bookingRequest.email
+      this.personalData.emailrepeat = this.bookingStore.bookingRequest.email
+      this.personalData.breakfast = this.bookingStore.bookingRequest.breakfast
+    }
   }
 }
 </script>
