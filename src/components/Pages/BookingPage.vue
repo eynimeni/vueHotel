@@ -174,9 +174,7 @@ export default {
         }
       },
   computed: {
-    create() {
-      return this.generateRoomsIdForSelect();
-    },
+
     rooms() {
       console.log(this.roomStore.getRooms)
       return this.roomStore.getRooms
