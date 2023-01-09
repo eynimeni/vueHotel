@@ -33,7 +33,7 @@
           </b-form-group>
 
           <div v-show="sentAuthentication">
-            <div v-if="token === ''" class="b-toast-danger">Für diese Zugangsdaten konnte leider kein Account gefunden werden.</div>
+            <div v-if="errorMessage" class="b-toast-danger">Für diese Zugangsdaten konnte leider kein Account gefunden werden.</div>
           </div>
           <div>
             <label>Noch nicht registriert? Hier lang:</label>
