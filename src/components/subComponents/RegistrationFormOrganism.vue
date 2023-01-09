@@ -49,37 +49,44 @@
             nicht
             überein</p>
         </b-form-group>
-          <b-form-group
-              label="Benutzername"
-              label-for="username"
-              label-cols-sm="3"
-              label-align-sm="right"
-          >
-            <b-form-input id="username" type="text" v-model="registrationData.username"></b-form-input>
-          </b-form-group>
-
-          <b-form-group
-              label="Passwort:"
-              label-for="userpassword"
-              label-cols-sm="3"
-              label-align-sm="right"
-          >
-            <b-form-input id="password" type="password" v-model="registrationData.password"></b-form-input>
-          </b-form-group>
-          <b-form-group
-              label="Passwort wiederholen:"
-              label-for="userpasswordrepeat"
-              label-cols-sm="3"
-              label-align-sm="right"
-          >
-            <b-form-input id="passwordrepeat" type="password" v-model="registrationData.passwordrepeat"></b-form-input>
-            <p v-if="registrationData.password !== registrationData.passwordrepeat" class="text-danger">Passworteingaben
-              stimmen nicht überein</p>
-          </b-form-group>
+        <b-form-group
+            label="Benutzername"
+            label-for="username"
+            label-cols-sm="3"
+            label-align-sm="right"
+        >
+          <b-form-input id="username" type="text" v-model="registrationData.username"></b-form-input>
         </b-form-group>
-        <b-button :disabled="!isDisabled" @click="register">Registrieren</b-button>
-        <p class="text-success">{{ successMessage }}</p>
+
+        <b-form-group
+            label="Passwort:"
+            label-for="userpassword"
+            label-cols-sm="3"
+            label-align-sm="right"
+        >
+          <b-form-input id="password" type="password" v-model="registrationData.password"></b-form-input>
+        </b-form-group>
+        <b-form-group
+            label="Passwort wiederholen:"
+            label-for="userpasswordrepeat"
+            label-cols-sm="3"
+            label-align-sm="right"
+        >
+          <b-form-input id="passwordrepeat" type="password" v-model="registrationData.passwordrepeat"></b-form-input>
+          <p v-if="registrationData.password !== registrationData.passwordrepeat" class="text-danger">Passworteingaben
+            stimmen nicht überein</p>
+        </b-form-group>
+      </b-form-group>
+      <b-button :disabled="!isDisabled" @click="register">Registrieren</b-button>
+      <p class="text-success">{{ successMessage }}</p>
+      <p class="text-danger">{{ errorMessage }}</p>
     </b-card>
+  </div>
+  <div>
+    <label>Sie haben bereits ein Konto? Hier lang:</label>
+    <div>
+      <router-link :to="{path: '/login'}">Zum Login</router-link>
+    </div>
   </div>
 </template>
 
@@ -97,6 +104,7 @@ export default {
       userStore: useUserStore(),
       loginStore: useLoginStore(),
       successMessage: '',
+      errorMessage: '',
       registrationData: {
         firstname: '',
         lastname: '',
@@ -134,17 +142,19 @@ export default {
         password: this.registrationData.password
       }
       this.userStore.postUsers(newUser)
-      this.successMessage = "Vielen Dank für Ihre Registrierung! Bitte überprüfen Sie Ihren Posteingang."
       setTimeout(this.login, 500);
     },
     login() {
       let token = this.loginStore.token
-      this.userStore.readState(token)
-      this.successMessage = "Sie wurden erfolgreich eingeloggt!";
-      setTimeout(this.redirect, 2000);
-
+      if (token === '') {
+        this.errorMessage = "Etwas hat nicht funktioniert. Bitte probieren sie es erneut oder wenden Sie sich an info@hotel.at"
+      } else {
+        this.successMessage = "Vielen Dank für Ihre Registrierung! Bitte überprüfen Sie Ihren Posteingang."
+        this.userStore.readState(token);
+        setTimeout(this.redirect, 3000);
+      }
     },
-    redirect(){
+    redirect() {
       this.$router.push("/profile")
     }
   }

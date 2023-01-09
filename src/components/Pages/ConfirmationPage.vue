@@ -1,6 +1,6 @@
 <template>
   <heading-organism v-bind:title="title"></heading-organism>
-  <div v-if="bookingId==null">     <!--funktioniert noch nicht-->
+  <div v-if="bookingId==null">
     <h5 class="text-danger">Ups! Leider ist beim Buchungsprozess etwas schief gegangen. Bitte führen Sie die Buchung nochmal aus.</h5>
   </div>
   <div v-else>
@@ -10,6 +10,7 @@
     </div>
     <h4>Unser Standort</h4>
     <google-maps></google-maps>
+    <anfahrt-molecule></anfahrt-molecule>
     <contact-component></contact-component>
   </div>
 </template>
@@ -20,10 +21,11 @@ import ContactComponent from "@/components/subComponents/ContactDataOrganism";
 import GoogleMaps from "@/components/subComponents/GoogleMaps";
 import BookingOverview from "@/components/subComponents/BookingOverview";
 import {useBookingStore} from "@/stores/BookingStore";
+import AnfahrtMolecule from "@/components/subComponents/AnfahrtMolecule";
 
 export default {
   name: "ConfirmationComponent",
-  components: {BookingOverview, GoogleMaps, ContactComponent, HeadingOrganism},
+  components: {AnfahrtMolecule, BookingOverview, GoogleMaps, ContactComponent, HeadingOrganism},
   data() {
     return {
       title: 'Buchungsbestätigung',
