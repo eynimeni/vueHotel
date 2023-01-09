@@ -12,7 +12,7 @@
           Erstellen Sie sich ein Profil, um Ihre Buchungen besser verwalten zu können.
         </h6>
         <p>Ihre Daten werden in Ihrem Profil gespeichert, um zukünftig schneller Buchungen abwickeln zu können.
-          <br>In Ihrem Profil können Sie vergange Buchungen einsehen.</p>
+          <br>In Ihrem Profil können Sie vergangene Buchungen einsehen.</p>
         <b-form-group
             label="Vorname:"
             label-for="firstname"
