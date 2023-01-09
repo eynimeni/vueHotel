@@ -1,10 +1,10 @@
 <template>
-  <h6 v-if="personalData.breakfast">inkl. Frühstück</h6>
   <b-list-group class="mb-3">
     <b-list-group-item>{{ personalData.gender }}</b-list-group-item>
     <b-list-group-item>{{ personalData.firstname }} {{ personalData.lastname }}</b-list-group-item>
     <b-list-group-item>Geburtsdatum: {{ personalData.birthdate }}</b-list-group-item>
     <b-list-group-item>E-Mail: {{ personalData.email }}</b-list-group-item>
+    <b-list-group-item v-if="personalData.breakfast">Frühstück inklusive</b-list-group-item>
   </b-list-group>
 </template>
 

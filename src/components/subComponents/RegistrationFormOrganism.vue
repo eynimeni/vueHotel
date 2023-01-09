@@ -84,6 +84,12 @@
       </b-form>
     </b-container>
   </div>
+  <div>
+    <label>Sie haben bereits ein Konto? Hier lang:</label>
+    <div>
+      <router-link :to="{path: '/login'}">Zum Login</router-link>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -102,6 +108,7 @@ export default {
       userStore: useUserStore(),
       loginStore: useLoginStore(),
       successMessage: '',
+      errorMessage: '',
       registrationData: {
         firstname: '',
         lastname: '',
@@ -166,16 +173,18 @@ export default {
           password: this.registrationData.password
         }
         this.userStore.postUsers(newUser)
-        this.successMessage = "Vielen Dank für Ihre Registrierung! Bitte überprüfen Sie Ihren Posteingang."
         setTimeout(this.login, 500);
       }
     },
     login() {
       let token = this.loginStore.token
-      this.userStore.readState(token)
-      this.successMessage = "Sie wurden erfolgreich eingeloggt!";
-      setTimeout(this.redirect, 2000);
-
+      if (token === '') {
+        this.errorMessage = "Etwas hat nicht funktioniert. Bitte probieren sie es erneut oder wenden Sie sich an info@hotel.at"
+      } else {
+        this.successMessage = "Vielen Dank für Ihre Registrierung! Bitte überprüfen Sie Ihren Posteingang."
+        this.userStore.readState(token);
+        setTimeout(this.redirect, 3000);
+      }
     },
     redirect() {
       this.$router.push("/profile")

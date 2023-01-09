@@ -8,7 +8,10 @@
       <b-form-group class="m-2">
         <b-col class="mb-3">
           <b-form-select v-model="selected" :options="this.options" @input="roomSelection">
-            <b-form-select-option v-for="room in rooms" :key="room.id" :value="room.id - 1" >{{ room.roomsName }}</b-form-select-option>
+            <b-form-select-option v-for="room in rooms" :key="room.id" :value="room.id - 1">{{
+                room.roomsName
+              }}
+            </b-form-select-option>
           </b-form-select>
         </b-col>
         <b-col class="mb-3">
@@ -23,7 +26,8 @@
           v-bind:date="this.date"
           v-bind:roomId="selected">
       </BookingDateDisplay>
-      <b-button @click="roomsSelectionConfirmaton" v-if="getRoomAvailability" class="btn-success m-3" >Auswählen</b-button>
+      <b-button @click="roomsSelectionConfirmaton" v-if="getRoomAvailability" class="btn-success m-3">Auswählen
+      </b-button>
     </div>
 
     <div v-if="userDataDisplay">
@@ -37,8 +41,8 @@
           <b-button href="/">Abbrechen</b-button>
         </b-col>
         <b-col class="pb-2">
-<!--          achtung! erst weiterklicken können wenn vollständig ausgefüllt-->
-          <b-button variant="success" :disabled="!checkForm" @click="userDataConfirmation">Weiter</b-button>
+          <b-button variant="success" type="submit" @click="userDataConfirmation">Weiter</b-button>
+          <p class="text-danger">{{ errorMessage }}</p>
         </b-col>
       </b-row>
     </div>
@@ -47,8 +51,12 @@
       <div class="mt-3 mb-3">
         <booking-overview></booking-overview>
         <b-row class="mt-3">
-          <b-col><b-button @click="showRoomAndDatePicker" class="btn-dark" >Zeitraum oder Zimmer ändern</b-button></b-col>
-          <b-col><b-button @click="showForm" class="btn-dark" >Daten ändern</b-button></b-col>
+          <b-col>
+            <b-button @click="showRoomAndDatePicker" class="btn-dark">Zeitraum oder Zimmer ändern</b-button>
+          </b-col>
+          <b-col>
+            <b-button @click="showForm" class="btn-dark">Daten ändern</b-button>
+          </b-col>
         </b-row>
       </div>
 
@@ -70,6 +78,7 @@ import RoomIdDisplay from "@/components/subComponents/RoomIdDisplay";
 import BookingOverview from "@/components/subComponents/BookingOverview";
 import {useBookingStore} from "@/stores/BookingStore";
 import {useLoginStore} from "@/stores/LoginStore";
+import {useVuelidate} from "@vuelidate/core";
 
 export default {
   name: "BookingComponent",
@@ -105,56 +114,63 @@ export default {
       roomIsSelected: false,
       roomAvailabilityStore: useRoomsAvailability(),
       roomId: null,
+      errorMessage: null,
     }
   }, created() {
     console.log("created")
     this.roomStore.readState()
-    if( this.id ){
+    if (this.id) {
       this.selected = this.id
       this.roomSelection(this.id)
     }
   },
+  setup () {
+    return { v$: useVuelidate() }
+  },
   methods:
       {
-    roomsSelectionConfirmaton() {
-      this.progress = 2
-      this.roomBookingDisplay = false
-      this.userDataDisplay = true
-      setTimeout(this.fillOutForm, 100)
-    },
-    userDataConfirmation() {
-      this.progress = 3
-      this.userDataDisplay = false
-      this.bookingOverviewDisplay = true
-      this.$refs.form.saveData()
-    },
-    roomSelection(value) {
-      console.log("room selected")
-      this.roomId = value
-      this.roomIsSelected = true
-    },
-    showRoomAndDatePicker() {
-      this.progress = 1
-      this.roomBookingDisplay = true
-      this.bookingOverviewDisplay = false
-    },
-    showForm() {
-      this.progress = 2
-      this.userDataDisplay = true
-      this.bookingOverviewDisplay = false
-      setTimeout(this.fillOutForm, 100)
-    },
-    sendBooking() {
-      console.log("bookingStore request")
-      this.bookingStore.requestBookings(this.token)
-      console.log("token:" + this.token)
-      setTimeout(this.$router.push("/confirmation"), 2000)
-    },
-    fillOutForm() {
-      this.$refs.form.setData()
-    }
-  }
-  ,
+        roomsSelectionConfirmaton() {
+          this.progress = 2
+          this.roomBookingDisplay = false
+          this.userDataDisplay = true
+          setTimeout(this.fillOutForm, 100)
+        },
+        userDataConfirmation() {
+          if (!this.$refs.form.v$.$invalid){
+            this.progress = 3
+            this.userDataDisplay = false
+            this.bookingOverviewDisplay = true
+            this.$refs.form.saveData()
+          } else {
+            this.errorMessage = "Bitte füllen Sie alle Felder aus, bzw überprüfen Sie die Schreibweise Ihrer Email."
+          }
+        },
+        roomSelection(value) {
+          console.log("room selected")
+          this.roomId = value
+          this.roomIsSelected = true
+        },
+        showRoomAndDatePicker() {
+          this.progress = 1
+          this.roomBookingDisplay = true
+          this.bookingOverviewDisplay = false
+        },
+        showForm() {
+          this.progress = 2
+          this.userDataDisplay = true
+          this.bookingOverviewDisplay = false
+          setTimeout(this.fillOutForm, 100)
+        },
+        sendBooking() {
+          console.log("bookingStore request")
+          this.bookingStore.requestBookings(this.token)
+          console.log("token:" + this.token)
+          setTimeout(this.$router.push("/confirmation"), 2000)
+        },
+        fillOutForm() {
+          this.$refs.form.setData();
+        }
+      },
   computed: {
     create() {
       return this.generateRoomsIdForSelect();
@@ -168,11 +184,8 @@ export default {
     },
     token() {
       return this.loginStore.getToken
-    },
-    checkForm() {       //hier muss noch boolscher wert aus personaldata component geholt werden
-        return true
-      }
     }
+  }
 }
 
 </script>

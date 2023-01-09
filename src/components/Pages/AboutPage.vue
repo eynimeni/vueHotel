@@ -2,16 +2,17 @@
 
   <heading-organism v-bind:title="title" v-bind:text="text" v-bind:image="image" v-bind:image-alt="imageAlt"></heading-organism>
   <contact-component></contact-component>
-
+  <anfahrt-molecule></anfahrt-molecule>
 </template>
 
 <script>
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import ContactComponent from "@/components/subComponents/ContactDataOrganism";
+import AnfahrtMolecule from "@/components/subComponents/AnfahrtMolecule";
 
 export default {
   name: "AboutComponent",
-  components: {ContactComponent, HeadingOrganism },
+  components: {AnfahrtMolecule, ContactComponent, HeadingOrganism },
   data() {
     return {
       title: 'Über Uns',

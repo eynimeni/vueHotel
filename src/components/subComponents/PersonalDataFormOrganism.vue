@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-card bg-variant="light">
+    <b-form bg-variant="light">
       <b-form-group
           label-cols-lg="3"
           label="Persönliche Daten"
@@ -53,7 +53,7 @@
             label-cols-sm="3"
             label-align-sm="right"
         >
-          <b-form-input id="email" type="email" v-model.trim="personalData.email" required></b-form-input>
+          <b-form-input id="email" type="email" name="email" v-model.trim="personalData.email" required></b-form-input>
         </b-form-group>
         <b-form-group
             label="Email wiederholen:"
@@ -61,7 +61,7 @@
             label-cols-sm="3"
             label-align-sm="right"
         >
-          <b-form-input id="email repeat" type="email" v-model.trim="personalData.emailrepeat" required></b-form-input>
+          <b-form-input id="email repeat" type="email" name="email" v-model.trim="personalData.emailrepeat" required></b-form-input>
           <p v-if="personalData.email !== personalData.emailrepeat" class="text-danger">Email Adressen stimmen nicht
             überein</p>
         </b-form-group>
@@ -83,15 +83,16 @@
           <p v-else>Ihre Buchungsanfrage enthält kein Frühstück</p>
         </b-form-group>
       </b-form-group>
-      <p v-if="!filledOutForm" class="text-danger">Bitte füllen Sie alle Felder vollständig aus, um fortzufahren</p>
-    </b-card>
+    </b-form>
   </div>
 </template>
 
 <script>
-import {BCard, BFormCheckbox, BFormGroup, BFormInput, BFormRadioGroup} from "bootstrap-vue-3";
+import {BFormCheckbox, BFormGroup, BFormInput, BFormRadioGroup} from "bootstrap-vue-3";
 import BirthdayDatepickerAtom from "@/components/subComponents/BirthdayDatepickerAtom";
 import {useBookingStore} from "@/stores/BookingStore";
+import {useVuelidate} from "@vuelidate/core";
+import { required, email } from '@vuelidate/validators';
 
 
 export default {
@@ -99,11 +100,11 @@ export default {
   components: {
     BFormCheckbox,
     BFormInput,
-    BFormRadioGroup, BCard, BFormGroup, BirthdayDatepickerAtom
+    BFormRadioGroup, BFormGroup, BirthdayDatepickerAtom
   },
   data() {
     return {
-      personalData: { //wird das genutzt?
+      personalData: {
         gender: null,
         firstname: null,
         lastname: null,
@@ -113,19 +114,34 @@ export default {
         breakfast: false,
       },
       bookingStore: useBookingStore(),
+      errorMessage: null,
+    }
+  },
+  setup () {
+    return { v$: useVuelidate() }
+  },
+  validations() {
+    return {
+      personalData: {
+        gender: {
+          required},
+        firstname: {
+          required},
+        lastname: {
+          required},
+        birthdate: {
+          required},
+        email: {
+          required,
+          email},
+        emailrepeat: {
+          required,
+          email},
+      }
     }
   },
 
   computed: {
-    filledOutForm() { //ACHTUNG: Löscht der User wieder eine Engabe wird der Button nicht ausgeblendet - optimieren!
-      return !!(this.personalData.gender,
-          this.personalData.firstname,
-          this.personalData.lastname,
-          this.personalData.birthdate,
-          this.personalData.email,
-      this.personalData.emailrepeat &&
-      this.personalData.email === this.personalData.emailrepeat);
-    },
     birthdateShort() {
       let birthdayRaw = new Date(this.personalData.birthdate);
       let birthdayFormatted = birthdayRaw.toISOString().split("T")[0]
