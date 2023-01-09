@@ -93,6 +93,7 @@ import {BCard, BFormCheckbox, BFormGroup, BFormInput, BFormRadioGroup} from "boo
 import BirthdayDatepickerAtom from "@/components/subComponents/BirthdayDatepickerAtom";
 import {useBookingStore} from "@/stores/BookingStore";
 
+
 export default {
   name: "FormComponent",
   components: {
@@ -114,6 +115,7 @@ export default {
       bookingStore: useBookingStore(),
     }
   },
+
   computed: {
     filledOutForm() { //ACHTUNG: Löscht der User wieder eine Engabe wird der Button nicht ausgeblendet - optimieren!
       return !!(this.personalData.gender,

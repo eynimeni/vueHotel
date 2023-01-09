@@ -153,7 +153,6 @@ export default {
     fillOutForm() {
       this.$refs.form.setData()
     }
-
   }
   ,
   computed: {
