@@ -32,24 +32,23 @@ export const useRoomsAvailability = defineStore('roomAvailability', {
                     })
             },
             setUrl() {
-                console.log("room id: "+this.id)
+               // console.log("room id: "+this.id)
                 this.url = "https://boutique-hotel.helmuth-lammer.at/api/v1/room/"+this.id+"/from/"+this.startDate+"/to/"+this.endDate
             },
             setId(id) {
                 this.id = id
             },
-
             setDateObject(date) {
 
-                this.startDateRaw = new Date(date[0]); //evtl. ändern: toISOString().split("T")[0]
+                this.startDateRaw = new Date(date[0]);
                 let startMonth = this.startDateRaw.getUTCMonth() + 1;
                 this.startDate = this.startDateRaw.getFullYear()+"-"+startMonth+"-"+ this.startDateRaw.getUTCDate()
-                console.log("start date: "+ this.startDate)
+                //console.log("start date: "+ this.startDate)
 
                 this.endDateRaw = new Date(date[1]);
                 let endMonth = this.endDateRaw.getUTCMonth() + 1;
                 this.endDate = this.endDateRaw.getFullYear()+"-"+endMonth+"-"+ this.endDateRaw.getUTCDate()
-                console.log("end date: "+ this.endDate)
+                //console.log("end date: "+ this.endDate)
             },
             unsetAvailability() {
                 this.available = [];

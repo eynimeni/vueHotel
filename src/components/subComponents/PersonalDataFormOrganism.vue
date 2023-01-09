@@ -159,7 +159,6 @@ export default {
       this.bookingStore.bookingRequest.breakfast = this.personalData.breakfast
     },
     setData(){
-      console.log("setData")
       this.personalData.gender= this.bookingStore.bookingRequest.gender
       this.personalData.firstname= this.bookingStore.bookingRequest.firstname
       this.personalData.lastname = this.bookingStore.bookingRequest.lastname
