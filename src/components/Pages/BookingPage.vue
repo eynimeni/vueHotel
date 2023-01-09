@@ -164,11 +164,13 @@ export default {
         sendBooking() {
           console.log("bookingStore request")
           this.bookingStore.requestBookings(this.token)
-          console.log("token:" + this.token)
-          setTimeout(this.$router.push("/confirmation"), 5000)
+          setTimeout(this.redirectToConfirmation, 2000)
         },
         fillOutForm() {
           this.$refs.form.setData();
+        },
+        redirectToConfirmation(){
+          this.$router.push("/confirmation")
         }
       },
   computed: {
