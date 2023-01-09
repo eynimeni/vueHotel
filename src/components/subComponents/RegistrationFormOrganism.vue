@@ -78,7 +78,6 @@
           </b-form-group>
         </b-form-group>
         <b-button :disabled="!isDisabled" @click="register">Registrieren</b-button>
-        <b-button :hidden="!loginIsDisabled" @click="login">Gleich Einloggen</b-button>
         <p class="text-success">{{ successMessage }}</p>
     </b-card>
   </div>
@@ -98,7 +97,6 @@ export default {
       userStore: useUserStore(),
       loginStore: useLoginStore(),
       successMessage: '',
-      loginIsDisabled : false,
       registrationData: {
         firstname: '',
         lastname: '',
@@ -111,7 +109,7 @@ export default {
     }
   },
   computed: {
-    isDisabled() { //firstname, lastname, email darf nicht leer sein
+    isDisabled() {
       return !!(
           this.registrationData.firstname,
               this.registrationData.lastname,
@@ -126,7 +124,7 @@ export default {
           this.registrationData.emailrepeat);
     },
   },
-  methods: { //Error Handling: Passwörter stimmen nicht überein
+  methods: {
     register() {
       let newUser = {
         firstname: this.registrationData.firstname,
@@ -137,12 +135,17 @@ export default {
       }
       this.userStore.postUsers(newUser)
       this.successMessage = "Vielen Dank für Ihre Registrierung! Bitte überprüfen Sie Ihren Posteingang."
-      this.loginIsDisabled = true;
+      setTimeout(this.login, 500);
     },
     login() {
       let token = this.loginStore.token
       this.userStore.readState(token)
-      this.successMessage = "Sie wurden erfolgreich eingeloggt!"
+      this.successMessage = "Sie wurden erfolgreich eingeloggt!";
+      setTimeout(this.redirect, 2000);
+
+    },
+    redirect(){
+      this.$router.push("/profile")
     }
   }
 }
