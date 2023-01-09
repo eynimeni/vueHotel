@@ -11,16 +11,19 @@ export const useBookingStore = defineStore('bookingrequest'
         state: () => ({
             bookings: [],
             bookingRequest: {
+                gender: "",
                 firstname: "",
                 lastname: "",
                 email: "",
-                birthdate: ""
+                birthdate: "",
+                breakfast: false,
             },
             bookingId: null,    
         }),
         getters: {
             getBookings: (state) => state.bookings,
-            getBookingId: (state) => state.bookingId
+            getBookingId: (state) => state.bookingId,
+            getBookingRequest: (state) => state.bookingRequest,
         },
         actions: {
             readBookings(token) {           //dummyData url wieder löschen uns stattdessen apiUrl bookings
