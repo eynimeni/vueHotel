@@ -32,7 +32,7 @@ export default {
   methods: {
     currentDate() {
       let today = new Date();
-
+      return today.toISOString().split("T")[0];
     }
   },
   computed: {
