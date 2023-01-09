@@ -33,7 +33,7 @@
           </b-form-group>
 
           <div v-show="sentAuthentication">
-            <div v-if="token === ''" class="b-toast-danger">Für diese Zugangsdaten konnte leider kein Account gefunden werden.</div>
+            <div v-if="errorMessage" class="b-toast-danger">Für diese Zugangsdaten konnte leider kein Account gefunden werden.</div>
           </div>
           <div>
             <label>Noch nicht registriert? Hier lang:</label>
@@ -58,7 +58,7 @@
 <script>
 
 import { useVuelidate } from '@vuelidate/core'
-import { required, email, minLength } from '@vuelidate/validators'
+import { required, email } from '@vuelidate/validators'
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import {useLoginStore} from "@/stores/LoginStore";
 
@@ -73,7 +73,6 @@ export default {
         clientId: '',
         secret: '',
       },
-      preventSubmit: true,
       sentAuthentication: false,
       errorMessage: false,
     }
@@ -85,8 +84,8 @@ export default {
           required,
           email},
         secret: {
-          required,
-          minLength: minLength(3)},     //können wir noch ändern oder weglassen
+          required
+        },
       }
     }
   },

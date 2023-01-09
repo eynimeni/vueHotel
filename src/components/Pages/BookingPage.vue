@@ -52,9 +52,8 @@
         </b-row>
       </div>
 
-      <router-link v-if="bookingOverviewDisplay" :to="{path: '/confirmation'}">
-        <b-button @click="sendBooking" variant="success">Buchung abschicken</b-button>
-      </router-link>
+        <b-button v-if="bookingOverviewDisplay" @click="sendBooking" variant="success">Buchung abschicken</b-button>
+
     </div>
   </b-container>
 </template>
@@ -149,11 +148,11 @@ export default {
       console.log("bookingStore request")
       this.bookingStore.requestBookings(this.token)
       console.log("token:" + this.token)
+      setTimeout(this.$router.push("/confirmation"), 2000)
     },
     fillOutForm() {
       this.$refs.form.setData()
     }
-
   }
   ,
   computed: {
