@@ -5,7 +5,7 @@
       <b-img fluid :src=image :alt=imageAlt></b-img>
   </b-row>
   <b-row class="mt-4" v-if="text">
-    <p>{{text}}</p>
+    <h5>{{text}}</h5>
   </b-row>
 </b-container>
 </template>

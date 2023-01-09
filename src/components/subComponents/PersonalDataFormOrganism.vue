@@ -94,6 +94,7 @@ import {useBookingStore} from "@/stores/BookingStore";
 import {useVuelidate} from "@vuelidate/core";
 import { required, email } from '@vuelidate/validators';
 
+
 export default {
   name: "FormComponent",
   components: {
@@ -139,6 +140,7 @@ export default {
       }
     }
   },
+
   computed: {
     birthdateShort() {
       let birthdayRaw = new Date(this.personalData.birthdate);
