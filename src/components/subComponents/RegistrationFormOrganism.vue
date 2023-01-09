@@ -187,7 +187,8 @@ export default {
       }
     },
     redirect() {
-      this.$router.push("/profile")
+      this.$router.push("/profile" + "/registration")
+
     }
   }
 }

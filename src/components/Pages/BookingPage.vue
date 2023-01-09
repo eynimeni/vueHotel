@@ -171,9 +171,7 @@ export default {
         }
       },
   computed: {
-    create() {
-      return this.generateRoomsIdForSelect();
-    },
+
     rooms() {
       return this.roomStore.getRooms
     },
