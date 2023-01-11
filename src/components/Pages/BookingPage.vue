@@ -16,7 +16,7 @@
         <b-col class="mb-3">
           <datepicker-molecule v-model="this.date"></datepicker-molecule>
           <div class="mt-3" v-if="this.roomId != null && this.roomId >= 0">
-            <room-id-display-organism :room-id="this.roomId"></room-id-display-organism>
+            <room-id-display-organism :room-id="this.roomId-1"></room-id-display-organism>
           </div>
         </b-col>
         <hr>
@@ -120,7 +120,7 @@ export default {
     this.roomStore.readState()
     if (this.id) {
       this.selected = this.id
-      this.roomSelection(this.selected - 1)
+      this.roomSelection(this.selected)
     }
   },
   setup() {
