@@ -7,7 +7,7 @@
       <b-form-group class="m-2">
         <b-col class="mb-3">
           <b-form-select v-model="selected" :options="this.options" @input="roomSelection">
-            <b-form-select-option v-for="room in rooms" :key="room.id" :value="room.id - 1">{{
+            <b-form-select-option v-for="room in rooms" :key="room.id" :value="room.id">{{
                 room.roomsName
               }}
             </b-form-select-option>
@@ -72,7 +72,7 @@ import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import PersonalDataFormOrganism from "@/components/subComponents/PersonalDataFormOrganism";
 import ProgressBarMolecule from "@/components/subComponents/ProgressBarMolecule";
 import BookingAvailabilityOrganism from "@/components/subComponents/BookingAvailabilityOrganism";
-import RoomIdDisplayOrganism from "@/components/subComponents/RoomIdDisplayOrgansim";
+import RoomIdDisplayOrganism from "@/components/subComponents/RoomIdDisplayOrganism";
 import BookingOverviewTemplate from "@/components/subComponents/BookingOverviewTemplate";
 import {useRoomStore} from "@/stores/RoomStore";
 import {useRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
@@ -120,7 +120,7 @@ export default {
     this.roomStore.readState()
     if (this.id) {
       this.selected = this.id
-      this.roomSelection(this.id)
+      this.roomSelection(this.selected - 1)
     }
   },
   setup() {

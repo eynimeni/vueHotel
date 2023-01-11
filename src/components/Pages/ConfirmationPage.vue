@@ -21,13 +21,14 @@
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import ContactDataOrganism from "@/components/subComponents/ContactDataOrganism";
 import GoogleMapsOrganism from "@/components/subComponents/GoogleMapsOrganism";
-import BookingOverviewTemplate from "@/components/subComponents/BookingOverviewTemplate";
+
 import ArrivalOrganism from "@/components/subComponents/ArrivalOrganism";
 import {useBookingStore} from "@/stores/BookingStore";
+import BookingOverviewTemplate from "@/components/subComponents/BookingOverviewTemplate";
 
 export default {
   name: "ConfirmationPage",
-  components: {ArrivalOrganism, BookingOverviewTemplate, GoogleMapsOrganism, ContactDataOrganism, HeadingOrganism},
+  components: {BookingOverviewTemplate, ArrivalOrganism, GoogleMapsOrganism, ContactDataOrganism, HeadingOrganism},
   data() {
     return {
       title: 'Buchungsbestätigung',

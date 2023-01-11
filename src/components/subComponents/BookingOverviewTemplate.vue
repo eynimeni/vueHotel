@@ -12,7 +12,7 @@
 <script>
 import {useRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
 import PersonalDataTableOrganism from "@/components/subComponents/PersonalDataTableOrganism";
-import RoomIdDisplayOrganism from "@/components/subComponents/RoomIdDisplayOrgansim";
+import RoomIdDisplayOrganism from "@/components/subComponents/RoomIdDisplayOrganism";
 
 export default {
   name: "BookingOverviewTemplate",
