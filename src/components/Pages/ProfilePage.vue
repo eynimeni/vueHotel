@@ -1,10 +1,10 @@
 <template>
   <heading-organism v-bind:title="title"></heading-organism>
   <div v-if="comingFromRegistration">
-    <h3 class="text-success">Willkommen {{user.firstname}} {{user.lastname}}!</h3>
+    <h3 class="text-success mt-4">Willkommen {{user.firstname}} {{user.lastname}}!</h3>
     <p class="text-success">Die Registrierung war erfolgreich.</p>
   </div>
-  <b-container class="mt-4">
+  <b-container class="mt-4" fluid style="height: 100vh;">
     <b-list-group>
       <b-list-group-item>
         Vorname: {{user.firstname}}

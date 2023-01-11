@@ -72,7 +72,7 @@
               stimmen nicht überein</p>
           </b-form-group>
         <b-button @click="register" :disabled="!this.isDisabled" type="submit">Registrieren</b-button>
-        <p class="text-success">{{ successMessage }}</p>
+        <p class="text-danger">{{ errorMessage }}</p>
       </b-form>
     </b-container>
   </div>
@@ -165,22 +165,20 @@ export default {
           password: this.registrationData.password
         }
         this.userStore.postUsers(newUser)
-        setTimeout(this.login, 500);
+        setTimeout(this.login, 700);
       }
     },
     login() {
       let token = this.loginStore.token
       if (token === '') {
-        this.errorMessage = "Etwas hat nicht funktioniert. Bitte probieren sie es erneut oder wenden Sie sich an info@hotel.at"
+        this.errorMessage = "Etwas hat nicht funktioniert. Bitte probieren Sie es erneut oder wenden Sie sich an info@hotel.at"
       } else {
-        this.successMessage = "Vielen Dank für Ihre Registrierung! Bitte überprüfen Sie Ihren Posteingang."
         this.userStore.readState(token);
         setTimeout(this.redirect, 3000);
       }
     },
     redirect() {
-      this.$router.push("/profile" + "/registration")
-
+      this.$router.push("/profile" + "/registration")   //hier hats noch was
     }
   }
 }
