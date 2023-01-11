@@ -1,13 +1,15 @@
 <template>
   <navbar-organism></navbar-organism>
   <router-view></router-view>
-
-  <footer-component></footer-component>
+  <footer-organism></footer-organism>
 </template>
 
 
 <script>
-
+import FooterOrganism from "@/components/subComponents/FooterOrganism";
+export default {
+  components: {FooterOrganism}
+}
 </script>
 
 

@@ -140,7 +140,6 @@ export default {
       }
     }
   },
-
   computed: {
     birthdateShort() {
       let birthdayRaw = new Date(this.personalData.birthdate);

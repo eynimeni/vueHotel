@@ -2,14 +2,7 @@
   <div>
     <b-container>
       <b-form bg-variant="light">
-        <b-form-group
-            label-cols-lg="3"
-            label="Registrieren"
-            label-size="lg"
-            label-class="font-weight-bold pt-0"
-            class="mb-0"
-        >
-          <h6>
+          <h6 class="mt-3">
             Erstellen Sie sich ein Profil, um Ihre Buchungen besser verwalten zu können.
           </h6>
           <p>Ihre Daten werden in Ihrem Profil gespeichert, um zukünftig schneller Buchungen abwickeln zu können.
@@ -78,7 +71,6 @@
             <p v-if="registrationData.password !== registrationData.passwordrepeat" class="text-danger">Passworteingaben
               stimmen nicht überein</p>
           </b-form-group>
-        </b-form-group>
         <b-button @click="register" :disabled="!this.isDisabled" type="submit">Registrieren</b-button>
         <p class="text-success">{{ successMessage }}</p>
       </b-form>

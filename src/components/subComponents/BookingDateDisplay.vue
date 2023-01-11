@@ -4,7 +4,7 @@
     <div v-if="isAvailable" class="b-toast-success">Das gewählte Zimmer ist für diesen Zeitraum verfügbar.
     </div>
     <div v-else-if="isAvailable === false" class="b-toast-danger">Das gewählte Zimmer ist für diesen Zeitraum leider nicht verfügbar.</div>
-    <div v-else>Bitte wählen Sie Zimmertyp und Buchungszeitraum.
+    <div class="userFeedback" v-else>Bitte wählen Sie Zimmertyp und Buchungszeitraum.
     </div>
   </b-container>
 </template>
@@ -47,5 +47,8 @@ export default {
 </script>
 
 <style scoped>
+.userFeedback {
+  height: 450px;
+}
 
 </style>

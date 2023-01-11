@@ -5,7 +5,7 @@
   </div>
   <div v-else>
     <h5 class="m-3 text-success">Ihre Buchung war erfolgreich!</h5>
-    <h4 class="mb-3 mt-3">Buchungs-Id: {{this.bookingId}}</h4>
+    <h5 class="mb-3 mt-3 text-success">Buchungs-Id: {{this.bookingId}}</h5>
     <div class="mt-3 mb-5">
       <booking-overview></booking-overview>
     </div>
