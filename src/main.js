@@ -9,7 +9,7 @@ import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 
-import NavbarOrganism from "@/components/subComponents/Navbar-Organism";
+import NavbarOrganism from "@/components/subComponents/NavbarOrganism";
 import FooterOrganism from "@/components/subComponents/FooterOrganism";
 import {createPinia} from "pinia";
 

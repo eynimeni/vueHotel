@@ -1,16 +1,15 @@
 <template>
   <heading-organism v-bind:title="title"></heading-organism>
-  <contact-component></contact-component>
-
+  <contact-data-organism></contact-data-organism>
 </template>
 
 <script>
-import ContactComponent from "@/components/subComponents/ContactDataOrganism";
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
+import ContactDataOrganism from "@/components/subComponents/ContactDataOrganism";
 
 export default {
-  name: "ImpressumComponent",
-  components: {HeadingOrganism, ContactComponent},
+  name: "ImpressumPage",
+  components: {ContactDataOrganism, HeadingOrganism},
   data() {
     return {
       title: 'Impressum',

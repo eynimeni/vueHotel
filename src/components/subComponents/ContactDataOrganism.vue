@@ -2,15 +2,15 @@
   <b-card bg-variant="light" header="Kontakt" class="text-center m-4">
     <b-card-text>
       <p>{{ name }}</p>
-      <p>{{address}}</p>
-      <p>{{phone}}</p>
+      <p>{{ address }}</p>
+      <p>{{ phone }}</p>
     </b-card-text>
   </b-card>
 </template>
 
 <script>
 export default {
-  name: "ContactComponent",
+  name: "ContactDataOrganism",
   data() {
     return {
       name: 'Familie Boutiquehotel',
