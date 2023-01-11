@@ -42,7 +42,7 @@
         </b-col>
         <b-col class="pb-2">
           <b-button variant="success" type="submit" @click="userDataConfirmation">Weiter</b-button>
-          <p class="text-danger">{{ errorMessage }}</p>
+          <p v-if="invalid" class="text-danger">{{ errorMessage }}</p>
         </b-col>
       </b-row>
     </div>
@@ -50,18 +50,21 @@
     <div v-if="bookingOverviewDisplay">
       <div class="mt-3 mb-3">
         <booking-overview></booking-overview>
-        <b-row class="mt-3">
+        <b-row class="p-3">
           <b-col>
-            <b-button @click="showRoomAndDatePicker" class="btn-dark">Zeitraum oder Zimmer ändern</b-button>
+            <b-button @click="showRoomAndDatePicker" class="btn-dark">Zeitraum oder Zimmer ändern
+              <b-icon-pencil ></b-icon-pencil>
+            </b-button>
           </b-col>
           <b-col>
-            <b-button @click="showForm" class="btn-dark">Daten ändern</b-button>
+            <b-button @click="showForm">Persönliche Daten bearbeiten
+              <b-icon-pencil ></b-icon-pencil></b-button>
+
           </b-col>
         </b-row>
       </div>
 
         <b-button v-if="bookingOverviewDisplay" @click="sendBooking" variant="success">Buchung abschicken</b-button>
-
     </div>
   </b-container>
 </template>
@@ -161,6 +164,7 @@ export default {
         },
         sendBooking() {
           this.bookingStore.requestBookings(this.token)
+
           setTimeout(this.redirectToConfirmation, 2000)
         },
         fillOutForm() {
@@ -180,6 +184,9 @@ export default {
     },
     token() {
       return this.loginStore.getToken
+    },
+    invalid() {
+      return this.v$.$invalid;
     }
   }
 }

@@ -8,14 +8,17 @@
 
 <script>
 export default {
-  name: "FooterComponent"
+  name: "FooterOrganism"
 }
 </script>
 
 <style scoped>
 #footer {
   bottom: 0;
-  height: 35px;
+  position: sticky;
   width: 100%;
+  height: 45px;
+  padding: 8px;
+  outline: 3px white solid;
 }
 </style>
