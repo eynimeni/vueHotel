@@ -120,7 +120,6 @@ export default {
       errorMessage: null,
     }
   }, created() {
-    console.log("created")
     this.roomStore.readState()
     if (this.id) {
       this.selected = this.id
@@ -149,7 +148,6 @@ export default {
           }
         },
         roomSelection(value) {
-          console.log("room selected")
           this.roomId = value
           this.roomIsSelected = true
         },
@@ -165,24 +163,20 @@ export default {
           setTimeout(this.fillOutForm, 100)
         },
         sendBooking() {
-          console.log("bookingStore request")
           this.bookingStore.requestBookings(this.token)
-          console.log("token:" + this.token)
-          setTimeout(this.redirectToConfirmation, 3000)
-        },
-        redirectToConfirmation() {
-          this.$router.push("/confirmation")
+
+          setTimeout(this.redirectToConfirmation, 2000)
         },
         fillOutForm() {
           this.$refs.form.setData();
+        },
+        redirectToConfirmation(){
+          this.$router.push("/confirmation")
         }
       },
   computed: {
-    create() {
-      return this.generateRoomsIdForSelect();
-    },
+
     rooms() {
-      console.log(this.roomStore.getRooms)
       return this.roomStore.getRooms
     },
     getRoomAvailability() {

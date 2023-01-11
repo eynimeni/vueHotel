@@ -1,5 +1,9 @@
 <template>
   <heading-organism v-bind:title="title"></heading-organism>
+  <div v-if="comingFromRegistration">
+    <h3 class="text-success">Willkommen {{user.firstname}} {{user.lastname}}!</h3>
+    <p class="text-success">Die Registrierung war erfolgreich.</p>
+  </div>
   <b-container class="mt-4">
     <b-list-group>
       <b-list-group-item>
@@ -22,15 +26,25 @@ import {useUserStore} from "@/stores/UserStore";
 export default {
   name: "ProfileComponent",
   components: {HeadingOrganism},
+  props: {
+    registration: String
+  },
   data() {
     return {
       title: 'Mein Profil',
+      comingFromRegistration: false,
       loginStore: useLoginStore(),
       userStore: useUserStore(),
     }
   },
   created() {
+    this.comingFromRegistration = false
     this.userStore.readState(this.token)
+    if(this.registration) {
+      this.comingFromRegistration = true
+    }
+
+
   },
   computed: {
     token() {
