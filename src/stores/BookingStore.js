@@ -40,7 +40,7 @@ export const useBookingStore = defineStore('bookingrequest'
             },
             requestBookings(token) {
                 const availabilityStore = useRoomsAvailability()
-                axios.post("https://boutique-hotel.helmuth-lammer.at/api/v1/room/" + availabilityStore.id + "/from/" + availabilityStore.startDate + "/to/" + availabilityStore.endDate + "", this.bookingRequest, {
+                axios.post("https://boutique-hotel.helmuth-lammer.at/api/v1/room/" + availabilityStore.getId + "/from/" + availabilityStore.startDate + "/to/" + availabilityStore.endDate + "", this.bookingRequest, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`

@@ -34,22 +34,21 @@ export default {
     },
     getImage() {
       if (this.roomId != null) {
-        return "/assets/images/rooms/" + this.roomId + ".jpg"
+        return "/assets/images/rooms/" + (this.roomId + 1) + ".jpg"
       } else {
-        return "/assets/images/rooms/" + this.roomIdFromStore + ".jpg"
+        return "/assets/images/rooms/" + (this.roomIdFromStore) + ".jpg"
       }
     }
   },
   computed: {
     room() {
       let rooms = this.roomStore.getRooms
-
       if (this.roomId != null) {
         let selectedRoom = rooms[this.roomId]
         return selectedRoom
       } else {
         this.getRoomIdFromStore()
-        let selectedRoom = rooms[this.roomIdFromStore]
+        let selectedRoom = rooms[this.roomIdFromStore - 1]
         return selectedRoom
       }
     },
