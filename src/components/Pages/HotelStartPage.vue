@@ -1,8 +1,9 @@
 <template>
- <heading-organism class="mb-5" v-bind:title="title" v-bind:text="text" v-bind:image="image" v-bind:image-alt="imageAlt"></heading-organism>
-    <router-link :to="{path: '/booking'}">
-      <b-button class="mb-5" size="lg" variant="dark">Jetzt buchen!</b-button>
-    </router-link>
+  <heading-organism class="mb-5" v-bind:title="title" v-bind:text="text" v-bind:image="image"
+                    v-bind:image-alt="imageAlt"></heading-organism>
+  <router-link :to="{path: '/booking'}">
+    <b-button class="mb-5" size="lg" variant="dark">Jetzt buchen!</b-button>
+  </router-link>
 </template>
 
 <script>
@@ -10,7 +11,7 @@
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 
 export default {
-  name: "HotelComponent",
+  name: "HotelPage",
   components: {
     HeadingOrganism
 

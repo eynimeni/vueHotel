@@ -12,7 +12,7 @@
 import {useBookingStore} from "@/stores/BookingStore";
 
 export default {
-  name: "PersonalDataTable",
+  name: "PersonalDataTableOrganism",
   data() {
     return {
       bookingStore: useBookingStore(),
@@ -20,7 +20,7 @@ export default {
         gender: null,
         firstname: null,
         lastname: null,
-        birthdate: null, //muss evtl nochmal formatiert werden
+        birthdate: null,
         email: null,
         breakfast: false,
       }

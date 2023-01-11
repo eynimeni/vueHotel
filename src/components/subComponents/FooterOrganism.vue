@@ -1,9 +1,7 @@
 <template>
-
-    <div id="footer" class="bg-light mt-3">
-      <router-link :to="{path: '/impressum'}">Impressum</router-link>
-    </div>
-
+  <div id="footer" class="bg-light mt-3">
+    <router-link :to="{path: '/impressum'}">Impressum</router-link>
+  </div>
 </template>
 
 <script>

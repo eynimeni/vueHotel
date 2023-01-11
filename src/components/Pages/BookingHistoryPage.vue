@@ -1,11 +1,9 @@
 <template>
   <heading-organism title="Meine Buchungen"></heading-organism>
-
   <h5 class="mt-5">Geplante Reisen</h5>
   <booking-table-molecule v-bind:bookings=futureBookings></booking-table-molecule>
   <h5 class="mt-5">Vergangene Reisen</h5>
   <booking-table-molecule v-bind:bookings=pastBookings></booking-table-molecule>
-
 </template>
 
 <script>
@@ -39,7 +37,7 @@ export default {
     futureBookings() {
       let futureBookingsList = [];
       for (let booking in this.bookingsApi) {
-        if(this.bookingsApi[booking].from > this.dateToday) {
+        if (this.bookingsApi[booking].from > this.dateToday) {
           futureBookingsList.push(this.bookingsApi[booking])
         }
       }
@@ -48,7 +46,7 @@ export default {
     pastBookings() {
       let pastBookingsList = [];
       for (let booking in this.bookingsApi) {
-        if(this.bookingsApi[booking].from <= this.dateToday) {
+        if (this.bookingsApi[booking].from <= this.dateToday) {
           pastBookingsList.push(this.bookingsApi[booking])
         }
       }

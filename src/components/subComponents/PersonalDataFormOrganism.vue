@@ -45,7 +45,7 @@
             label-cols-sm="3"
             label-align-sm="right"
         >
-          <BirthdayDatepickerAtom v-model="personalData.birthdate" required></BirthdayDatepickerAtom>
+          <birthday-datepicker-molecule v-model="personalData.birthdate" required></birthday-datepicker-molecule>
         </b-form-group>
         <b-form-group
             label="Email:"
@@ -61,7 +61,8 @@
             label-cols-sm="3"
             label-align-sm="right"
         >
-          <b-form-input id="email repeat" type="email" name="email" v-model.trim="personalData.emailrepeat" required></b-form-input>
+          <b-form-input id="email repeat" type="email" name="email" v-model.trim="personalData.emailrepeat"
+                        required></b-form-input>
           <p v-if="personalData.email !== personalData.emailrepeat" class="text-danger">Email Adressen stimmen nicht
             überein</p>
         </b-form-group>
@@ -89,18 +90,19 @@
 
 <script>
 import {BFormCheckbox, BFormGroup, BFormInput, BFormRadioGroup} from "bootstrap-vue-3";
-import BirthdayDatepickerAtom from "@/components/subComponents/BirthdayDatepickerAtom";
 import {useBookingStore} from "@/stores/BookingStore";
 import {useVuelidate} from "@vuelidate/core";
-import { required, email } from '@vuelidate/validators';
+import {required, email} from '@vuelidate/validators';
+import BirthdayDatepickerMolecule from "@/components/subComponents/BirthdayDatepickerMolecule";
 
 
 export default {
-  name: "FormComponent",
+  name: "PersonalDataFormOrganism",
   components: {
+    BirthdayDatepickerMolecule,
     BFormCheckbox,
     BFormInput,
-    BFormRadioGroup, BFormGroup, BirthdayDatepickerAtom
+    BFormRadioGroup, BFormGroup
   },
   data() {
     return {
@@ -114,29 +116,34 @@ export default {
         breakfast: false,
       },
       bookingStore: useBookingStore(),
-      errorMessage: null,
     }
   },
-  setup () {
-    return { v$: useVuelidate() }
+  setup() {
+    return {v$: useVuelidate()}
   },
   validations() {
     return {
       personalData: {
         gender: {
-          required},
+          required
+        },
         firstname: {
-          required},
+          required
+        },
         lastname: {
-          required},
+          required
+        },
         birthdate: {
-          required},
+          required
+        },
         email: {
           required,
-          email},
+          email
+        },
         emailrepeat: {
           required,
-          email},
+          email
+        },
       }
     }
   },
@@ -148,8 +155,7 @@ export default {
     }
   },
   methods: {
-    saveData(){
-      console.log("personal data saved to bookingStore")
+    saveData() {
       this.bookingStore.bookingRequest.email = this.personalData.email
       this.bookingStore.bookingRequest.firstname = this.personalData.firstname
       this.bookingStore.bookingRequest.lastname = this.personalData.lastname
@@ -157,9 +163,9 @@ export default {
       this.bookingStore.bookingRequest.gender = this.personalData.gender
       this.bookingStore.bookingRequest.breakfast = this.personalData.breakfast
     },
-    setData(){
-      this.personalData.gender= this.bookingStore.bookingRequest.gender
-      this.personalData.firstname= this.bookingStore.bookingRequest.firstname
+    setData() {
+      this.personalData.gender = this.bookingStore.bookingRequest.gender
+      this.personalData.firstname = this.bookingStore.bookingRequest.firstname
       this.personalData.lastname = this.bookingStore.bookingRequest.lastname
       this.personalData.birthdate = this.bookingStore.bookingRequest.birthdate
       this.personalData.email = this.bookingStore.bookingRequest.email

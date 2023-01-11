@@ -2,75 +2,75 @@
   <div>
     <b-container>
       <b-form bg-variant="light">
-          <h6 class="mt-3">
-            Erstellen Sie sich ein Profil, um Ihre Buchungen besser verwalten zu können.
-          </h6>
-          <p>Ihre Daten werden in Ihrem Profil gespeichert, um zukünftig schneller Buchungen abwickeln zu können.
-            <br>In Ihrem Profil können Sie vergangene Buchungen einsehen.</p>
-          <b-form-group
-              label="Vorname:"
-              label-for="firstname"
-              label-cols-sm="3"
-              label-align-sm="right"
-          >
-            <b-form-input id="firstname" type="text" v-model="registrationData.firstname" required></b-form-input>
-          </b-form-group>
-          <b-form-group
-              label="Nachname:"
-              label-for="lastname"
-              label-cols-sm="3"
-              label-align-sm="right"
-          >
-            <b-form-input id="lastname" type="text" v-model="registrationData.lastname" required></b-form-input>
-          </b-form-group>
-          <b-form-group
-              label="Email:"
-              label-for="email"
-              label-cols-sm="3"
-              label-align-sm="right"
-          >
-            <b-form-input id="email" type="email" v-model.trim="registrationData.email" required></b-form-input>
-          </b-form-group>
-          <b-form-group
-              label="Email wiederholen:"
-              label-for="email-repeat"
-              label-cols-sm="3"
-              label-align-sm="right"
-          >
-            <b-form-input id="email repeat" type="email" v-model.trim="registrationData.emailrepeat"
-                          required></b-form-input>
-            <p v-if="registrationData.email !== registrationData.emailrepeat" class="text-danger">Email Adressen stimmen
-              nicht
-              überein</p>
-          </b-form-group>
-          <b-form-group
-              label="Benutzername"
-              label-for="username"
-              label-cols-sm="3"
-              label-align-sm="right"
-          >
-            <b-form-input id="username" type="text" v-model="registrationData.username" required></b-form-input>
-          </b-form-group>
+        <h6 class="mt-3">
+          Erstellen Sie sich ein Profil, um Ihre Buchungen besser verwalten zu können.
+        </h6>
+        <p>Ihre Daten werden in Ihrem Profil gespeichert, um zukünftig schneller Buchungen abwickeln zu können.
+          <br>In Ihrem Profil können Sie vergangene Buchungen einsehen.</p>
+        <b-form-group
+            label="Vorname:"
+            label-for="firstname"
+            label-cols-sm="3"
+            label-align-sm="right"
+        >
+          <b-form-input id="firstname" type="text" v-model="registrationData.firstname" required></b-form-input>
+        </b-form-group>
+        <b-form-group
+            label="Nachname:"
+            label-for="lastname"
+            label-cols-sm="3"
+            label-align-sm="right"
+        >
+          <b-form-input id="lastname" type="text" v-model="registrationData.lastname" required></b-form-input>
+        </b-form-group>
+        <b-form-group
+            label="Email:"
+            label-for="email"
+            label-cols-sm="3"
+            label-align-sm="right"
+        >
+          <b-form-input id="email" type="email" v-model.trim="registrationData.email" required></b-form-input>
+        </b-form-group>
+        <b-form-group
+            label="Email wiederholen:"
+            label-for="email-repeat"
+            label-cols-sm="3"
+            label-align-sm="right"
+        >
+          <b-form-input id="email repeat" type="email" v-model.trim="registrationData.emailrepeat"
+                        required></b-form-input>
+          <p v-if="registrationData.email !== registrationData.emailrepeat" class="text-danger">Email-Adressen stimmen
+            nicht
+            überein</p>
+        </b-form-group>
+        <b-form-group
+            label="Benutzername"
+            label-for="username"
+            label-cols-sm="3"
+            label-align-sm="right"
+        >
+          <b-form-input id="username" type="text" v-model="registrationData.username" required></b-form-input>
+        </b-form-group>
 
-          <b-form-group
-              label="Passwort:"
-              label-for="userpassword"
-              label-cols-sm="3"
-              label-align-sm="right"
-          >
-            <b-form-input id="password" type="password" v-model="registrationData.password" required></b-form-input>
-          </b-form-group>
-          <b-form-group
-              label="Passwort wiederholen:"
-              label-for="userpasswordrepeat"
-              label-cols-sm="3"
-              label-align-sm="right"
-          >
-            <b-form-input id="passwordrepeat" type="password" v-model="registrationData.passwordrepeat"
-                          required></b-form-input>
-            <p v-if="registrationData.password !== registrationData.passwordrepeat" class="text-danger">Passworteingaben
-              stimmen nicht überein</p>
-          </b-form-group>
+        <b-form-group
+            label="Passwort:"
+            label-for="userpassword"
+            label-cols-sm="3"
+            label-align-sm="right"
+        >
+          <b-form-input id="password" type="password" v-model="registrationData.password" required></b-form-input>
+        </b-form-group>
+        <b-form-group
+            label="Passwort wiederholen:"
+            label-for="userpasswordrepeat"
+            label-cols-sm="3"
+            label-align-sm="right"
+        >
+          <b-form-input id="passwordrepeat" type="password" v-model="registrationData.passwordrepeat"
+                        required></b-form-input>
+          <p v-if="registrationData.password !== registrationData.passwordrepeat" class="text-danger">Passworteingaben
+            stimmen nicht überein</p>
+        </b-form-group>
         <b-button @click="register" :disabled="!this.isDisabled" type="submit">Registrieren</b-button>
         <p class="text-danger">{{ errorMessage }}</p>
       </b-form>
@@ -99,7 +99,6 @@ export default {
     return {
       userStore: useUserStore(),
       loginStore: useLoginStore(),
-      successMessage: '',
       errorMessage: '',
       registrationData: {
         firstname: '',
@@ -178,7 +177,7 @@ export default {
       }
     },
     redirect() {
-      this.$router.push("/profile" + "/registration")   //hier hats noch was
+      this.$router.push("/profile" + "/registration")
     }
   }
 }

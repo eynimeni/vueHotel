@@ -8,7 +8,7 @@ import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import RoomListOrganism from "@/components/subComponents/RoomListOrganism";
 
 export default {
-  name: "RoomComponent",
+  name: "RoomPage",
   components: {
     RoomListOrganism,
     HeadingOrganism,

@@ -4,19 +4,19 @@
     <h6>{{ dateString }}</h6>
     <h6>Anzahl der Nächte: {{ durationOfStay }}</h6>
     <h6>Persönliche Daten:</h6>
-    <personal-data-table></personal-data-table>
-    <room-id-display></room-id-display>
+    <personal-data-table-organism></personal-data-table-organism>
+    <room-id-display-organism></room-id-display-organism>
   </b-container>
 </template>
 
 <script>
-import RoomIdDisplay from "@/components/subComponents/RoomIdDisplay";
 import {useRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
-import PersonalDataTable from "@/components/subComponents/PersonalDataTable";
+import PersonalDataTableOrganism from "@/components/subComponents/PersonalDataTableOrganism";
+import RoomIdDisplayOrganism from "@/components/subComponents/RoomIdDisplayOrganism";
 
 export default {
-  name: "BookingOverview",
-  components: {PersonalDataTable, RoomIdDisplay},
+  name: "BookingOverviewTemplate",
+  components: {RoomIdDisplayOrganism, PersonalDataTableOrganism},
   data() {
     return {
       headlineBookingOverview: "Buchungsübersicht",
@@ -50,10 +50,7 @@ export default {
           "Ihr Aufenthalt von " +
           this.startDateString + " bis " + this.endDateString;
     },
-
   },
-
-
 }
 </script>
 

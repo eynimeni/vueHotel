@@ -33,7 +33,6 @@ export default {
       perPage: 1,
       currentPage: 1,
       buttonType: "navigationButton",
-
     }
   },
   created() {

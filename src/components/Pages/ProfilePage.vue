@@ -1,19 +1,19 @@
 <template>
   <heading-organism v-bind:title="title"></heading-organism>
   <div v-if="comingFromRegistration">
-    <h3 class="text-success mt-4">Willkommen {{user.firstname}} {{user.lastname}}!</h3>
+    <h3 class="text-success mt-4">Willkommen {{ user.firstname }} {{ user.lastname }}!</h3>
     <p class="text-success">Die Registrierung war erfolgreich.</p>
   </div>
   <b-container class="mt-4" fluid style="height: 100vh;">
     <b-list-group>
       <b-list-group-item>
-        Vorname: {{user.firstname}}
+        Vorname: {{ user.firstname }}
       </b-list-group-item>
       <b-list-group-item>
-        Nachname: {{user.lastname}}
+        Nachname: {{ user.lastname }}
       </b-list-group-item>
       <b-list-group-item>
-        E-Mail-Adresse: {{user.email}}
+        E-Mail-Adresse: {{ user.email }}
       </b-list-group-item>
     </b-list-group>
   </b-container>
@@ -24,7 +24,7 @@ import {useLoginStore} from "@/stores/LoginStore";
 import {useUserStore} from "@/stores/UserStore";
 
 export default {
-  name: "ProfileComponent",
+  name: "ProfilePage",
   components: {HeadingOrganism},
   props: {
     registration: String
@@ -40,11 +40,9 @@ export default {
   created() {
     this.comingFromRegistration = false
     this.userStore.readState(this.token)
-    if(this.registration) {
+    if (this.registration) {
       this.comingFromRegistration = true
     }
-
-
   },
   computed: {
     token() {

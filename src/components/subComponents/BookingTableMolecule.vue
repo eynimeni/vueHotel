@@ -2,19 +2,18 @@
   <div>
     <b-table hover :items="bookings" :fields="fields"></b-table>
   </div>
-
 </template>
 
 <script>
 export default {
   name: "BookingTableMolecule",
-  props: [ 'bookings' ],
+  props: ['bookings'],
   data() {
     return {
-      fields: [     //müssen noch angepasst werden - schauen was von datenbank zurückkommt
-          { key: 'id', label:'Zimmer' },
-          { key: 'from', label:'Von' },
-          { key: 'to', label:'Bis' }
+      fields: [
+        {key: 'id', label: 'Zimmer'},
+        {key: 'from', label: 'Von'},
+        {key: 'to', label: 'Bis'}
       ]
     }
   },
