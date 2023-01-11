@@ -105,7 +105,7 @@ export default {
       options: [
         {value: '', text: 'Zimmertyp wählen'},
       ],
-      date: '',
+      date: [new Date(), new Date().setTime(new Date().valueOf() + 48 * 60 * 60 * 1000)],
       selected: '',
       progress: 1,
       roomBookingDisplay: true,

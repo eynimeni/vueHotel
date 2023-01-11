@@ -35,7 +35,6 @@ export default {
     isAvailable() {
       let availability = this.roomStoreObject.getAvailability;
       const state = availability["available"];
-      //console.log("available = " + state)
       return state
     }
   },

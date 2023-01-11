@@ -13,7 +13,7 @@ export default {
   components: {Datepicker},
   data() {
     return {
-      date: null,
+      date: null
     }
   },
   computed: {
@@ -21,7 +21,7 @@ export default {
       const today = new Date()
       return today.toISOString().split("T")[0]
     }
-  }
+  },
 }
 </script>
 
