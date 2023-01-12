@@ -94,6 +94,8 @@ import {useBookingStore} from "@/stores/BookingStore";
 import {useVuelidate} from "@vuelidate/core";
 import {required, email} from '@vuelidate/validators';
 import BirthdayDatepickerMolecule from "@/components/subComponents/BirthdayDatepickerMolecule";
+import {useUserStore} from "@/stores/UserStore";
+import {useLoginStore} from "@/stores/LoginStore";
 
 
 export default {
@@ -115,7 +117,10 @@ export default {
         emailrepeat: null,
         breakfast: false,
       },
+      userStore: useUserStore(),
+      loginStore: useLoginStore(),
       bookingStore: useBookingStore(),
+      currentUser: null
     }
   },
   setup() {
@@ -143,11 +148,14 @@ export default {
         emailrepeat: {
           required,
           email
-        },
+        }
       }
     }
   },
   computed: {
+    token() {
+      return this.loginStore.getToken
+    },
     birthdateShort() {
       let birthdayRaw = new Date(this.personalData.birthdate);
       let birthdayFormatted = birthdayRaw.toISOString().split("T")[0]
@@ -171,6 +179,14 @@ export default {
       this.personalData.email = this.bookingStore.bookingRequest.email
       this.personalData.emailrepeat = this.bookingStore.bookingRequest.email
       this.personalData.breakfast = this.bookingStore.bookingRequest.breakfast
+    },
+    loadDataLoggedInUser() {
+      this.personalData.gender = this.userStore.getUser.gender;
+      this.personalData.firstname = this.userStore.getUser.firstname;
+      this.personalData.lastname = this.userStore.getUser.lastname;
+      this.personalData.birthdate = this.userStore.getUser.birthdate;
+      this.personalData.email = this.userStore.getUser.email;
+      this.personalData.emailrepeat = this.userStore.getUser.emailrepeat;
     }
   }
 }

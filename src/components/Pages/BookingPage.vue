@@ -79,6 +79,7 @@ import {useRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
 import {useBookingStore} from "@/stores/BookingStore";
 import {useLoginStore} from "@/stores/LoginStore";
 import {useVuelidate} from "@vuelidate/core";
+import {useUserStore} from "@/stores/UserStore";
 
 export default {
   name: "BookingPage",
@@ -101,6 +102,7 @@ export default {
       roomStore: useRoomStore(),
       bookingStore: useBookingStore(),
       loginStore: useLoginStore(),
+      userStore: useUserStore(),
       title: "Buchungen",
       options: [
         {value: '', text: 'Zimmertyp wählen'},
@@ -160,12 +162,15 @@ export default {
           setTimeout(this.fillOutForm, 100)
         },
         sendBooking() {
-          this.bookingStore.requestBookings(this.token)
-
+          this.bookingStore.requestBookings(this.token);
           setTimeout(this.redirectToConfirmation, 2000)
         },
         fillOutForm() {
-          this.$refs.form.setData();
+          if (this.token){
+            this.$refs.form.loadDataLoggedInUser()
+          } else {
+            this.$refs.form.setData();
+          }
         },
         redirectToConfirmation() {
           this.$router.push("/confirmation")
