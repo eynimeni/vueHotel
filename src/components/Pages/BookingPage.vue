@@ -7,9 +7,7 @@
       <b-form-group class="m-2">
         <b-col class="mb-3">
           <b-form-select v-model="selected" :options="this.options" @input="roomSelection">
-            <b-form-select-option v-for="room in rooms" :key="room.id" :value="room.id">{{
-                room.roomsName
-              }}
+            <b-form-select-option v-for="room in rooms" :key="room.id" :value="room.id">{{ room.roomsName }}
             </b-form-select-option>
           </b-form-select>
         </b-col>
@@ -166,7 +164,7 @@ export default {
           setTimeout(this.redirectToConfirmation, 2000)
         },
         fillOutForm() {
-          if (this.token){
+          if (this.token) {
             this.$refs.form.loadDataLoggedInUser()
           } else {
             this.$refs.form.setData();

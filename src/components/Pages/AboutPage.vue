@@ -10,7 +10,6 @@ import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import ContactDataOrganism from "@/components/subComponents/ContactDataOrganism";
 import ArrivalOrganism from "@/components/subComponents/ArrivalOrganism";
 
-
 export default {
   name: "AboutPage",
   components: {ArrivalOrganism, ContactDataOrganism, HeadingOrganism},
