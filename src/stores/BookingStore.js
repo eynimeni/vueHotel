@@ -2,8 +2,6 @@ import {defineStore} from "pinia";
 import axios from 'axios';
 import {useRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
 
-//const bookingsApiUrl = "https://boutique-hotel.helmuth-lammer.at/api/v1/user/bookings"
-
 const bookingsDummyData = "https://boutique-hotel.helmuth-lammer.at/api/v1/bookings" //am Ende löschen
 
 export const useBookingStore = defineStore('bookingrequest'
@@ -45,7 +43,7 @@ export const useBookingStore = defineStore('bookingrequest'
                 axios.post("https://boutique-hotel.helmuth-lammer.at/api/v1/room/"+availabilityStore.id+"/from/"+availabilityStore.startDate+"/to/"+availabilityStore.endDate+"", this.bookingRequest, {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`      //buchung wird noch nicht dem user zugeordnet - wird in schnittstelle noch geändert!
+                        'Authorization': `Bearer ${token}`
                     }
                 })
                     .then(response => {
