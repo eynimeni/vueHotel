@@ -11,21 +11,22 @@ export const useLoginStore = defineStore('login', {
         getToken: (state) => state.token,
     },
     actions: {
-        login( clientId, secret) {
-                axios.post(loginApiUrl, {
-                    clientId: clientId,
-                    secret: secret})
+        login(clientId, secret) {
+            axios.post(loginApiUrl, {
+                clientId: clientId,
+                secret: secret
+            })
 
-                    .then(
-                        response => {
-                            console.log(response.data)
-                            this.token = response.data
-                        })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                .then(
+                    response => {
+                        console.log(response.data)
+                        this.token = response.data
+                    })
+                .catch(function (error) {
+                    console.log(error);
+                });
         },
-        setToken(token){
+        setToken(token) {
             this.token = token;
             console.log("setToken" + this.token)
         }

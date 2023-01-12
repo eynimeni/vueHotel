@@ -9,17 +9,17 @@ export const useRoomStore = defineStore('room', {
     }),
     getters: {
         getRooms: (state) => state.rooms,
-       },
+    },
     actions: {
-    readState() {
-        axios.get(apiUrl)
-            .then(
-                response => {
-                this.rooms = response.data
+        readState() {
+            axios.get(apiUrl)
+                .then(
+                    response => {
+                        this.rooms = response.data
+                    })
+                .catch(error => {
+                    console.log(error)
                 })
-            .catch(error => {
-                console.log(error)
-            })
+        }
     }
-}
 })

@@ -35,7 +35,7 @@ export const useUserStore = defineStore('user'
                         'Content-Type': 'application/json'
                     }
                 })
-                    .then( function(response)  {
+                    .then(function (response) {
                         loginRegisteredUser.setToken(response.data);
                     })
                     .catch(function (error) {

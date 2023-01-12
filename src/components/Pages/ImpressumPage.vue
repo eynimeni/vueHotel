@@ -1,6 +1,8 @@
 <template>
+  <b-container class="mt-4" fluid style="height: 100vh;">
   <heading-organism v-bind:title="title"></heading-organism>
   <contact-data-organism></contact-data-organism>
+  </b-container>
 </template>
 
 <script>

@@ -16,7 +16,7 @@
         <b-col class="mb-3">
           <datepicker-molecule v-model="this.date"></datepicker-molecule>
           <div class="mt-3" v-if="this.roomId != null && this.roomId >= 0">
-            <room-id-display-organism :room-id="this.roomId-1"></room-id-display-organism>
+            <room-id-display-organism :room-id="(this.roomId-1)"></room-id-display-organism>
           </div>
         </b-col>
         <hr>
@@ -94,7 +94,7 @@ export default {
     BookingOverviewTemplate
   },
   props: {
-    id: Number
+    id: String
   },
 
   data() {
@@ -107,7 +107,7 @@ export default {
       options: [
         {value: '', text: 'Zimmertyp wählen'},
       ],
-      date: '',
+      date: [new Date(), new Date().setTime(new Date().valueOf() + 48 * 60 * 60 * 1000)],
       selected: '',
       progress: 1,
       roomBookingDisplay: true,

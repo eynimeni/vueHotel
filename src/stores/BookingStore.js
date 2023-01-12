@@ -3,6 +3,8 @@ import axios from 'axios';
 import {useRoomsAvailability} from "@/stores/useRoomAvailabiltyStore";
 
 const bookingsDummyData = "https://boutique-hotel.helmuth-lammer.at/api/v1/bookings" //am Ende löschen
+const wholeBookingHistoryUrl = "https://boutique-hotel.helmuth-lammer.at/api/v1/bookings"
+
 
 export const useBookingStore = defineStore('bookingrequest'
     , {
@@ -16,7 +18,7 @@ export const useBookingStore = defineStore('bookingrequest'
                 birthdate: "",
                 breakfast: false,
             },
-            bookingId: null,    
+            bookingId: null,
         }),
         getters: {
             getBookings: (state) => state.bookings,
@@ -24,12 +26,12 @@ export const useBookingStore = defineStore('bookingrequest'
             getBookingRequest: (state) => state.bookingRequest,
         },
         actions: {
-            readBookings(token) {           //dummyData url wieder löschen uns stattdessen apiUrl bookings
-                axios.get(bookingsDummyData, {
+            readBookings(token) {
+                axios.get(wholeBookingHistoryUrl, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
-                } )
+                })
                     .then(response => {
                         this.bookings = response.data
                         console.log(response)
@@ -40,7 +42,7 @@ export const useBookingStore = defineStore('bookingrequest'
             },
             requestBookings(token) {
                 const availabilityStore = useRoomsAvailability()
-                axios.post("https://boutique-hotel.helmuth-lammer.at/api/v1/room/"+availabilityStore.id+"/from/"+availabilityStore.startDate+"/to/"+availabilityStore.endDate+"", this.bookingRequest, {
+                axios.post("https://boutique-hotel.helmuth-lammer.at/api/v1/room/" + availabilityStore.getId + "/from/" + availabilityStore.startDate + "/to/" + availabilityStore.endDate + "", this.bookingRequest, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`
@@ -49,7 +51,6 @@ export const useBookingStore = defineStore('bookingrequest'
                     .then(response => {
                         this.bookingId = response.data.id
                         console.log(response)
-                        console.log("erfolgreich gebucht")          //check here: https://boutique-hotel.helmuth-lammer.at/api/v1/bookings
                     })
                     .catch(function (error) {
                         console.log(error);
