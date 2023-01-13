@@ -17,7 +17,7 @@
         >
           <b-form-radio-group
               class="pt-2"
-              :options="['Herr', 'Frau', 'Divers']"
+              :options="['Herr', 'Frau', 'Divers', 'Keine Angabe']"
               :aria-describedby="ariaDescribedby"
               v-model="personalData.gender"
           ></b-form-radio-group>
@@ -187,7 +187,8 @@ export default {
       this.personalData.lastname = this.userStore.getUser.lastname;
       this.personalData.birthdate = this.userStore.getUser.birthdate;
       this.personalData.email = this.userStore.getUser.email;
-      this.personalData.emailrepeat = this.userStore.getUser.emailrepeat;
+      this.personalData.emailrepeat = this.userStore.getUser.email;
+      this.personalData.gender = "Keine Angabe";
     }
   }
 }
