@@ -60,6 +60,8 @@
         </b-row>
       </div>
       <b-button v-if="bookingOverviewDisplay" @click="sendBooking" variant="success">Buchung abschicken</b-button>
+      <br />
+      <b-button v-if="bookingOverviewDisplay" href="/" variant="light">Abbrechen</b-button>
     </div>
   </b-container>
 </template>

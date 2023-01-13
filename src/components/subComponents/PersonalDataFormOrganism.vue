@@ -44,6 +44,7 @@
             label-for="birthdate"
             label-cols-sm="3"
             label-align-sm="right"
+            description="Sie müssen mindestens 16 Jahre alt sein, um ein Zimmer zu buchen."
         >
           <birthday-datepicker-molecule v-model="personalData.birthdate" required></birthday-datepicker-molecule>
         </b-form-group>

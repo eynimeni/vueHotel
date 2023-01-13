@@ -14,7 +14,7 @@ export default {
   name: "ArrivalOrganism",
   data() {
     return {
-      title: 'So kommen Sie am Besten zu unserem Hotel',
+      title: 'So kommen Sie am Besten zu unserem Hotel:',
       infoCar: 'Mit dem Auto: Über die B1 und dann am Graben rechts. Vergessen Sie die Schneeketten nicht.',
       infoHiking: 'Sie erreichen uns auch zu Fuß: Wanderweg Grün, W4. Unbedingt mit Schneeschuhen!',
       infoPublic: 'Zugverbindungen finden Sie unter:'

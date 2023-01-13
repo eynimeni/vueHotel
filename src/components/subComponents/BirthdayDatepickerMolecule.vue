@@ -18,7 +18,7 @@ export default {
   computed: {
     getDate14YearsAgo() {
       let fourteenYearsAgo = new Date()
-      fourteenYearsAgo.setTime(fourteenYearsAgo.valueOf() - 14 * 365 * 24 * 60 * 60 * 1000)
+      fourteenYearsAgo.setTime(fourteenYearsAgo.valueOf() - 16 * 365 * 24 * 60 * 60 * 1000)
       return fourteenYearsAgo.toISOString().split("T")[0]
     }
   }
