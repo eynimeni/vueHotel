@@ -53,15 +53,15 @@
             </b-button>
           </b-col>
           <b-col>
-            <b-button @click="showForm">Persönliche Daten bearbeiten
+            <b-button @click="showForm" class="btn-dark">Persönliche Daten bearbeiten
               <b-icon-pencil></b-icon-pencil>
             </b-button>
           </b-col>
         </b-row>
       </div>
-      <b-button v-if="bookingOverviewDisplay" @click="sendBooking" variant="success">Buchung abschicken</b-button>
+      <b-button v-if="bookingOverviewDisplay" @click="sendBooking" class="m-3" size="md" variant="success">Buchung abschicken</b-button>
       <br />
-      <b-button v-if="bookingOverviewDisplay" href="/" variant="light">Abbrechen</b-button>
+      <b-button v-if="bookingOverviewDisplay" class="m-3" size="md" variant="secondary" href="/">Abbrechen</b-button>
     </div>
   </b-container>
 </template>
@@ -83,7 +83,6 @@ import {useUserStore} from "@/stores/UserStore";
 
 export default {
   name: "BookingPage",
-
   components: {
     RoomIdDisplayOrganism,
     BookingAvailabilityOrganism,

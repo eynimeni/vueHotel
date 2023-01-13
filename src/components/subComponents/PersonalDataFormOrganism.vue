@@ -98,7 +98,6 @@ import BirthdayDatepickerMolecule from "@/components/subComponents/BirthdayDatep
 import {useUserStore} from "@/stores/UserStore";
 import {useLoginStore} from "@/stores/LoginStore";
 
-
 export default {
   name: "PersonalDataFormOrganism",
   components: {

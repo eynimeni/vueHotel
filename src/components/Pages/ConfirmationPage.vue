@@ -21,7 +21,6 @@
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import ContactDataOrganism from "@/components/subComponents/ContactDataOrganism";
 import GoogleMapsOrganism from "@/components/subComponents/GoogleMapsOrganism";
-
 import ArrivalOrganism from "@/components/subComponents/ArrivalOrganism";
 import {useBookingStore} from "@/stores/BookingStore";
 import BookingOverviewTemplate from "@/components/subComponents/BookingOverviewTemplate";

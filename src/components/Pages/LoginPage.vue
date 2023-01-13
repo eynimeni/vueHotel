@@ -42,13 +42,11 @@
             <router-link :to="{path: '/register'}">Registrieren</router-link>
           </div>
         </div>
-
         <b-button class="m-3" size="md" variant="secondary" href="/">Abbrechen</b-button>
         <b-button class="m-3" type="submit" variant="primary"
                   @click="login">
           Einloggen
         </b-button>
-
       </b-form>
     </b-container>
   </div>

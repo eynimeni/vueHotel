@@ -3,7 +3,7 @@
     <div>{{ request }}</div>
     <div v-if="isAvailable" class="b-toast-success">Das gewählte Zimmer ist für diesen Zeitraum verfügbar.
     </div>
-    <div v-else-if="isAvailable === false" class="b-toast-danger">Das gewählte Zimmer ist für diesen Zeitraum leider
+    <div v-else-if="isAvailable === false" class="b-toast-danger">Dieses Zimmer ist für den oben gewählten Zeitpunkt leider
       nicht verfügbar.
     </div>
     <div class="userFeedback" v-else>Bitte wählen Sie Zimmertyp und Buchungszeitraum.
@@ -38,9 +38,6 @@ export default {
       return state
     }
   },
-  unmounted() {
-    this.roomStoreObject.unsetAvailability()
-  }
 
 }
 </script>

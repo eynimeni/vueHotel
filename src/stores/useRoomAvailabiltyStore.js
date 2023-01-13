@@ -53,8 +53,5 @@ export const useRoomsAvailability = defineStore('roomAvailability', {
             this.endDateRaw = new Date(date[1]);
             this.endDate = this.endDateRaw.toISOString().split("T")[0]
         },
-        unsetAvailability() {
-            this.available = [];
-        }
     }
 })

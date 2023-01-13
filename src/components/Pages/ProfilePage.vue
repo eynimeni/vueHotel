@@ -18,6 +18,7 @@
     </b-list-group>
   </b-container>
 </template>
+
 <script>
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 import {useLoginStore} from "@/stores/LoginStore";

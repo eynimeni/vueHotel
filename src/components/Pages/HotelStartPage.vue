@@ -7,14 +7,12 @@
 </template>
 
 <script>
-
 import HeadingOrganism from "@/components/subComponents/HeadingOrganism";
 
 export default {
   name: "HotelPage",
   components: {
     HeadingOrganism
-
   },
   data() {
     return {
