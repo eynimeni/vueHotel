@@ -9,12 +9,30 @@ assignees: ''
 
 **Userstory**
 Als <Rolle> möchte ich <Ziel/Wunsch>, damit ich <Nutzen>.
+Z.B. Als Studentin möchte ich dass absolvierte Kurse in der Kursübersicht farblich gekennzeichnet sein, damit ich eine Übersicht über meinen Fortschritt habe.
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**Hinweise**
+z.B.
+- Das ist uns sehr wichtig, damit die Übersicht möglichst intiuitiv verständlich ist.
+- Darstellung siehe grafische Ausarbeitung
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**Anforderungen = testbar!**
+z.B.
+- Wenn mit der Rolle Student eingeloggt sind, werden auf der Kursübersichtsseite farblich gekennzeichnete Kurse angezeigt.
+- Sobald ein Kurs absolviert wurde ändert sich sein Status und damit die Darstellung in der Kursübersicht.
+...
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**Abgrenzungen**
+was ist nicht gemeint
+z.B.
+- die Detailansicht der Kurse
+- die Darstellung der Kurse als sortierbare Tabelle
+
+**ggf. Designs, Mockups**
+- Designvorlage siehe shared/Grafiken/Kursuebersicht.pdf
+
+**Definition of Done**
+- [ ] loggt sich ein User ein, werden auf der Kursübersichtseite alle Kurse dargestellt
+- [ ] absolvierte Kurse sind in der Kursübersicht farblich von nicht-absolvierten zu unterscheiden
+- [ ] die Darstellung entspricht den Designvorgaben
+- [ ] es bestehen erfolgreiche Tests für diese Funktionalität
