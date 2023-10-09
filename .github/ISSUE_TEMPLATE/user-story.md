@@ -1,6 +1,6 @@
 ---
-name: Anforderung
-about: Eine Anforderung erstellen
+name: User Story
+about: Eine klar definierte Funktionalität
 title: Anforderung
 labels: ''
 assignees: ''
@@ -10,6 +10,9 @@ assignees: ''
 **Userstory**
 Als <Rolle> möchte ich <Ziel/Wunsch>, damit ich <Nutzen>.
 Z.B. Als Studentin möchte ich dass absolvierte Kurse in der Kursübersicht farblich gekennzeichnet sein, damit ich eine Übersicht über meinen Fortschritt habe.
+
+**Entsprechendes Epic**
+Ist Teil von GH-101 "Übersichtlicher Pathway zum Kursfortschritt"
 
 **Hinweise**
 z.B.
