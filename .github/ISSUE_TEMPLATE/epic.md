@@ -25,6 +25,6 @@ z.B.: Als Studentin möchte ich eine Übersicht zu allen für mich relevanten Ku
 - [ ] Offene Punkte & Bugs in Tickets dokumentiert und bekannt
 
 ## Zugeordnete User Stories ##
-- GH-123 "Farbliche Kennzeichnung von absolvierten Kursen"
-- GH-124 "Navigationselemente vergrößern sich, bei hover-over"
+- GH-123 "Farbliche Kennzeichnung von absolvierten Kursen" (LINK)
+- GH-124 "Navigationselemente vergrößern sich, bei hover-over" (LINK)
 ...
