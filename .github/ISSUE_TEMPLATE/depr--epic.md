@@ -1,5 +1,5 @@
 ---
-name: Epic
+name: 'DEPR: Epic'
 about: Anforderung mit hoher Abstraktionsebene
 title: 'Epic User Story #1'
 labels: ''

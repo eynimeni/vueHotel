@@ -1,5 +1,5 @@
 ---
-name: User Story
+name: 'DEPR: User Story'
 about: Eine klar definierte Funktionalität
 title: Anforderung
 labels: ''

@@ -23,4 +23,4 @@ z.B.
 - [ ] Alle Anforderungen erfolgreich getestet
 - [ ] Der Code ist übersichtlich strukturiert und mit Kommentaren versehen
 - [ ] Nicht gebrauchte Code-Passagen sind entfernt
-- [ ] Offene Punkte & Bugs in Tickets dokumentiert und bekannt
+- [ ] Offene Punkte & Bugs in Tickets dokumentiert
