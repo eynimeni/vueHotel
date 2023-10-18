@@ -36,8 +36,8 @@ z.B.
 - Designvorlage siehe shared/Grafiken/Kursuebersicht.pdf
 
 **Definition of Done**
-- [ ] Dokumentation erstellt / aktualisiert
 - [ ] Alle Akzeptanzkriterien sind erfüllt
 - [ ] Alle Akzeptanzkriterien erfolgreich getestet
-- [ ] Testfälle wurden reviewt
+- [ ] Der Code ist übersichtlich strukturiert und mit Kommentaren versehen
+- [ ] Nicht gebrauchte Code-Passagen sind entfernt
 - [ ] Offene Punkte & Bugs in Tickets dokumentiert und bekannt
